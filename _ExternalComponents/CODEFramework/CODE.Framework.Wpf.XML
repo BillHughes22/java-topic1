@@ -1,0 +1,2519 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CODE.Framework.Wpf</name>
+    </assembly>
+    <members>
+        <member name="T:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate">
+            <summary>Smart, self-populating data template that can be used in generic listboxes with columns</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate"/> class.
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.FindAncestor``1(System.Windows.DependencyObject)">
+            <summary>Walks the visual tree to find the parent of a certain type</summary>
+            <typeparam name="T">Type to search</typeparam>
+            <param name="d">Object for which to find the ancestor</param>
+            <returns>Object or null</returns>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.ColumnsProperty">
+            <summary>Generic column definition</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.OnColumnsChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Called when columns change.</summary>
+            <param name="o">The object the columns changed on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.DefaultColumnsProperty">
+            <summary>Definition of default columns, which can be used in case the listbox itself does not define columns</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.DefaultColumnsChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the default columns change</summary>
+            <param name="o">The o.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.Columns">
+            <summary>Generic column definition</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListBoxSmartDataTemplate.DefaultColumns">
+            <summary>Definition of default columns, which can be used in case the listbox itself does not define columns</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.BidirectionalStackPanel">
+            <summary>
+            This control behaves much like a stack panel but arranges items not just top-to-bottom or left-to-right,
+            but it can at the same time arrange items at the oposite end of the control based on horizontal and
+            vertical alignement settings
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.ChildItemMarginProperty">
+            <summary>Additional margin added to each child item in this stack</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.IgnoreChildItemBottomMarginForTextElementsProperty">
+            <summary>Defines whether the extra bottom child item margin for text elements (labels and textblocks) should be ignored</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.LastTopItemFillsSpaceProperty">
+            <summary>Indicates whether the last top (or left) item fills the remaining space</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.LastTopItemFillMarginProperty">
+            <summary>Defines how much of a margin is to be left below the last top item in case the last top item is set to fill the available space</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Measures the child elements of a <see cref="T:System.Windows.Controls.StackPanel"/> in anticipation of arranging them during the <see cref="M:System.Windows.Controls.StackPanel.ArrangeOverride(System.Windows.Size)"/> pass.
+            </summary>
+            <param name="constraint">An upper limit <see cref="T:System.Windows.Size"/> that should not be exceeded.</param>
+            <returns>
+            The <see cref="T:System.Windows.Size"/> that represents the desired size of the element.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Arranges the content of a <see cref="T:System.Windows.Controls.StackPanel"/> element.
+            </summary>
+            <param name="arrangeSize">The <see cref="T:System.Windows.Size"/> that this element should use to arrange its child elements.</param>
+            <returns>
+            The <see cref="T:System.Windows.Size"/> that represents the arranged size of this <see cref="T:System.Windows.Controls.StackPanel"/> element and its child elements.
+            </returns>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.ChildItemMargin">
+            <summary>Additional margin added to each child item in this stack</summary>
+            <remarks>Note that this margin is added to whatever native margin the control may already have</remarks>
+            <value>The child item margin.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.IgnoreChildItemBottomMarginForTextElements">
+            <summary>Defines whether the extra bottom child item margin for text elements (labels and textblocks) should be ignored</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.LastTopItemFillsSpace">
+            <summary>Indicates whether the last top (or left) item fills the remaining space</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.BidirectionalStackPanel.LastTopItemFillMargin">
+            <summary>Defines how much of a margin is to be left below the last top item in case the last top item is set to fill the available space</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.AutoLayoutHeaderRenderer">
+            <summary>
+            This class is a utility class used to render headers in edit forms
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.AutoLayoutHeaderRenderer.RenderHeader(System.Windows.Media.DrawingContext,CODE.Framework.Wpf.Utilities.AutoHeaderTextRenderInfo,System.Double,System.Windows.Point)">
+            <summary>This method performs the actual render operation to show a text label</summary>
+            <param name="dc">Drawing context</param>
+            <param name="info">Render info</param>
+            <param name="scale">The scale.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.AutoLayoutHeaderRenderer.RenderBackground(System.Windows.Media.DrawingContext,CODE.Framework.Wpf.Utilities.GroupBackgroundRenderInfo,System.Double,System.Windows.Point)">
+            <summary>This method draws a rectangular background around a group of elements</summary>
+            <param name="dc">The drawing context.</param>
+            <param name="info">Render info</param>
+            <param name="scale">The scale.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.AutoHeaderTextRenderInfo">
+            <summary>Internal utility class used to convey header rendering information</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.AutoHeaderTextRenderInfo.Text">
+            <summary>Gets or sets the text.</summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.AutoHeaderTextRenderInfo.RenderRect">
+            <summary>Gets or sets the render rectangle.</summary>
+            <value>The render rectangle.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.AutoHeaderTextRenderInfo.FormattedText">
+            <summary>Gets or sets the formatted text.</summary>
+            <value>The formatted text.</value>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.GroupBackgroundRenderInfo">
+            <summary>Internal utility class used to convey group background render information</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.GroupBackgroundRenderInfo.RenderRect">
+            <summary>Gets or sets the render rectangle.</summary>
+            <value>The render rectangle.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.GroupBackgroundRenderInfo.Background">
+            <summary>Background brush</summary>
+            <value>The background.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.GroupBackgroundRenderInfo.Border">
+            <summary>Border brush</summary>
+            <value>The border.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Utilities.GroupBackgroundRenderInfo.BorderWidth">
+            <summary>Border width</summary>
+            <value>The width of the border.</value>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.GridEx">
+            <summary>
+            Special subclassed version of a grid that supports styling column and row sizes
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.ColumnWidthsProperty">
+            <summary>Attached property to set column widths</summary>
+            <remarks>This attached property can be attached to any UI Element to define column widths</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.ColumnWidthsPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handler for column width changes
+            </summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.GetColumnWidths(System.Windows.DependencyObject)">
+            <summary>Column widths</summary>
+            <param name="obj">Object to set the columns widths on</param>
+            <returns>Column width</returns>
+            <remarks>This attached property can be attached to any UI Element to define the column width</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.SetColumnWidths(System.Windows.DependencyObject,System.String)">
+            <summary>Column width</summary>
+            <param name="obj">Object to set the column widths on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.RowHeightsProperty">
+            <summary>Attached property to set row heights</summary>
+            <remarks>This attached property can be attached to any UI Element to define row heights</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.RowHeightsPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handler for row height changes
+            </summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.GetRowHeights(System.Windows.DependencyObject)">
+            <summary>Row heights</summary>
+            <param name="obj">Object to set the row heights on</param>
+            <returns>Column width</returns>
+            <remarks>This attached property can be attached to any UI Element to define the row height</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.SetRowHeights(System.Windows.DependencyObject,System.String)">
+            <summary>Row heights</summary>
+            <param name="obj">Object to set the row heights on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.AdjustWidthToParentListItemProperty">
+            <summary>If this grid is used within a list box (list item), it can be set to automatically adjust its width to match the exact width available to list items</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.AdjustWidthToParentListItemPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the adjust width to parent list item property changes</summary>
+            <param name="d">The grid this was set on</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx._listItemWidthBound">
+            <summary>Indicates whether the binding to the width of the list item has already been created for the grid</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.CreateListItemWidthBinding">
+            <summary>Creates a binding to set the grid to the width of the list item</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.OnVisualParentChanged(System.Windows.DependencyObject)">
+            <summary>Invoked when the parent of this element in the visual tree is changed. Overrides <see cref="M:System.Windows.UIElement.OnVisualParentChanged(System.Windows.DependencyObject)"/>.</summary>
+            <param name="oldParent">The old parent element. May be null to indicate that the element did not have a visual parent previously.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.UseItemIndexProperty">
+            <summary>If this grid is used within a list box (list item), it can automatically expose an alternation count property that can be used to know if the row is odd or even and the like.</summary>
+            <remarks>For this to have any effect, the list itself must have an alternation count set to something other than 0 or 1</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.UseItemIndexPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the user alternation count property changes</summary>
+            <param name="d">The grid this was set on</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.FindAncestor``1(System.Windows.DependencyObject)">
+            <summary>Walks the visual tree to find the parent of a certain type</summary>
+            <typeparam name="T">Type to search</typeparam>
+            <param name="d">Object for which to find the ancestor</param>
+            <returns>Object or null</returns>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.ItemIndexProperty">
+            <summary>If this grid is used within a list box (list item), and the UseAlternationCount property is set to true, this property will tell the alternation count (such as 0 and 1 for odd and even rows).</summary>
+            <remarks>For this to have any effect, the list itself must have an alternation count set to something other than 0 or 1</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.IsOddRowProperty">
+            <summary>Indicates whether this grid is used in an item in a list control and that item has an odd row index</summary>
+            <remarks>Only works if this grid is used in a data template inside of a listbox</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.ListItemWidthProperty">
+            <summary>For internal use only</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.OnListItemWidthChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>For internal use only</summary>
+            <param name="source">The source.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.SetBackground(System.Windows.Controls.Panel,System.Windows.Media.Brush,System.Double,System.Double)">
+            <summary>Internal method used to set the background brush on a Grid object</summary>
+            <param name="grid">The grid on which to set these values.</param>
+            <param name="brush">The brush.</param>
+            <param name="lightFactor">The light factor.</param>
+            <param name="opacity">The opacity.</param>
+            <remarks>Combines BackgroundBrush, BackgroundBrushLightFactor, and BackgroundBrushOpacity to set the Background property</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.BackgroundBrushProperty">
+            <summary>Background brush</summary>
+            <remarks>This property is similar to the Background property, but can be used in conjunction with BackgroundBrushLightFactor and BackgroundBrushOpacity</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.BackgroundBrushPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for background brush changed</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.GetBackgroundBrush(System.Windows.DependencyObject)">
+            <summary>Background brush</summary>
+            <returns>Background brush</returns>
+            <remarks>This property is similar to the Background property, but can be used in conjunction with BackgroundLightFactor and BackgroundBrushTransparency</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.SetBackgroundBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>Background brush</summary>
+            <remarks>This property is similar to the Background property, but can be used in conjunction with BackgroundLightFactor and BackgroundBrushTransparency</remarks>
+            <param name="obj">Object to set the value on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.BackgroundBrushLightFactorProperty">
+            <summary>Background brush light factor</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.BackgroundBrushLightFactorPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for background brush light factor changed</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.GetBackgroundBrushLightFactor(System.Windows.DependencyObject)">
+            <summary>Background brush light factor</summary>
+            <returns>Background brush light factor</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.SetBackgroundBrushLightFactor(System.Windows.DependencyObject,System.Double)">
+            <summary>Background brush light factor</summary>
+            <param name="obj">Object to set the value on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.GridEx.BackgroundBrushOpacityProperty">
+            <summary>Background brush light factor</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.BackgroundBrushOpacityPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for background brush light factor changed</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.GetBackgroundBrushOpacity(System.Windows.DependencyObject)">
+            <summary>Background brush opacity</summary>
+            <returns>Background brush opacity</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.GridEx.SetBackgroundBrushOpacity(System.Windows.DependencyObject,System.Double)">
+            <summary>Background brush opacity</summary>
+            <param name="obj">Object to set the value on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.GridEx.AdjustWidthToParentListItem">
+            <summary>If this grid is used within a list box (list item), it can be set to automatically adjust its width to match the exact width available to list items</summary>
+            <value><c>true</c> if [adjust width to parent list item]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.GridEx.UseItemIndex">
+            <summary>If this grid is used within a list box (list item), it can automatically expose an item index property that can be used to know if the row is odd or even and the like.</summary>
+            <remarks>For this to have any effect, the list itself must have an alternation count set to something other than 0 or 1</remarks>
+            <value>True of false</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.GridEx.ItemIndex">
+            <summary>If this grid is used within a list box (list item), and the UseAlternationCount property is set to true, this property will tell the alternation count (such as 0 and 1 for odd and even rows).</summary>
+            <remarks>For this to have any effect, the list itself must have an alternation count set to something other than 0 or 1</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.GridEx.IsOddRow">
+            <summary>Indicates whether this grid is used in an item in a list control and that item has an odd row index</summary>
+            <remarks>Only works if this grid is used in a data template inside of a listbox</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.GridEx.ListItemWidth">
+            <summary>For internal use only</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.TransparentColorConverter">
+            <summary>
+            Converts colors to a semi-transparent version of the same color
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.TransparentColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a color value to its semi-transparent counterpart. The converter parameter defines the opacity (1 = fully opaque, 0 = fully transparent).
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.TransparentColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListBoxEx">
+            <summary>
+            ListBox with additional features
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxEx.CommandProperty">
+            <summary>Attached property to set a listbox's command</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.CommandPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handler for command changes
+            </summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.MouseDoubleClickCommandTrigger(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Triggers a potentially attached command after double-click
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SelectionChangedCommandTrigger(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Triggers a potentially attached command after selection changes.
+            </summary>
+            <param name="sender">The ListBox.</param>
+            <param name="e">The <see cref="T:System.Windows.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.TriggerCommand(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Triggers the associated command.
+            </summary>
+            <param name="sender">The sender (ListBox) that triggered the operation.</param>
+            <param name="selectedItem">The selected item (used as the command parameter unless an explicit parameter is set).</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.GetCommand(System.Windows.DependencyObject)">
+            <summary>Command to be triggered on items in the list</summary>
+            <param name="obj">Object to set command on</param>
+            <returns>Command</returns>
+            <remarks>This attached property can be attached to any UI Element to define a command</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SetCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>Command</summary>
+            <param name="obj">Object to set the command on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxEx.CommandTriggerProperty">
+            <summary>Attached property to set command trigger</summary>
+            <remarks>This attached property can be attached to any UI Element to define a command trigger mode</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.GetCommandTrigger(System.Windows.DependencyObject)">
+            <summary>Command trigger mode</summary>
+            <param name="obj">Object to set the command trigger on</param>
+            <returns>Command trigger mode</returns>
+            <remarks>This attached property can be attached to any UI Element to define the command trigger mode</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SetCommandTrigger(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.ListBoxCommandTrigger)">
+            <summary>Command trigger</summary>
+            <param name="obj">Object to set the command trigger on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxEx.CommandParameterModeProperty">
+            <summary>Attached property to set command parameter mode</summary>
+            <remarks>This attached property can be attached to any UI Element to define a command parameter mode</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.GetCommandParameterMode(System.Windows.DependencyObject)">
+            <summary>Command parameter mode</summary>
+            <param name="obj">Object to set the command parameter mode on</param>
+            <returns>Command parameter mode</returns>
+            <remarks>This attached property can be attached to any UI Element to define the command parameter mode</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SetCommandParameterMode(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.ListBoxCommandTrigger)">
+            <summary>Command parameter mode</summary>
+            <param name="obj">Object to set the command parameter mode on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxEx.CommandParameterProperty">
+            <summary>Attached property to set the command parameter</summary>
+            <remarks>This attached property can be attached to any UI Element to define the command parameter</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.GetCommandParameter(System.Windows.DependencyObject)">
+            <summary>Command parameter</summary>
+            <param name="obj">Object to set the command parameter on</param>
+            <returns>Command parameter</returns>
+            <remarks>This attached property can be attached to any UI Element to define the command parameter</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SetCommandParameter(System.Windows.DependencyObject,System.Object)">
+            <summary>Cmmand parameter</summary>
+            <param name="obj">Object to set the command parameter on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxEx.SelectedItemCollectionProperty">
+            <summary>Provides a way to bind selected items into an observable collection</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.GetSelectedItemCollection(System.Windows.DependencyObject)">
+            <summary>Collection containing selected items</summary>
+            <param name="obj">Object to set collection on</param>
+            <returns>Collection</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SetSelectedItemCollection(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>Selected item collection</summary>
+            <param name="obj">Object to set the collection on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SelectedItemCollectionPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the selected item collection is changed</summary>
+            <param name="d">Dependency object (listbox, most likely)</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxEx.AutoScrollToSelectedItemProperty">
+            <summary>Indicates whether or not the listbox shall automatically scroll to selected items when the selected item changes</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.AutoScrollToSelectedItemChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Autoes the scroll to selected item changed.
+            </summary>
+            <param name="o">The object the value has been set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.GetAutoScrollToSelectedItem(System.Windows.DependencyObject)">
+            <summary>Indicates whether or not the listbox shall automatically scroll to selected items when the selected item changes</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxEx.SetAutoScrollToSelectedItem(System.Windows.DependencyObject,System.Boolean)">
+            <summary>Indicates whether or not the listbox shall automatically scroll to selected items when the selected item changes</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListBoxCommandTrigger">
+            <summary>
+            Defines when the command on the ListBox is to be triggered
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxCommandTrigger.DoubleClick">
+            <summary>
+            Trigger command on item double-click
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxCommandTrigger.Select">
+            <summary>
+            Trigger command on item selection
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxCommandTrigger.DoubleClickAndSelect">
+            <summary>
+            Trigger command after either double-click or selection changed
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListBoxCommandParameterMode">
+            <summary>
+            Defines how a default listbox command passes selection information as the command parameter
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxCommandParameterMode.SingleSelectedObject">
+            <summary>
+            Pass only one selected object, even if there are multiple selected objects (passes the first object in the list of *newly selected items* if more than one item is selected)
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxCommandParameterMode.ListOfSelectedObjects">
+            <summary>
+            Passes the entire list of selected objects
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.OneToManyPanel">
+            <summary>
+            Special layout panel geared towards rendering 1-to-many UIs (such as customers and their orders)
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionRendererProperty">
+            <summary>Object used to render the captions</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontFamilyProperty">
+            <summary>Font family used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontStyleProperty">
+            <summary>Font style used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontWeightProperty">
+            <summary>Font weight used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontSizeProperty">
+            <summary>Font size used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionForegroundBrushProperty">
+            <summary>Foreground brush used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.OrientationProperty">
+            <summary>Indicates whether the general layout is horizontal or vertical</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.SpacingProperty">
+            <summary>Spacing between the 2 elements</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionSpacingProperty">
+            <summary>Spacing between the caption and the element</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionProperty">
+            <summary>Caption for elements within a one-to-many panel</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.OneToManyPanel.GetCaption(System.Windows.DependencyObject)">
+            <summary>Caption for elements within a one-to-many panel</summary>
+            <param name="obj">The dependency object the value is associated with</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.OneToManyPanel.SetCaption(System.Windows.DependencyObject,System.String)">
+            <summary>Caption for elements within a one-to-many panel</summary>
+            <param name="obj">The dependency object the value is associated with</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.OneToManyPanel.InvalidateEverything(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Invalidates all layout, measurement, and rendering</summary>
+            <param name="dependencyObject">One-To-Many panel to invalidate</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.OneToManyPanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            When overridden in a derived class, measures the size in layout required for child elements and determines a size for the <see cref="T:System.Windows.FrameworkElement"/>-derived class.
+            </summary>
+            <param name="availableSize">The available size that this element can give to child elements. Infinity can be specified as a value to indicate that the element will size to whatever content is available.</param>
+            <returns>
+            The size that this element determines it needs during layout, based on its calculations of child element sizes.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.OneToManyPanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            When overridden in a derived class, positions child elements and determines a size for a <see cref="T:System.Windows.FrameworkElement"/> derived class.
+            </summary>
+            <param name="finalSize">The final area within the parent that this element should use to arrange itself and its children.</param>
+            <returns>
+            The actual size used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.OneToManyPanel.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draws the content of a <see cref="T:System.Windows.Media.DrawingContext"/> object during the render pass of a <see cref="T:System.Windows.Controls.Panel"/> element.
+            </summary>
+            <param name="dc">The <see cref="T:System.Windows.Media.DrawingContext"/> object to draw.</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionRenderer">
+            <summary>Object used to render the captions</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontFamily">
+            <summary>Font family used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontStyle">
+            <summary>Font style used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontWeight">
+            <summary>Font weight used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionFontSize">
+            <summary>Font size used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionForegroundBrush">
+            <summary>Foreground brush used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.Orientation">
+            <summary>Indicates whether the general layout is horizontal or vertical</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.Spacing">
+            <summary>Spacing between the 2 elements</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.OneToManyPanel.CaptionSpacing">
+            <summary>Spacing between the caption and the element</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.FocusHelper">
+            <summary>This class provides helpful features for focus management</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.FocusHelper.FocusDelayed(System.Windows.FrameworkElement,System.Windows.FrameworkElement,System.Windows.FrameworkElement,System.Windows.FrameworkElement,System.Int32)">
+            <summary>
+            Sets the focus to the specified control(s) but after a slight delay to allow the calling method to finish before the focus is moved (by routing through a background thread and the message pump)
+            </summary>
+            <param name="focusElement1">The element to set the focus to.</param>
+            <param name="focusElement2">An (optional) next element to set the focus to (typically a parent of the prior element).</param>
+            <param name="focusElement3">An (optional) next element to set the focus to (typically a parent of the prior element).</param>
+            <param name="focusElement4">An (optional) next element to set the focus to (typically a parent of the prior element).</param>
+            <param name="delay">The delay in milliseconds before the focus is moved (100ms is the default).</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListEx">
+            <summary>Special features that can be attached to listboxes</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListEx.ColumnsProperty">
+            <summary>This attached property can be used to generically express the content of columns</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListEx.SetColumns(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.ListColumnsCollection)">
+            <summary>Sets the columns.</summary>
+            <param name="o">The DependencyObject to set the value on.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListEx.GetColumns(System.Windows.DependencyObject)">
+            <summary>Gets the columns.</summary>
+            <param name="o">The DependencyObject to get the value on.</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListColumnsCollection">
+            <summary>Observable collection of generic list columns</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListColumn">
+            <summary>An abstract definition of a column</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListColumn.HeaderProperty">
+            <summary>Column Header</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListColumn.WidthProperty">
+            <summary>Column Width</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListColumn.GridWidthProperty">
+            <summary>For internal use only</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListColumn.BindingPathProperty">
+            <summary>Path expression the column is bound to (used as a standard binding expression into each item's data context</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListColumn.ItemTemplateProperty">
+            <summary>Item template used for the column</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListColumn.IsResizableProperty">
+            <summary>Defines whether the column is resizable</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListColumn.Header">
+            <summary>Column Header</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListColumn.Width">
+            <summary>Column Width</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListColumn.GridWidth">
+            <summary>For internal use only</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListColumn.BindingPath">
+            <summary>Path the column is bound to</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListColumn.ItemTemplate">
+            <summary>Item template used for the column</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListColumn.IsResizable">
+            <summary>Defines whether the column is resizable</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListBoxItemEx">
+            <summary>
+            Extensions for list box items
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxItemEx.SelectItemWhenFocusWithinProperty">
+            <summary>Indicates whether the list box item should automatically be considered selected when the focus moves to any of the controls within the item</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxItemEx.SelectItemwhenFocusWithinChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Selects the itemwhen focus within changed.
+            </summary>
+            <param name="o">The o.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxItemEx.GetSelectItemWhenFocusWithin(System.Windows.DependencyObject)">
+            <summary>Indicates whether the list box item should automatically be considered selected when the focus moves to any of the controls within the item</summary>
+            <param name="o">The object to set the value on.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxItemEx.SetSelectItemWhenFocusWithin(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates whether the list box item should automatically be considered selected when the focus moves to any of the controls within the item
+            </summary>
+            <param name="o">The object to set the value on.</param>
+            <param name="value">if set to <c>true</c> [value].</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.LitColorConverter">
+            <summary>
+            Converts colors to a lighter or darker version
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.LitColorConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.LitColorConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Behavior.Behavior">
+            <summary>
+            Encapsulates state information and zero or more ICommands into an attachable object. 
+            </summary>
+            <remarks>
+            This is an infrastructure class. Behavior authors should derive from Behavior instead of from this class.
+            </remarks>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Behavior.IAttachedObject">
+            <summary>
+            An interface for an object that can be attached to another object. 
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.IAttachedObject.Attach(System.Windows.DependencyObject)">
+            <summary>
+            Attaches to the specified object. 
+            </summary>
+            <param name="dependencyObject">The object to attach to.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.IAttachedObject.Detach">
+            <summary>
+            Detaches this instance from its associated object. 
+            </summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Behavior.IAttachedObject.AssociatedObject">
+            <summary>
+            Represents the object the instance is attached to.
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior.Attach(System.Windows.DependencyObject)">
+            <summary>
+            Attaches to the specified object.
+            </summary>
+            <param name="dependencyObject">The object to attach to.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior.OnAssociatedObjectChanged">
+            <summary>
+            Fires the associated object changed event (if used)
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject. 
+            </summary>
+            <remarks>Override this to hook up functionality to the AssociatedObject.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior.OnAttachedInternal">
+            <summary>
+            Similar to OnAttached(), but used for internal purposes only. Do not override.
+            </summary>
+            <remarks>Do not override this method. Override OnAttached() instead.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred. 
+            </summary>
+            <remarks>Override this to unhook functionality from the AssociatedObject.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior.Detach">
+            <summary>
+            Detaches this instance from its associated object.
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Behavior.Behavior.AssociatedObjectChanged">
+            <summary>
+            Fires when the assopciated object changes
+            </summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Behavior.Behavior.AssociatedObject">
+            <summary>
+            Represents the object the instance is attached to.
+            </summary>
+            <value>Associated object or null</value>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Behavior.Behavior`1">
+            <summary>
+            Encapsulates state information and zero or more ICommands into an attachable object. 
+            </summary>
+            <typeparam name="TAttached">The type the behavior can be attached to.</typeparam>
+            <remarks>
+            Behavior is the base class for providing attachable state and commands to an object. 
+            The types the Behavior can be attached to can be controlled by the generic parameter. 
+            Override OnAttached() and OnDetaching() methods to hook and unhook any necessary 
+            handlers from the AssociatedObject. 
+            </remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.FindResource(System.String)">
+            <summary>
+            Attempts to find a resource within the current resource lookup chain.
+            (Typically such a resource would be associated with the object this behavior is attached to,
+            or its parent UI, or it may be available generally in the application).
+            </summary>
+            <param name="resourceKey">Resource Key</param>
+            <returns>Resource if found, or null</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.FindStyle(System.String)">
+            <summary>
+            Attempts to find a style resource within the current resource lookup chain.
+            </summary>
+            <param name="styleResourceKey">Resource key of the style</param>
+            <returns>Style if found, otherwise null</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.FindElement(System.String)">
+            <summary>
+            Tries to find an object by name in the associated UI.
+            </summary>
+            <param name="elementName">Name associated with the element (x:Name)</param>
+            <returns>Object reference or null if not found</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.FindRootElement">
+            <summary>
+            Attempts to find the root UI object the current associated object lives in.
+            </summary>
+            <returns>Object reference or null</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.ApplyStyleToObject(System.String,System.String)">
+            <summary>
+            Applies the specified style to the specified object
+            </summary>
+            <param name="styleResourceKey">Key of the style resource that is to be assigned</param>
+            <param name="elementName">Name (x:Name) of the element the style is to be applied to.</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.ApplyStyleToObject(System.Windows.Style,System.String)">
+            <summary>
+            Applies the specified style to the specified object
+            </summary>
+            <param name="style">Style to assign</param>
+            <param name="elementName">Name (x:Name) of the element the style is to be applied to.</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.ApplyStyleToObject(System.String,System.Windows.FrameworkElement)">
+            <summary>
+            Applies the specified style to the specified object
+            </summary>
+            <param name="styleResourceKey">Key of the style resource that is to be assigned</param>
+            <param name="obj">Object to assign the style to</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Behavior.Behavior`1.ApplyStyleToObject(System.Windows.Style,System.Windows.FrameworkElement)">
+            <summary>
+            Applies the specified style to the specified object
+            </summary>
+            <param name="style">Style to assign</param>
+            <param name="obj">Object to assign the style to</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Behavior.Behavior`1.AssociatedObject">
+            <summary>
+            Represents the object the instance is attached to.
+            </summary>
+            <value>Associated object or null</value>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.TransparentBrushConverter">
+            <summary>
+            Converts solid color brushes to a semi-transparent version of the same color
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.TransparentBrushConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a color value to its semi-transparent counterpart. The converter parameter defines the opacity (1 = fully opaque, 0 = fully transparent).
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.TransparentBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.SimpleView">
+            <summary>
+            Base class for views (can be used instead of UserControl)
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.WidthExProperty">
+            <summary>Attached property to set an element's logical width ("1" usually represents the width of about 1 character, but exact dimensions are up to the current style)</summary>
+            <remarks>This attached property can be attached to any UI Element to define an element's logical width. The width is typically calculated on the current font's width based on the letter 'N'. So a width of 10 can typically accomodate 10 'N' letters. Note that this may vary with different skins.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetWidthEx(System.Windows.DependencyObject)">
+            <summary>Attached property to set an element's logical width ("1" usually represents the width of about 1 character, but exact dimensions are up to the current style)</summary>
+            <param name="obj">Object to set the size on</param>
+            <returns>Width</returns>
+            <remarks>This attached property can be attached to any UI Element to define a width</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetWidthEx(System.Windows.DependencyObject,System.Double)">
+            <summary>Attached property to set an element's logical width ("1" usually represents the width of about 1 character, but exact dimensions are up to the current style)</summary>
+            <param name="obj">Object to set the size on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.OnWidthExChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Attached behavior changed handler</summary>
+            <param name="obj">Object to attach to</param>
+            <param name="args">Event arguments</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.HeightExProperty">
+            <summary>Attached property to set an element's logical height ("1" usually represents the height of about 1 character, but exact dimensions are up to the current style)</summary>
+            <remarks>This attached property can be attached to any UI Element to define an element's logical width. The width is typically calculated on the current font's width based on the letter 'N'. So a width of 10 can typically accomodate 10 'N' letters. Note that this may vary with different skins.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetHeightEx(System.Windows.DependencyObject)">
+            <summary>Attached property to set an element's logical width ("1" usually represents the width of about 1 character, but exact dimensions are up to the current style)</summary>
+            <param name="obj">Object to set the size on</param>
+            <returns>Width</returns>
+            <remarks>This attached property can be attached to any UI Element to define a width</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetHeightEx(System.Windows.DependencyObject,System.Double)">
+            <summary>Attached property to set an element's logical width ("1" usually represents the width of about 1 character, but exact dimensions are up to the current style)</summary>
+            <param name="obj">Object to set the size on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.OnHeightExChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Attached behavior changed handler</summary>
+            <param name="obj">Object to attach to</param>
+            <param name="args">Event arguments</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.IconResourceKeyProperty">
+            <summary>Attached property to set any view's icon resource key</summary>
+            <remarks>This attached property can be attached to any UI Element to define a view icon resource key</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetIconResourceKey(System.Windows.DependencyObject)">
+            <summary>View icon resource key</summary>
+            <param name="obj">Object to set the icon resource key on</param>
+            <returns>Icon resource key</returns>
+            <remarks>This attached property can be attached to any UI Element to define an icon resource key</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetIconResourceKey(System.Windows.DependencyObject,System.String)">
+            <summary>View icon resource key</summary>
+            <param name="obj">Object to set the icon resource key on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.TitleProperty">
+            <summary>Attached property to set any views title</summary>
+            <remarks>This attached property can be attached to any UI Element to define a view title</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetTitle(System.Windows.DependencyObject)">
+            <summary>View title</summary>
+            <param name="obj">Object to set the title on</param>
+            <returns>Title</returns>
+            <remarks>This attached property can be attached to any UI Element to define a view title</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetTitle(System.Windows.DependencyObject,System.String)">
+            <summary>View title</summary>
+            <param name="obj">Object to set the title on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.SizeStrategyProperty">
+            <summary>Attached property to set the view's desired sizing strategy</summary>
+            <remarks>This attached property can be attached to any UI Element to define a view size strategy</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetSizeStrategy(System.Windows.DependencyObject)">
+            <summary>View sizing strategy</summary>
+            <param name="obj">Object to set the sizing strategy on</param>
+            <returns>Sizing strategy</returns>
+            <remarks>This attached property can be attached to any UI Element to define a sizing strategy</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetSizeStrategy(System.Windows.DependencyObject,CODE.Framework.Wpf.Layout.ViewSizeStrategies)">
+            <summary>View size strategy</summary>
+            <param name="obj">Object to set the size strategy on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.ColumnBreakProperty">
+            <summary>Attached property used to define column breaks</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetColumnBreak(System.Windows.DependencyObject)">
+            <summary>Column break indicator</summary><param name="obj">Object to set the value on</param><returns>Value</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetColumnBreak(System.Windows.DependencyObject,System.Boolean)">
+            <summary>Column break indicator</summary><param name="obj">Object to get the value for</param><param name="value">Value</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.GroupBreakProperty">
+            <summary>Property used to detirmine group break (adds a space between elements)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetGroupBreak(System.Windows.DependencyObject)">
+            <summary>Group break indicator</summary><param name="obj">Object to set the value on</param><returns>Value</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetGroupBreak(System.Windows.DependencyObject,System.Boolean)">
+            <summary>Group break indicator</summary><param name="obj">Object to get the value for</param><param name="value">Value</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.GroupTitleProperty">
+            <summary>Group caption/title</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetGroupTitle(System.Windows.DependencyObject)">
+            <summary>Group caption/title</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetGroupTitle(System.Windows.DependencyObject,System.String)">
+            <summary>Group caption/title</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.UIElementTypeProperty">
+            <summary>Property used to detirmine group break (adds a space between elements)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetUIElementType(System.Windows.DependencyObject)">
+            <summary>Group break indicator</summary><param name="obj">Object to set the value on</param><returns>Value</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetUIElementType(System.Windows.DependencyObject,CODE.Framework.Wpf.Layout.UIElementTypes)">
+            <summary>Group break indicator</summary><param name="obj">Object to get the value for</param><param name="value">Value</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.BehaviorProperty">
+            <summary>Attached behavior</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.OnBehaviorChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Attached behavior changed handler</summary>
+            <param name="obj">Object to attach to</param>
+            <param name="args">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetBehavior(System.Windows.UIElement,System.String)">
+            <summary>
+            Sets the attached behavior class name
+            </summary>
+            <param name="element">Element the property is to be set for.</param>
+            <param name="value">Value of the property</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetBehavior(System.Windows.UIElement)">
+            <summary>
+            Gets the value of the Behavior property
+            </summary>
+            <param name="element">Element to get the property value for.</param>
+            <returns>Name of the associated behavior class</returns>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.FocusForwardingTargetProperty">
+            <summary>This property can be bound to a property in a view model (or other data context) to update the property with a reference to whatever object currently has focus.</summary>
+            <remarks>This feature is meant for very specialized uses only. If you are unsure of what this does exactly, this is probably not a feature you want to use.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetFocusForwardingTarget(System.Windows.DependencyObject)">
+            <summary>Focus forwarding getter</summary>
+            <param name="obj">The object the property is set on.</param>
+            <returns>UIElement or null</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetFocusForwardingTarget(System.Windows.DependencyObject,System.Windows.UIElement)">
+            <summary>Focus forwarding setter</summary>
+            <param name="obj">The object the property is set on.</param>
+            <param name="value">UIElement or null</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.SimpleView.FocusForwardingIsEnabledProperty">
+            <summary>Indicates whether focus forwarding is enabled</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.GetFocusForwardingIsEnabled(System.Windows.DependencyObject)">
+            <summary>Focus forwarding is enabled getter</summary>
+            <param name="obj">The object the property is set on.</param>
+            <returns>UIElement or null</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.SetFocusForwardingIsEnabled(System.Windows.DependencyObject,System.Boolean)">
+            <summary>Focus forwarding is enabled setter</summary>
+            <param name="obj">The object the property is set on.</param>
+            <param name="value">UIElement or null</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.OnFocusForwardingIsEnabledChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Callback for changes in the focus element forwarding is enabled property</summary>
+            <param name="o">The object the property is set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.InvalidateAllVisuals(System.Windows.DependencyObject)">
+            <summary>Invalidates everything in the UI and forces a refresh</summary>
+            <param name="source">Reference to an instance of the form itself</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.CreateObject(System.String,System.Reflection.Assembly)">
+            <summary>
+            Instantiates the specified class defined in the passed assembly, assuming that assembly has that class.
+            Otherwise, null is returned.
+            </summary>
+            <param name="className">Name of the class (type) to instantiate.</param>
+            <param name="assembly">Assembly containing the class.</param>
+            <returns>Object instance or null</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.SimpleView.CreateObject(System.String)">
+            <summary>
+            Loads a named type from an assembly
+            </summary>
+            <param name="className">Fully qualified name of the class</param>
+            <returns>Newly instantiated object</returns>
+        </member>
+        <member name="E:CODE.Framework.Wpf.Layout.SimpleView.TitleChanged">
+            <summary>
+            Fires when the view title changes
+            </summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.SimpleView.OriginalViewLoadLocation">
+            <summary>
+            Location this view was originally loaded from
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.UIElementTypes">
+            <summary>Identifies various types of UI elements and their significance/type</summary>
+            <remarks>This is used in different ways by different UI styles</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.UIElementTypes.Primary">
+            <summary>Primary UI element (often used as the element that uses up the majority of space</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.UIElementTypes.Secondary">
+            <summary>Secondary UI element (often positioned at the side of the primary content)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.UIElementTypes.Auxiliary">
+            <summary>Auxiliary UI element (often hidden by default)</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.ViewSizeStrategies">
+            <summary>Defines the overall sizing trategies for views</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.ViewSizeStrategies.UseMinimumSizeRequired">
+            <summary>View uses the minimum size required (auto-sizes to content)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.ViewSizeStrategies.UseMaximumSizeAvailable">
+            <summary>Uses all the space the view host will give it</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.EditForm">
+            <summary>Automatic edit form layout</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.#ctor">
+            <summary>Constructor</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.LayoutElasticityProperty">
+            <summary>Defines whether the layout is elastic (smartly resizes automatically) or not</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.LabelPositionsProperty">
+            <summary>Defines the position of the label relative to the edit control</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.VerticalSpacingProperty">
+            <summary>Vertical spacing in between individual elements</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinVerticalSpacingProperty">
+            <summary>Minimum vertical spacing in between individual elements (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupSpacingProperty">
+            <summary>Vertical additional spacing before new groups</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinGroupSpacingProperty">
+            <summary>Minimum vertical additional spacing before new groups (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.RenderGroupBackgroundProperty">
+            <summary>Defines whether a group background should be rendered for groups</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupBackgroundBrushProperty">
+            <summary>Background brush for group backgrounds</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupBorderBrushProperty">
+            <summary>Border brush for group backgrounds</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupBorderWidthProperty">
+            <summary>Drawing width for the border of group backgrounds</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupBorderMarginProperty">
+            <summary>Margin to be added between a rendered group border and the actual group elements</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.EditControlLeftSpacingProperty">
+            <summary>Left padding/margin that separates the label from the edit control</summary>
+            <remarks>Only applicable when the label is positioned to the left of the edit control</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinEditControlLeftSpacingProperty">
+            <summary>Minimum left padding/margin that separates the label from the edit control (only applies for elastic layouts)</summary>
+            <remarks>Only applicable when the label is positioned to the left of the edit control</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.EditControlTopSpacingProperty">
+            <summary>Top padding/margin that separates the label from the edit control</summary>
+            <remarks>Only applicable when the label is positioned to the top of the edit control</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.ColumnSpacingProperty">
+            <summary>Spacing between columns</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinColumnSpacingProperty">
+            <summary>Minimum spacing between columns (only applies for elastic layouts)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderRendererProperty">
+            <summary>Object used to render the group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderTopSpacingProperty">
+            <summary>Vertical additional spacing before new groups</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderBottomSpacingProperty">
+            <summary>Vertical additional spacing before new groups</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinGroupHeaderBottomSpacingProperty">
+            <summary>Minimum vertical additional spacing after new group headers (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinGroupHeaderTopSpacingProperty">
+            <summary>Minimum vertical additional spacing before new group headers (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontFamilyProperty">
+            <summary>Font family used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontStyleProperty">
+            <summary>Font style used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontWeightProperty">
+            <summary>Font weight used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontSizeProperty">
+            <summary>Font size used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderForegroundBrushProperty">
+            <summary>Foreground brush used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.VerticalLabelControlOffsetProperty">
+            <summary>Number of pixels the label is offset down when the layout uses labels to the left of the edit control</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.MinElasticScaleFactorProperty">
+            <summary>Smallest factor the layout automatically scales to (only applicable when the elasticity of the layout includes the option to scale)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditForm.ScrollBarModeProperty">
+            <summary>Defines whether the edit form automatically handles scrollbars</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.InvalidateAllVisuals(System.Windows.DependencyObject)">
+            <summary>Invalidates everything in the UI and forces a refresh</summary>
+            <param name="source">Reference to an instance of the form itself</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.MeasureOverride(System.Windows.Size)">
+            <summary>Provides the behavior for the Measure pass of Silverlight layout. Classes can override this method to define their own Measure pass behavior.</summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>The size that this object determines it needs during layout, based on its calculations of child object allotted sizes.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.ShrinkVerticalIfNeeded(System.Windows.Size,System.Windows.Size)">
+            <summary>Shrinks the layout vertically if possible and desired</summary>
+            <param name="availableSize">Available parent size</param>
+            <param name="requiredSize">Size currently required</param>
+            <returns>Size required after a potential shrinking pass</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.ShrinkHorizontalIfNeeded(System.Windows.Size,System.Windows.Size)">
+            <summary>Shrinks the layout horizontally if possible and desired</summary>
+            <param name="availableSize">Available parent size</param>
+            <param name="requiredSize">Size currently required</param>
+            <returns>Size required after a potential shrinking pass</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.PerformMeasurePass(System.Collections.Generic.IEnumerable{System.Collections.Generic.List{CODE.Framework.Wpf.Layout.EditForm.ControlPair}})">
+            <summary>Performs a single measuring pass based on current spacing assumptions</summary>
+            <param name="columns">Collection of columns to measure</param>
+            <returns></returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.ArrangeOverride(System.Windows.Size)">
+            <summary>Provides the behavior for the Arrange pass of Silverlight layout. Classes can override this method to define their own Arrange pass behavior.</summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>The actual size used once the element is arranged.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.GetColumns">
+            <summary>Iterates over all the controls and returns them in columns and tuples</summary>
+            <returns>Columns of control pairs</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditForm.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draws the content of a <see cref="T:System.Windows.Media.DrawingContext"/> object during the render pass of a <see cref="T:System.Windows.Controls.Panel"/> element.
+            </summary>
+            <param name="dc">The <see cref="T:System.Windows.Media.DrawingContext"/> object to draw.</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.LayoutElasticity">
+            <summary>Defines whether the layout is elastic (smartly resizes automatically) or not</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.LabelPosition">
+            <summary>Defines the position of the label relative to the edit control</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.VerticalSpacing">
+            <summary>Vertical spacing in between individual elements</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinVerticalSpacing">
+            <summary>Minimum vertical spacing in between individual elements (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupSpacing">
+            <summary>Vertical additional spacing before new groups</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinGroupSpacing">
+            <summary>Minimum vertical additional spacing before new groups (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.RenderGroupBackground">
+            <summary>Defines whether a group background should be rendered for groups</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupBackgroundBrush">
+            <summary>Background brush for group backgrounds</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupBorderBrush">
+            <summary>Border brush for group backgrounds</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupBorderWidth">
+            <summary>Drawing width for the border of group backgrounds</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupBorderMargin">
+            <summary>Margin to be added between a rendered group border and the actual group elements</summary>
+            <remarks>Only used of RenderGroupBackground = true</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.EditControlLeftSpacing">
+            <summary>Left padding/margin that separates the label from the edit control</summary>
+            <remarks>Only applicable when the label is positioned to the left of the edit control</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinEditControlLeftSpacing">
+            <summary>Minimum left padding/margin that separates the label from the edit control (only applies for elastic layouts)</summary>
+            <remarks>Only applicable when the label is positioned to the left of the edit control</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.EditControlTopSpacing">
+            <summary>Top padding/margin that separates the label from the edit control</summary>
+            <remarks>Only applicable when the label is positioned to the top of the edit control</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.ColumnSpacing">
+            <summary>Spacing between columns</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinColumnSpacing">
+            <summary>Minimum spacing between columns (only applies for elastic layouts)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderRenderer">
+            <summary>Object used to render the group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderTopSpacing">
+            <summary>Vertical additional spacing before new groups</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderBottomSpacing">
+            <summary>Vertical additional spacing before new groups</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinGroupHeaderBottomSpacing">
+            <summary>Minimum vertical additional spacing after new group headers (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinGroupHeaderTopSpacing">
+            <summary>Minimum vertical additional spacing before new group headers (only used if elastic layout is enabled)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontFamily">
+            <summary>Font family used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontStyle">
+            <summary>Font style used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontWeight">
+            <summary>Font weight used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderFontSize">
+            <summary>Font size used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.GroupHeaderForegroundBrush">
+            <summary>Foreground brush used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.VerticalLabelControlOffset">
+            <summary>Number of pixels the label is offset down when the layout uses labels to the left of the edit control</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.MinElasticScaleFactor">
+            <summary>Smallest factor the layout automatically scales to (only applicable when the elasticity of the layout includes the option to scale)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditForm.ScrollBarMode">
+            <summary>Defines whether the edit form automatically handles scrollbars</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.EditFormLabelPositions">
+            <summary>Defines the position of the labels in an edit form</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditFormLabelPositions.Left">
+            <summary>The label is to the left of the edit control</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditFormLabelPositions.Top">
+            <summary>The label is positioned to the top of the edit control</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.LayoutElasticity">
+            <summary>Defines whether the layout can change smartly</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.LayoutElasticity.None">
+            <summary>No auto-resizing</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.LayoutElasticity.Layout">
+            <summary>The layout can change dynamically</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.LayoutElasticity.LayoutAndScale">
+            <summary>The layout can change dynamically and will scale down if need be</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.EditFormScrollBarModes">
+            <summary>Defines which scrollbars are handled automatically in an edit form</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditFormScrollBarModes.None">
+            <summary>No automatic scrollbar handling</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditFormScrollBarModes.Horizontal">
+            <summary>Automatically handle the horizontal scrollbar</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditFormScrollBarModes.Vertical">
+            <summary>Automatically handle the vertical scrollbar</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.EditFormScrollBarModes.Both">
+            <summary>Automatically handle both scrollbars</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.EditFormScrollAdorner">
+            <summary>Adorner UI for scrollbars of the edit form control</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditFormScrollAdorner.#ctor(CODE.Framework.Wpf.Layout.EditForm,System.Windows.Controls.Primitives.ScrollBar,System.Windows.Controls.Primitives.ScrollBar)">
+            <summary>Constructor</summary>
+            <param name="adornedElement">Adorned element EditForm</param>
+            <param name="horizontal">The horizontal scrollbar.</param>
+            <param name="vertical">The vertical scrollbar.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditFormScrollAdorner.MeasureOverride(System.Windows.Size)">
+            <summary>Implements any custom measuring behavior for the adorner.</summary>
+            <param name="constraint">A size to constrain the adorner to.</param>
+            <returns>A <see cref="T:System.Windows.Size"/> object representing the amount of layout space needed by the adorner.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditFormScrollAdorner.ArrangeOverride(System.Windows.Size)">
+            <summary>When overridden in a derived class, positions child elements and determines a size for a <see cref="T:System.Windows.FrameworkElement"/> derived class.</summary>
+            <param name="finalSize">The final area within the parent that this element should use to arrange itself and its children.</param>
+            <returns>The actual size used.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.EditFormScrollAdorner.GetVisualChild(System.Int32)">
+            <summary>Overrides <see cref="M:System.Windows.Media.Visual.GetVisualChild(System.Int32)"/>, and returns a child at the specified index from a collection of child elements.</summary>
+            <param name="index">The zero-based index of the requested child element in the collection.</param>
+            <returns>The requested child element. This should not return null; if the provided index is out of range, an exception is thrown.</returns>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.EditFormScrollAdorner.VisualChildrenCount">
+            <summary>Gets the number of visual child elements within this element.</summary>
+            <returns>The number of visual child elements for this element.</returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.PasswordBoxEx">
+            <summary>
+            This class adds features to the PasswordBox control (in particular a bindable value property)
+            </summary>
+            <remarks>Note: This object can only be used through attached properties, since the default PasswordBox control is sealed and can thus not be used as a baseclass for this object.</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.PasswordBoxEx.ValueProperty">
+            <summary>Attached property to set row heights</summary>
+            <remarks>This attached property can be attached to any UI Element to define row heights</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.PasswordBoxEx.ValuePropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handler for row height changes
+            </summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.PasswordBoxEx.GetValue(System.Windows.DependencyObject)">
+            <summary>Row heights</summary>
+            <param name="obj">Object to set the row heights on</param>
+            <returns>Column width</returns>
+            <remarks>This attached property can be attached to any UI Element to define the row height</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.PasswordBoxEx.SetValue(System.Windows.DependencyObject,System.String)">
+            <summary>Row heights</summary>
+            <param name="obj">Object to set the row heights on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.Ex">
+            <summary>
+            Generic extensions applicable to all controls and panels
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.Ex.EventCommandProperty">
+            <summary>Attached property to set a single command event</summary>
+            <remarks>This attached property can be attached to any UI Element to define a command used to handle an event</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.EventCommandPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for event command changes</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.GetEventCommand(System.Windows.DependencyObject)">
+            <summary>Event command</summary>
+            <param name="obj">Object to get the event command for</param>
+            <returns>Event command</returns>
+            <remarks>This attached property can be attached to any UI Element to define an event command</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.SetEventCommand(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.EventCommand)">
+            <summary>Event command</summary>
+            <param name="obj">Object to set the event command on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.Ex.EventCommandsProperty">
+            <summary>Attached property to set multiple command events</summary>
+            <remarks>This attached property can be attached to any UI Element to define a command used to handle an event</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.EventCommandsPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for event commands changes</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.GetEventCommands(System.Windows.DependencyObject)">
+            <summary>Event commands</summary>
+            <param name="obj">Object to get the event commands for</param>
+            <returns>Event command</returns>
+            <remarks>This attached property can be attached to any UI Element to define an event command</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.SetEventCommands(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.EventCommandsCollection)">
+            <summary>Event commands</summary>
+            <param name="obj">Object to set the event command on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.Ex.SelectOnEntryProperty">
+            <summary>Defines whether an object (such as a textbox) automatically is selected when focus moves into it</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.SetSelectOnEntry(System.Windows.DependencyObject,System.Boolean)">
+            <summary>Defines whether an object (such as a textbox) automatically is selected when focus moves into it</summary>
+            <param name="obj">The object to set the value on</param>
+            <param name="value">True for auto-select</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.Ex.GetSelectOnEntry(System.Windows.DependencyObject)">
+            <summary>Defines whether an object (such as a textbox) automatically is selected when focus moves into it</summary>
+            <param name="obj">The object to retrieve the value for</param>
+            <returns>True if auto-select</returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.EventCommand">
+            <summary>
+            This object can be used to route any event to a command
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommand.SetUIElement(System.Windows.FrameworkElement)">
+            <summary>Called ot set the UI element this event command belongs to.</summary>
+            <param name="attachedTo">Associated object  </param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommand.SetUIElement(System.Windows.FrameworkContentElement)">
+            <summary>Called ot set the UI element this event command belongs to.</summary>
+            <param name="attachedTo">Associated object  </param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.EventCommand.EventProperty">
+            <summary>Event that is to fire the command</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.EventCommand.CommandProperty">
+            <summary>Command that is to be executed when the desired event fires.</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.EventCommand.CommandParameterProperty">
+            <summary>Command parameter associated with the command.</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommand.Execute(System.Object,System.Object)">
+            <summary>
+            This method is referenced by reflection and used to pass an event to the associated command
+            </summary>
+            <param name="sender">Original event sender</param>
+            <param name="e">Event parameters</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.EventCommand.Event">
+            <summary>Event that is to fire the command</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.EventCommand.Command">
+            <summary>Command that is to be executed when the desired event fires.</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.EventCommand.CommandParameter">
+            <summary>Command parameter associated with the command.</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.EventCommandParameters">
+            <summary>
+            Used to pass sender, event arguments, and parameter information to an event command
+            </summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.EventCommandParameters.Sender">
+            <summary>Original source of the event</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.EventCommandParameters.EventArgs">
+            <summary>Original event arguments</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.EventCommandParameters.CommandParameter">
+            <summary>Command parameter</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.EventCommandsCollection">
+            <summary>Collection of Event Command objects</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommandsCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CODE.Framework.Wpf.Controls.EventCommandsCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommandsCollection.SetUIElement(System.Windows.FrameworkElement)">
+            <summary>Called ot set the UI element this event command belongs to.</summary>
+            <param name="attachedTo">Associated object  </param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommandsCollection.SetUIElement(System.Windows.FrameworkContentElement)">
+            <summary>Called ot set the UI element this event command belongs to.</summary>
+            <param name="attachedTo">Associated object  </param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.EventCommandsCollection.ConfigureEventCommand(CODE.Framework.Wpf.Controls.EventCommand)">
+            <summary>Configures a newly added event command</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.BooleanToVisibleConverter">
+            <summary>
+            Converts boolean values to Visibility
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.BooleanToVisibleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.BooleanToVisibleConverter.ConvertBoolean(System.Object,System.String)">
+            <summary>
+            Converts strings to boolean.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="trueValue">The true value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.BooleanToVisibleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.TreeViewEx">
+            <summary>
+            Tree view with additional features
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CODE.Framework.Wpf.Controls.TreeViewEx"/> class.
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewEx.SelectedNodeProperty">
+            <summary>Selected node (item)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.SelectedNodePropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Change-handler for the selected node property</summary>
+            <param name="d">The dependency object the property is set on (TreeViewEx).</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.SelectItem(System.Object)">
+            <summary>
+            Selects the item in the tree
+            </summary>
+            <param name="item">The data bound tree item</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewEx.CommandProperty">
+            <summary>Attached property to set a tree view's command</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.CommandPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handler for command changes
+            </summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.MouseDoubleClickCommandTrigger(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Triggers a potentially attached command after double-click
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.SelectionChangedCommandTrigger(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
+            <summary>
+            Triggers a potentially attached command after selection changes.
+            </summary>
+            <param name="sender">The TreeViewEx object.</param>
+            <param name="e">The <see cref="T:System.Object"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.TriggerCommand(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Triggers the associated command.
+            </summary>
+            <param name="sender">The sender (TreeViewEx) that triggered the operation.</param>
+            <param name="selectedItem">The selected item (used as the command parameter unless an explicit parameter is set).</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.GetCommand(System.Windows.DependencyObject)">
+            <summary>Command to be triggered on items in the list</summary>
+            <param name="obj">Object to set command on</param>
+            <returns>Command</returns>
+            <remarks>This attached property can be attached to any UI Element to define a command</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.SetCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>Command</summary>
+            <param name="obj">Object to set the command on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewEx.CommandTriggerProperty">
+            <summary>Attached property to set command trigger</summary>
+            <remarks>This attached property can be attached to any UI Element to define a command trigger mode</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.GetCommandTrigger(System.Windows.DependencyObject)">
+            <summary>Command trigger mode</summary>
+            <param name="obj">Object to set the command trigger on</param>
+            <returns>Command trigger mode</returns>
+            <remarks>This attached property can be attached to any UI Element to define the command trigger mode</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.SetCommandTrigger(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.TreeViewCommandTrigger)">
+            <summary>Command trigger</summary>
+            <param name="obj">Object to set the command trigger on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewEx.CommandParameterProperty">
+            <summary>Attached property to set the command parameter</summary>
+            <remarks>This attached property can be attached to any UI Element to define the command parameter</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.GetCommandParameter(System.Windows.DependencyObject)">
+            <summary>Command parameter</summary>
+            <param name="obj">Object to set the command parameter on</param>
+            <returns>Command parameter</returns>
+            <remarks>This attached property can be attached to any UI Element to define the command parameter</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.TreeViewEx.SetCommandParameter(System.Windows.DependencyObject,System.Object)">
+            <summary>Cmmand parameter</summary>
+            <param name="obj">Object to set the command parameter on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.TreeViewEx.SelectedNode">
+            <summary>Selected node (item)</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.TreeViewCommandTrigger">
+            <summary>
+            Defines when the command on the TreeView is to be triggered
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewCommandTrigger.DoubleClick">
+            <summary>
+            Trigger command on item double-click
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewCommandTrigger.Select">
+            <summary>
+            Trigger command on item selection
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.TreeViewCommandTrigger.DoubleClickAndSelect">
+            <summary>
+            Trigger command after either double-click or selection changed
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.ListBoxGridHeader">
+            <summary>Generic header control usable with Lists to create a data grid-style header</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxGridHeader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CODE.Framework.Wpf.Controls.ListBoxGridHeader"/> class.
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxGridHeader.ColumnsProperty">
+            <summary>Generic column definition</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxGridHeader.OnColumnsChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Called when columns change.</summary>
+            <param name="o">The object the columns changed on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.ListBoxGridHeader.HorizontalHeaderOffsetProperty">
+            <summary>Horizontal offset of the header</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.ListBoxGridHeader.HorizontalHeaderOffsetChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Horizontals the header offset changed.</summary>
+            <param name="o">The object the property was changed on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListBoxGridHeader.Columns">
+            <summary>Generic column definition</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.ListBoxGridHeader.HorizontalHeaderOffset">
+            <summary>Horizontal offset of the header</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.ResourceHelper">
+            <summary>
+            This class provides useful helper methods for dealing with XAML resources
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.ResourceHelper.ReplaceDynamicDrawingBrushResources(System.Windows.Media.DrawingBrush,System.Collections.Generic.Dictionary{System.Object,System.Windows.Media.Brush})">
+            <summary>Inspects a drawing brush and replaces dynamically bound Brush resources with the provided ones</summary>
+            <param name="drawing">Drawing Brush</param>
+            <param name="replacementBrushes">Dictionary of replacement brushes</param>
+            <remarks>This helper function is useful for loading assets such as icons and make them take on the local brushes</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.ResourceHelper.InspectDrawingGroup(System.Windows.Media.DrawingGroup,System.Collections.Generic.IDictionary{System.Object,System.Windows.Media.Brush})">
+            <summary>Iterates over a drawing group and replaces brush resources</summary>
+            <param name="group">Group to inspect</param>
+            <param name="replacementBrushes">Replacement brushes</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.ResourceHelper.GetBrushResources(System.Windows.FrameworkElement,System.Collections.Generic.Dictionary{System.Object,System.Windows.Media.Brush},System.Boolean)">
+            <summary>Returns all the brush resources in an element's resource collection</summary>
+            <param name="element">The element that defines the resources</param>
+            <param name="existingCollection">A collection of resources that are already known</param>
+            <param name="clone">If true, the brushes will be cloned, so they can be manipulated at will without impacting other uses of the same brush</param>
+            <returns>Collection of brush resources</returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.GridPrimarySecondary">
+            <summary>
+            Special grid class that provides default behavior used by primary/secondary form layout styles
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CODE.Framework.Wpf.Layout.GridPrimarySecondary"/> class.
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryUIElementSizeProperty">
+            <summary>Size of the secondary UI element (could be height or height)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.UIElementSpacingProperty">
+            <summary>Spacing between primary and secondary UI elements (both horizontal and vertical)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.OnUIElementSpacingChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handles changes in UI Element spacing</summary>
+            <param name="obj">Object that changed</param>
+            <param name="args">Event arguments</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryUIElementMarginProperty">
+            <summary>Margin wrap around all elements flagged as primary UI elements</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryUIElementMarginProperty">
+            <summary>Margin wrap around all elements flagged as secondary UI elements</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryUIElementAlignmentChangeSizeProperty">
+            <summary>Defines the size at which the layout automatically switches from primary (usually top/bottom) orientation to secondary (usually left/right) orientation</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.UIElementOrderProperty">
+            <summary>Defines the logical orientaiton of primary and secondary UI elements</summary>
+            <remarks>Each style/skin/theme can choose to interpret this setting differently</remarks>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushProperty">
+            <summary>Brush used for the background area of the secondary UI area</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the secondary area brush changed</summary>
+            <param name="obj">The object the property was set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushOpacityProperty">
+            <summary>Brush opacity used for the background area of the secondary UI area</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushOpacityPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the secondary area brush opacity changed</summary>
+            <param name="obj">The object the property was set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushLightFactorProperty">
+            <summary>Brush LightFactor used for the background area of the secondary UI area</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushLightFactorPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the secondary area brush LightFactor changed</summary>
+            <param name="obj">The object the property was set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SetInternalSecondaryAreaBackgroundBrush">
+            <summary>Updates the internal settings for the primary secondary brush</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushProperty">
+            <summary>Brush used for the background area of the primary UI area</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the primary area brush changed</summary>
+            <param name="obj">The object the property was set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushOpacityProperty">
+            <summary>Brush opacity used for the background area of the primary UI area</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushOpacityPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the primary area brush opacity changed</summary>
+            <param name="obj">The object the property was set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushLightFactorProperty">
+            <summary>Brush LightFactor used for the background area of the primary UI area</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushLightFactorPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Fires when the primary area brush LightFactor changed</summary>
+            <param name="obj">The object the property was set on.</param>
+            <param name="args">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SetInternalPrimaryAreaBackgroundBrush">
+            <summary>Updates the internal settings for the primary secondary brush</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Measures the children of a <see cref="T:System.Windows.Controls.Grid"/> in anticipation of arranging them during the <see cref="M:System.Windows.Controls.Grid.ArrangeOverride(System.Windows.Size)"/> pass.
+            </summary>
+            <param name="constraint">Indicates an upper limit size that should not be exceeded.</param>
+            <returns>
+              <see cref="T:System.Windows.Size"/> that represents the required size to arrange child content.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.GridPrimarySecondary.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>Draws the content of a <see cref="T:System.Windows.Media.DrawingContext"/> object during the render pass of a <see cref="T:System.Windows.Controls.Panel"/> element.</summary>
+            <param name="dc">The <see cref="T:System.Windows.Media.DrawingContext"/> object to draw.</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryUIElementSize">
+            <summary>Size of the secondary UI element (height only for horizontal splits)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.UIElementSpacing">
+            <summary>Spacing between primary and secondary UI elements (both horizontal and vertical)</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryUIElementMargin">
+            <summary>Margin wrap around all elements flagged as primary UI elements</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryUIElementMargin">
+            <summary>Margin wrap around all elements flagged as secondary UI elements</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryUIElementAlignmentChangeSize">
+            <summary>Defines the size at which the layout automatically switches from primary (usually top/bottom) orientation to secondary (usually left/right) orientation</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.UIElementOrder">
+            <summary>Defines the logical orientaiton of primary and secondary UI elements</summary>
+            <remarks>Each style/skin/theme can choose to interpret this setting differently</remarks>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrush">
+            <summary>Brush used for the background area of the secondary UI area</summary>
+            <value>The secondary area background brush.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushOpacity">
+            <summary>Brush opacity used for the background area of the secondary UI area</summary>
+            <value>The secondary area background brush opacity.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.SecondaryAreaBackgroundBrushLightFactor">
+            <summary>Brush LightFactor used for the background area of the secondary UI area</summary>
+            <value>The secondary area background brush LightFactor.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrush">
+            <summary>Brush used for the background area of the primary UI area</summary>
+            <value>The primary area background brush.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushOpacity">
+            <summary>Brush opacity used for the background area of the primary UI area</summary>
+            <value>The secondary area background brush opacity.</value>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.GridPrimarySecondary.PrimaryAreaBackgroundBrushLightFactor">
+            <summary>Brush LightFactor used for the background area of the primary UI area</summary>
+            <value>The secondary area background brush LightFactor.</value>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.PrimarySecondaryOrientation">
+            <summary>
+            Defines the order in which UI elements are arranged
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.PrimarySecondaryOrientation.SecondaryPrimary">
+            <summary>
+            Secondary first, then primary (often secondary at the top and primary at the bottom, or secondary left and primary right)
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.PrimarySecondaryOrientation.PrimarySecondary">
+            <summary>
+            Primary first, then secondary (often secondary at the bottom and primary at the top, or secondary right and primary left)
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.LitBrushConverter">
+            <summary>
+            Converts solid color brushes to a lighter or darker version
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.LitBrushConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.LitBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.VisualHelper">
+            <summary>
+            Various helper methods for visual elements
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.VisualHelper.ToImageSource(System.Windows.Media.Visual,System.Int32,System.Int32,CODE.Framework.Wpf.Utilities.RenderedImageFormat)">
+            <summary>Converts a Visual to an ImageSource</summary>
+            <param name="surface">The surface.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="format">The format.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Utilities.VisualHelper.ToIconSource(System.Windows.Media.Visual)">
+            <summary>Converts a Visual to an ImageSource</summary>
+            <param name="surface">The surface.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Utilities.RenderedImageFormat">
+            <summary>
+            Image formats the utilities can render
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Utilities.RenderedImageFormat.Png">
+            <summary>
+            PNG
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Utilities.RenderedImageFormat.Jpeg">
+            <summary>
+            JPEG
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Utilities.RenderedImageFormat.Tiff">
+            <summary>
+            TIFF
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Utilities.RenderedImageFormat.Bmp">
+            <summary>
+            BMP
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Utilities.RenderedImageFormat.Gif">
+            <summary>
+            GIF
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.AutoComplete">
+            <summary>Attachable auto-complete behavior</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.#ctor">
+            <summary>Constructor</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteItemsSourceProperty">
+            <summary>Attached property to set the items source for auto complete</summary>
+            <remarks>This attached property can be attached to any UI Element to define auto-complete behavior</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteItemsSourceChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for auto complete item source changes</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteItemsSource(System.Windows.DependencyObject)">
+            <summary>Auto complete items source</summary>
+            <param name="obj">Object to set the auto complete items source on</param>
+            <returns>Auto complete items source</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.SetAutoCompleteItemsSource(System.Windows.DependencyObject,System.Collections.IEnumerable)">
+            <summary>Auto complete items source</summary>
+            <param name="obj">Object to set the auto complete items source on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteSelectedItemProperty">
+            <summary>Attached property to set the item that was picked by auto-complete</summary>
+            <remarks>This attached property can be attached to any UI Element to define auto-complete behavior</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteSelectedItem(System.Windows.DependencyObject)">
+            <summary>Auto complete selected item</summary>
+            <param name="obj">Object to set the auto complete selected itemon</param>
+            <returns>Auto complete selected item</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.SetAutoCompleteSelectedItem(System.Windows.DependencyObject,System.Object)">
+            <summary>Auto complete selected item</summary>
+            <param name="obj">Object to set the auto complete selected item on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteUIElement(System.Windows.FrameworkElement)">
+            <summary>Returns an existing reference to the UI used for the drop-down (or creates a new one)</summary>
+            <param name="attachedTo">Object the UI is to be attached to</param>
+            <returns>UI element</returns>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteDisplayMemberPathProperty">
+            <summary>Attached property to set the items source for auto complete</summary>
+            <remarks>This attached property can be attached to any UI Element to define auto-complete behavior</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteDisplayMemberPathChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for auto complete item source changes</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteDisplayMemberPathSource(System.Windows.DependencyObject)">
+            <summary>Auto complete items source</summary>
+            <param name="obj">Object to set the auto complete items source on</param>
+            <returns>Auto complete items source</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.SetAutoCompleteDisplayMemberPath(System.Windows.DependencyObject,System.String)">
+            <summary>Auto complete items source</summary>
+            <param name="obj">Object to set the auto complete items source on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteUIProperty">
+            <summary>Actual UI used by the auto-complete drop down</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteUI(System.Windows.DependencyObject)">
+            <summary>Auto complete UI</summary>
+            <param name="obj">Object to get the auto complete UI on</param>
+            <returns>Auto complete UI</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.SetAutoCompleteUI(System.Windows.DependencyObject,CODE.Framework.Wpf.Controls.AutoComplete)">
+            <summary>Auto complete UI</summary>
+            <param name="obj">Object to set the auto complete UI on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteItemTemplateProperty">
+            <summary>Attached property to set the item template for each item in the auto-complete drop down</summary>
+            <remarks>This attached property can be attached to any UI Element to define auto-complete behavior</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteItemTemplateChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for auto complete item template changes</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteItemTemplate(System.Windows.DependencyObject)">
+            <summary>Auto complete item template</summary>
+            <param name="obj">Object to set the auto complete item template on</param>
+            <returns>Auto complete item template</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.SetAutoCompleteItemTemplate(System.Windows.DependencyObject,System.Windows.DataTemplate)">
+            <summary>Auto complete item template</summary>
+            <param name="obj">Object to set the auto complete item template on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteStyleProperty">
+            <summary>Attached property to set the style for the auto-complete listbox</summary>
+            <remarks>This attached property can be attached to any UI Element to define auto-complete behavior</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.AutoCompleteStyleChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Handler for auto complete style changes</summary>
+            <param name="d">Source object</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.GetAutoCompleteStyle(System.Windows.DependencyObject)">
+            <summary>Auto complete style</summary>
+            <param name="obj">Object to set the auto complete style on</param>
+            <returns>Auto complete style</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoComplete.SetAutoCompleteStyle(System.Windows.DependencyObject,System.Windows.Style)">
+            <summary>Auto complete style</summary>
+            <param name="obj">Object to set the auto complete style on</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner">
+            <summary>Adorner UI for the drop-down part of the auto-complete implementation</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner.#ctor(System.Windows.UIElement,CODE.Framework.Wpf.Controls.AutoComplete)">
+            <summary>Constructor</summary>
+            <param name="adornedElement">Adorned element (typically a textbox)</param>
+            <param name="ui">The UI that is to be used in the drop-down</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner.DisconnectVisualChild(CODE.Framework.Wpf.Controls.AutoComplete)">
+            <summary>
+            Disconnects a visual child element
+            </summary>
+            <param name="ui"></param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Implements any custom measuring behavior for the adorner.
+            </summary>
+            <param name="constraint">A size to constrain the adorner to.</param>
+            <returns>
+            A <see cref="T:System.Windows.Size"/> object representing the amount of layout space needed by the adorner.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            When overridden in a derived class, positions child elements and determines a size for a <see cref="T:System.Windows.FrameworkElement"/> derived class.
+            </summary>
+            <param name="finalSize">The final area within the parent that this element should use to arrange itself and its children.</param>
+            <returns>
+            The actual size used.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner.GetVisualChild(System.Int32)">
+            <summary>
+            Overrides <see cref="M:System.Windows.Media.Visual.GetVisualChild(System.Int32)"/>, and returns a child at the specified index from a collection of child elements.
+            </summary>
+            <param name="index">The zero-based index of the requested child element in the collection.</param>
+            <returns>
+            The requested child element. This should not return null; if the provided index is out of range, an exception is thrown.
+            </returns>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Controls.AutoCompleteDropDownAdorner.VisualChildrenCount">
+            <summary>
+            Gets the number of visual child elements within this element.
+            </summary>
+            <returns>The number of visual child elements for this element.</returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.StringToVisibleConverter">
+            <summary>Returns Collapsed for empty strings. Visible otherwise.</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.StringToVisibleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>Converts a value. </summary>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+            <param name="value">The value produced by the binding source.</param><param name="targetType">The type of the binding target property.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.StringToVisibleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>Converts a value. </summary>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+            <param name="value">The value that is produced by the binding target.</param><param name="targetType">The type to convert to.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.MetroTiles">
+            <summary>
+            Performs layout of child elements using a Windows 8 metro style approach
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.GroupTitleProperty">
+            <summary>Display title for the group an item is in</summary>
+            <remarks>This is a display value only and changes in localized versions</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetGroupTitle(System.Windows.DependencyObject)">
+            <summary>Get operation for GroupTitleProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetGroupTitle(System.Windows.DependencyObject,System.String)">
+            <summary>Set operation for GroupTitleProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.GroupNameProperty">
+            <summary>Internal name for the group an item is in</summary>
+            <remarks>This name never changes, even in localized versions. Note that if this property is not set explicitly, it defaults to the group title.</remarks>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetGroupName(System.Windows.DependencyObject)">
+            <summary>Get operation for GroupTitleProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetGroupName(System.Windows.DependencyObject,System.String)">
+            <summary>Set operation for GroupTitleProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.DefaultTileWidthProperty">
+            <summary>Default tile width mode used for all tiles that do not have an explicit mode set</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.TileWidthModeProperty">
+            <summary>Internal name for the group an item is in</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetTileWidthMode(System.Windows.DependencyObject)">
+            <summary>Get operation for GroupTitleProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetTileWidthMode(System.Windows.DependencyObject,CODE.Framework.Wpf.Layout.TileWidthModes)">
+            <summary>Set operation for GroupTitleProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.TileHeightProperty">
+            <summary>Height of a single tile (which is uniform across all objects in a tile layout)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetTileHeight(System.Windows.DependencyObject)">
+            <summary>Get operation for TileHeightProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetTileHeight(System.Windows.DependencyObject,System.Double)">
+            <summary>Set operation for TileHeightProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.TileWidthProperty">
+            <summary>Width of a single tile (which is uniform across all objects in a tile layout... double width tiles are twice this value + horizontal tile spacing)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetTileWidth(System.Windows.DependencyObject)">
+            <summary>Get operation for TileHeightProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetTileWidth(System.Windows.DependencyObject,System.Double)">
+            <summary>Set operation for TileHeightProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HorizontalTileSpacingProperty">
+            <summary>Horizontal spacing of a tiles within groups</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetHorizontalTileSpacing(System.Windows.DependencyObject)">
+            <summary>Get operation for HorizontalTileSpacingProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetHorizontalTileSpacing(System.Windows.DependencyObject,System.Double)">
+            <summary>Set operation for HorizontalTileSpacingProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.VerticalTileSpacingProperty">
+            <summary>Vertical tile spacing within groups</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetVerticalTileSpacing(System.Windows.DependencyObject)">
+            <summary>Get operation for VerticalTileSpacingProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetVerticalTileSpacing(System.Windows.DependencyObject,System.Double)">
+            <summary>Set operation for VerticalTileSpacingProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HorizontalGroupSpacingProperty">
+            <summary>Horizontal spacing of a tiles within groups</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetHorizontalGroupSpacing(System.Windows.DependencyObject)">
+            <summary>Get operation for HorizontalTileSpacingProperty dependency property</summary><param name="obj">The object the property really belongs to</param><returns>Actual property value.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.SetHorizontalGroupSpacing(System.Windows.DependencyObject,System.Double)">
+            <summary>Set operation for HorizontalTileSpacingProperty dependency property</summary><param name="obj">The object the property really belongs to</param><param name="value">The value to set.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.ContentTopLeftPaddingProperty">
+            <summary>Top and left padding before the first tile</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.RenderHeadersProperty">
+            <summary>Defines whether text headers shall be rendered</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderRendererProperty">
+            <summary>Object used to render the captions</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontFamilyProperty">
+            <summary>Font family used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontStyleProperty">
+            <summary>Font style used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontWeightProperty">
+            <summary>Font weight used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontSizeProperty">
+            <summary>Font size used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderForegroundBrushProperty">
+            <summary>Foreground brush used to render group headers</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.MetroTiles.HeaderSpacingProperty">
+            <summary>Spacing between the caption and the element</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.InvalidateEverything(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Invalidates all layout, measurement, and rendering</summary>
+            <param name="dependencyObject">One-To-Many panel to invalidate</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.MeasureOverride(System.Windows.Size)">
+            <summary>
+            When overridden in a derived class, measures the size in layout required for child elements and determines a size for the <see cref="T:System.Windows.FrameworkElement"/>-derived class.
+            </summary>
+            <param name="availableSize">The available size that this element can give to child elements. Infinity can be specified as a value to indicate that the element will size to whatever content is available.</param>
+            <returns>
+            The size that this element determines it needs during layout, based on its calculations of child element sizes.
+            </returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            When overridden in a derived class, positions child elements and determines a size for a <see cref="T:System.Windows.FrameworkElement"/> derived class.
+            </summary>
+            <param name="finalSize">The final area within the parent that this element should use to arrange itself and its children.</param>
+            <returns>The actual size used.</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.GetChildrenByGroup">
+            <summary>
+            Goes through the entire collection of child elements and returns them by groups
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Layout.MetroTiles.OnRender(System.Windows.Media.DrawingContext)">
+            <summary>
+            Draws the content of a <see cref="T:System.Windows.Media.DrawingContext"/> object during the render pass of a <see cref="T:System.Windows.Controls.Panel"/> element.
+            </summary>
+            <param name="dc">The <see cref="T:System.Windows.Media.DrawingContext"/> object to draw.</param>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.DefaultTileWidth">
+            <summary>Default tile width mode used for all tiles that do not have an explicit mode set</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.ContentTopLeftPadding">
+            <summary>Top and left padding before the first tile</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.RenderHeaders">
+            <summary>Defines whether text headers shall be rendered</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderRenderer">
+            <summary>Object used to render the captions</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontFamily">
+            <summary>Font family used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontStyle">
+            <summary>Font style used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontWeight">
+            <summary>Font weight used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderFontSize">
+            <summary>Font size used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderForegroundBrush">
+            <summary>Foreground brush used to render group headers</summary>
+        </member>
+        <member name="P:CODE.Framework.Wpf.Layout.MetroTiles.HeaderSpacing">
+            <summary>Spacing between the caption and the element</summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Layout.TileWidthModes">
+            <summary>
+            Standard supported tile widths
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.TileWidthModes.Normal">
+            <summary>
+            Normal (typically square)
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.TileWidthModes.Double">
+            <summary>
+            Double-wide
+            </summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Layout.TileWidthModes.Default">
+            <summary>
+            Uses the default set for the entire panel
+            </summary>
+        </member>
+        <member name="T:CODE.Framework.Wpf.Controls.WindowEx">
+            <summary>Special window class with various (attached) properties that provide special capabilities</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.WindowEx.CustomHandlingIsEnabledProperty">
+            <summary>Defines whether custom handling (custom resizing and moving) is enabled. If this is false, No other special window settings will have any impact</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.PropertyChangedCallback(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>Method that gets called when the CustomHandlingIsenabled property changes</summary>
+            <param name="dependencyObject">The dependency object the setting was set on.</param>
+            <param name="dependencyPropertyChangedEventArgs">Event arguments</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.GetCustomHandlingIsEnabled(System.Windows.DependencyObject)">
+            <summary>Defines whether custom handling (custom resizing and moving) is enabled. If this is false, No other special window settings will have any impact</summary>
+            <param name="obj">Dependency object to set the value on</param>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.SetCustomHandlingIsEnabled(System.Windows.DependencyObject,System.Boolean)">
+            <summary>Defines whether custom handling (custom resizing and moving) is enabled. If this is false, No other special window settings will have any impact</summary>
+            <param name="obj">Dependency object to set the value on</param>
+            <param name="value">True or false</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.WindowEx.HeaderHeightProperty">
+            <summary>
+            Defines the area at the top of the window that is considered the "Header". 
+            This is the area of the screen that drag and double-click operations will be handled in
+            If this is -1, then the whole window is drag and double-click enabled
+            </summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.GetHeaderHeight(System.Windows.DependencyObject)">
+            <summary>Gets the height of the header.</summary>
+            <param name="obj">Dependency object to set the value on</param>
+            <returns></returns>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.SetHeaderHeight(System.Windows.DependencyObject,System.Double)">
+            <summary>Sets the height of the header.</summary>
+            <param name="obj">Dependency object to set the value on</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.WindowEx.LastLeftMousePositionProperty">
+            <summary>Last left-button mouse down position relative to the window (used internally only)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.WindowEx.LastLeftMouseScreenPositionProperty">
+            <summary>Last left-button mouse down position relative to the screen (used internally only)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.WindowEx.OriginalWindowSizeProperty">
+            <summary>Original window size (used internally only)</summary>
+        </member>
+        <member name="F:CODE.Framework.Wpf.Controls.WindowEx.OriginalWindowPositionProperty">
+            <summary>Original window position (used internally only)</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.HandleEventHoopup(System.Windows.Window)">
+            <summary>Wires up all the events required for custom window handling</summary>
+            <param name="window">Window to handle</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.Controls.WindowEx.IsMouseActionInHeader(System.Windows.DependencyObject)">
+            <summary>Determines whether an action taken with the mouse is within the area we consider to be the "header".</summary>
+            <param name="window">The window.</param>
+            <returns>True or false</returns>
+        </member>
+        <member name="T:CODE.Framework.Wpf.BindingConverters.NullToVisibleConverter">
+            <summary>Returns Collapsed for null values. Visible otherwise.</summary>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.NullToVisibleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>Converts a value. </summary>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+            <param name="value">The value produced by the binding source.</param><param name="targetType">The type of the binding target property.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
+        </member>
+        <member name="M:CODE.Framework.Wpf.BindingConverters.NullToVisibleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>Converts a value. </summary>
+            <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+            <param name="value">The value that is produced by the binding target.</param><param name="targetType">The type to convert to.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
+        </member>
+    </members>
+</doc>

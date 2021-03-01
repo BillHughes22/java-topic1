@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D6E6B0C9-9ADE-41AC-AE80-DA314C868F5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_ExternalComponents</RootNamespace>
+    <AssemblyName>_ExternalComponents</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CODEFramework\CODE.Framework.Core.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Core.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Core.Utilities.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Core.Utilities.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Core.Utilities.XML" />
+    <Content Include="CODEFramework\CODE.Framework.Core.XML" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Client.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Client.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Client.XML" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Server.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Server.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Server.XML" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Tools.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Tools.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Services.Tools.XML" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Mvvm.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Mvvm.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Mvvm.XML" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Theme.Battleship.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Theme.Battleship.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Theme.Battleship.xml" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Theme.Metro.dll" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Theme.Metro.pdb" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.Theme.Metro.xml" />
+    <Content Include="CODEFramework\CODE.Framework.Wpf.XML" />
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
