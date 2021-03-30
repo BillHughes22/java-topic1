@@ -70,7 +70,7 @@ namespace FcsuAgentWebApp.Admin
                     IsDisabled = chkIsDisabled.Checked,
                     Phone = txtPhone.Text,
                     Comments = txtComments.Text,
-                    AgentMemberDescr = string.IsNullOrWhiteSpace(txtAgentNumber.Text)?"Agent":"Member"
+                    AgentMemberDescr = !string.IsNullOrWhiteSpace(txtAgentNumber.Text)?"Agent":"Member"
             };
             if (!string.IsNullOrEmpty(txtSetPassword.Text)) view.SetPassword = txtSetPassword.Text;
 

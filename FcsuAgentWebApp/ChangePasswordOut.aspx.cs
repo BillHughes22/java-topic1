@@ -23,6 +23,7 @@ namespace FcsuAgentWebApp
         {
             this.Master.removeHomeInNavMenu();
             this.Master.addHeading("FCSU Member Portal");
+            this.Master.disableLogin();
             string url = HttpContext.Current.Request.Url.AbsoluteUri;
             UName = url.Split('?')[1].Split('=')[1];
             NewPasswordLabel.Text = "Password:" + "<i> (minimum 8 characters - 1 uppercase, 1 lowercase, 1 special character and 1 number) </i> "; 

@@ -418,6 +418,12 @@
 
                 <ItemStyle CssClass="hideGridColumn"></ItemStyle>
             </asp:BoundField>
+            <asp:BoundField DataField="pl_spia" HeaderText="pl_spia" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn"
+                SortExpression="pl_spia" Visible="True">
+                <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
+
+                <ItemStyle CssClass="hideGridColumn"></ItemStyle>
+            </asp:BoundField>
 
         </Columns>
 
@@ -427,7 +433,7 @@
         <RowStyle BorderColor="Brown"></RowStyle>
         <SelectedRowStyle BackColor="white" ForeColor="#660033"></SelectedRowStyle>
     </asp:GridView>
-
+    <br />
     <asp:GridView ID="GridSetlmt" runat="server" AllowSorting="True" DataSourceID="SqlDataSourceSetlmt"
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
         AutoGenerateColumns="False"  CellPadding="3"
@@ -960,7 +966,7 @@
         policy.BEGBAL, policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, 
         member.DOB, member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.MODE, policy.BASEPREM, policy.UPDATEDT, policy.LIEN, 
         policy.LOAN, policy.CASHVAL, policy.PUADIV, policy.ACCUMDIV, policy.TOTDEATH, member_1.NAME AS oname, policy.paidto, 
-        policy.rmdcurr, policy.rmdprev 
+        policy.rmdcurr, policy.rmdprev, policy.pl_spia
         FROM policy 
         INNER JOIN member ON policy.CST_NUM = member.CST_NUM 
         INNER JOIN member AS member_1 ON policy.OWNNUM = member_1.CST_NUM 

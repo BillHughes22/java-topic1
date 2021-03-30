@@ -17,6 +17,7 @@ namespace FcsuAgentWebApp
         {
             this.Master.removeHomeInNavMenu();
             this.Master.addHeading("FCSU Member Portal");
+            this.Master.disableLogin();
             uname = Session["forgotpassword"].ToString();
             unameorpswd = Session["unameorpswd"].ToString();
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;

@@ -12,13 +12,29 @@ namespace FcsuAgentWebApp.Account
 {
     public partial class Autenticate : System.Web.UI.Page
     {
-        string agentoradmin = string.Empty;
+        string agentoradminormemberordirector = string.Empty;
         string phone = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            agentoradmin = Session["Agent"] == null ? string.Empty :Session["Agent"].ToString();
-            lblAgentOrMember.Text = agentoradmin == string.Empty ? "Finddirectorfirstlogin.aspx":
-              agentoradmin== "agent" ?"" : "../Admin/AgentList.aspx";
+            
+            if (User.IsInRole("member"))
+            {
+                this.Master.addHeading("FCSU Member Portal");
+            }
+            if (User.IsInRole("agent"))
+            {
+                this.Master.addHeading("FCSU Agent Portal");
+            }
+           
+            if (User.IsInRole("director"))
+            {
+                this.Master.addHeading("FCSU Director Portal");
+            }
+            agentoradminormemberordirector = Session["Agent"] == null ? string.Empty :Session["Agent"].ToString();
+
+            lblAgentOrMember.Text = agentoradminormemberordirector == "director" ? "Finddirectorfirstlogin.aspx":
+              agentoradminormemberordirector == "admin" ? "../Admin/AgentList.aspx" :
+              agentoradminormemberordirector == "member" ? "../Member/MemberMain.aspx": "../Agent/AgentMain.aspx";
            if (lblAgentOrMember.Text == string.Empty)
             {
                 this.Master.removeHomeInNavMenu();
@@ -58,7 +74,7 @@ namespace FcsuAgentWebApp.Account
             {
                 if (string.IsNullOrWhiteSpace(lblPh.Text))
                 {
-                    if(agentoradmin=="admin")
+                    if(agentoradminormemberordirector == "admin")
                     {
                         Response.Redirect("../Admin/AgentList.aspx");
                     }

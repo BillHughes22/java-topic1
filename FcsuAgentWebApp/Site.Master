@@ -16,7 +16,7 @@
         {
             urlAfterLogout = "https://www.fcsu.com/about/board-of-directors/";
         }
-        else if(chgHeading.InnerHtml.Equals("Member Account"))
+        else if(chgHeading.InnerHtml.Equals("FCSU Member Portal"))
         {
             urlAfterLogout = "~/Account/Login.aspx?heading=member";
         }
@@ -200,7 +200,7 @@
                     EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" 
                     onmenuitemclick="NavigationMenu_MenuItemClick">
                     <Items>
-                        <asp:MenuItem NavigateUrl="~/Account/Login.aspx" Text="Home"/>
+                        <%--<asp:MenuItem NavigateUrl="~/Account/Login.aspx" Text="Home"/>--%>
                         <asp:MenuItem Text="About" NavigateUrl="http://fcsu.com/about" Target="blank" Selectable="True" Value="About FCSU" >
                            <%-- <asp:MenuItem NavigateUrl="http://fcsu.com/about" Target="blank" 
                                 Text="About FCSU" Value="About FCSU"></asp:MenuItem>--%>

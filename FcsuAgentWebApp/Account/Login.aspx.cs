@@ -36,7 +36,10 @@ namespace FcsuAgentWebApp.Account
 
                     Button RegisterAgent = (Button)this.LoginUser.FindControl("RegisterAgent");
                     RegisterAgent.Visible = false;
+                    this.Master.disableLogin();
+
                 }
+               
                 
             }
             else //agent
@@ -91,8 +94,9 @@ namespace FcsuAgentWebApp.Account
                 }
                 else if (roles.Any(x => x == "member"))
                 {
-                   // LoginUser.DestinationPageUrl = "../member/memberMain.aspx";
-                                  LoginUser.DestinationPageUrl = "../Account/Autentication.aspx";
+                    Session["Agent"] = "member";
+                    // LoginUser.DestinationPageUrl = "../member/memberMain.aspx";
+                    LoginUser.DestinationPageUrl = "../Account/Autentication.aspx";
                 }
                 else if (roles.Any(x => x == "agent"))
                 {
@@ -102,6 +106,7 @@ namespace FcsuAgentWebApp.Account
                 }
                 else if (roles.Any(x => x == "director"))
                 {
+                    Session["Agent"] = "director";
                     LoginUser.DestinationPageUrl = "../Account/autentication.aspx";
                     //Session["AgentorDirector"] = "director";
                     //int firstTymLoginInDirector=0;
@@ -205,7 +210,7 @@ namespace FcsuAgentWebApp.Account
 
                 }
                
-                if(noOfTimesLoginFailed>=2)
+                if(noOfTimesLoginFailed>=5)
                 {
                     isLoginFailed = true;
                    this.LoginUser.FailureText= "Access to my site is temporarily disabled...Contact the Home office at 800.533.6682 to reset your account.";
@@ -222,7 +227,7 @@ namespace FcsuAgentWebApp.Account
                 }
 
                 //Purnima insert 
-                if(noOfTimesLoginFailed < 2)
+                if(noOfTimesLoginFailed < 5)
                 {
                     int loginFailed = isLoginFailed ? 1 : 0;
                     string insertSqlStatement = "INSERT into [UpdatedDateInfo] values ('" + login.UserName + "','" + DateTime.Now + "',"+ loginFailed + " )";

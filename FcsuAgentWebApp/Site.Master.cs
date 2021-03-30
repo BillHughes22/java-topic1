@@ -14,7 +14,7 @@ namespace FcsuAgentWebApp
     { 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
             var heading = Request.QueryString["heading"];
 
            if(Request.FilePath == "/Account/Login.aspx")
@@ -30,7 +30,7 @@ namespace FcsuAgentWebApp
                 }
                 else if(heading == "member")
                 {
-                    chgHeading.InnerHtml = "FCSU Member portal";
+                    chgHeading.InnerHtml = "FCSU Member Portal";
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace FcsuAgentWebApp
         {
           //  MessageBox.Show("Don");
         }
-
+       
         public void addNavMenu(string caption, string navUrl)
         {
             this.NavigationMenu.Items.Add(new MenuItem(caption,caption,"",navUrl));
@@ -56,7 +56,7 @@ namespace FcsuAgentWebApp
         public void addAgentMenu()
         {
             chgHeading.InnerHtml = "FCSU Agent Portal";
-            this.NavigationMenu.Items.Add(new MenuItem("Clients", "Clients", "", "~/Agent/agentMain.aspx"));
+           this.NavigationMenu.Items.Add(new MenuItem("Clients", "Clients", "", "~/Agent/agentMain.aspx"));
             this.NavigationMenu.Items.Add(new MenuItem("Products", "Products", "", "http://fcsu.com/products","blank"));
             this.NavigationMenu.Items.Add(new MenuItem("Forms", "Forms", "", "http://fcsu.com/forms","blank"));
             this.NavigationMenu.Items.Add(new MenuItem("FCSU Illustration", "FCSU Illustration", "", "http://www.viscalc.com/fcsu/download.php?software=45e35357-b254-11e8-9fb7-00163ea2ab4c", "blank"));
@@ -70,39 +70,39 @@ namespace FcsuAgentWebApp
         {
             chgHeading.InnerHtml = "FCSU Agent Portal";
            // this.NavigationMenu.Items.Add(new MenuItem("Admin", "Admin", "", "~/Admin/NewUserList.aspx"));
-            this.NavigationMenu.Items.Add(new MenuItem("Agents", "Agents", "", "~/Admin/AgentList.aspx"));
-            this.NavigationMenu.Items.Add(new MenuItem("Members", "Members", "", "~/Admin/MemberList.aspx"));
-            this.NavigationMenu.Items.Add(new MenuItem("Directors", "Directors", "", "~/Admin/DirectorList.aspx"));
-            this.NavigationMenu.Items.Add(new MenuItem("No Role Assigned", "No Role Assigned", "", "~/Admin/NoRoleTest.aspx"));
+            this.NavigationMenu.Items.Add(new MenuItem("Agents List", "Agents List", "", "~/Admin/AgentList.aspx"));
+            this.NavigationMenu.Items.Add(new MenuItem("Members List", "Members List", "", "~/Admin/MemberList.aspx"));
+            this.NavigationMenu.Items.Add(new MenuItem("Directors List", "Directors List", "", "~/Admin/DirectorList.aspx"));
+            this.NavigationMenu.Items.Add(new MenuItem("No Role Assigned List", "No Role Assigned List", "", "~/Admin/NoRoleTest.aspx"));
            
             //naga updateddate
             this.NavigationMenu.Items.Add(new MenuItem("User Info", "UserInfo", "", "~/Admin/AdminMain.aspx"));
             this.NavigationMenu.Items.Add(new MenuItem("Upload Files", "Upload", "", "~/Admin/UploadFile.aspx"));
-            this.NavigationMenu.Items.Add(new MenuItem("Delete Uploaded Files", "Delete", "", "~/Admin/DeleteUploadedFile.aspx")); 
+            this.NavigationMenu.Items.Add(new MenuItem("Update or Delete Uploaded Files", "Delete", "", "~/Admin/DeleteUploadedFile.aspx")); 
         }
 
         public void addMemberMenu()
         {
             
-                removeHomeInNavMenu();
+               // removeHomeInNavMenu();
                 this.NavigationMenu.Items.Add(new MenuItem("Member", "Member", "", "~/Member/memberMain.aspx"));
               
-            chgHeading.InnerHtml = "Member Account";
+            chgHeading.InnerHtml = "FCSU Member Portal";
             MenuItem chgPswd = NavigationMenu.FindItem(@"Change Password");
            if( this.NavigationMenu.Items.Contains(chgPswd)) this.NavigationMenu.Items.Remove(chgPswd);
             this.NavigationMenu.Items.Add(new MenuItem("Change Password", "Change Password", "", "~/Account/ChangePassword.aspx"));
+           
         }
         public void  addHeading(string heading)
         {
 
             chgHeading.InnerHtml = heading;
-
-
         }
+
         public void removeHomeInNavMenu()
         {
-            this.NavigationMenu.Items.RemoveAt(0);
-            chgHeading.InnerHtml = "Member Account";
+          //  this.NavigationMenu.Items.RemoveAt(0);
+            chgHeading.InnerHtml = "FCSU Member Portal";
         }
         public void addDirectorMenu()
         {
@@ -113,6 +113,7 @@ namespace FcsuAgentWebApp
             if (this.NavigationMenu.Items.Contains(chgPswd)) this.NavigationMenu.Items.Remove(chgPswd);
             this.NavigationMenu.Items.Add(new MenuItem("Change Password", "Change Password", "", "~/Account/ChangePassword.aspx"));
             this.NavigationMenu.Items.RemoveAt(0);
+            
         }
 
         public void disableLogin()
@@ -123,7 +124,7 @@ namespace FcsuAgentWebApp
 
         public void AddHomeForMember()
         {
-            this.NavigationMenu.Items.Add(new MenuItem("Home", "Home", "", "~/Account/Login.aspx?heading=member"));
+           // this.NavigationMenu.Items.Add(new MenuItem("Home", "Home", "", "~/Account/Login.aspx?heading=member"));
           
         }
         

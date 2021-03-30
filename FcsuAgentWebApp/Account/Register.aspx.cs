@@ -401,7 +401,7 @@ namespace FcsuAgentWebApp.Account
                         Session["ph3"] = Ph3.Text;
                         Session["uname"] =UserName.Text ;
                         Session["email"] = Email.Text;
-
+                        
                         Response.Redirect("~/Account/Register.aspx", true);
 
 
@@ -409,6 +409,7 @@ namespace FcsuAgentWebApp.Account
                 }
                 else
                 {
+                    Session["agent"] = "member";
                     Response.Redirect("../account/Autentication.aspx");
                   
                 }

@@ -46,15 +46,28 @@ namespace FcsuAgentWebApp.Member
             }
             LabelNumber.Text = memberDropdown.Text;
             Session["member"] = LabelNumber.Text;
-            GridViewRow r= GridView1.Rows[0];
+            GridViewRow r;
+            if (GridView1.Rows.Count > 0)
+            {
+               r=GridView1.Rows[0];
+            }
+            else if(GridAnn.Rows.Count > 0)
+            {
+                r = GridAnn.Rows[0];
+            }
+            else if(GridSetlmt.Rows.Count > 0)
+            {
+                r = GridSetlmt.Rows[0];
+            }
+           
             foreach (GridViewRow x in GridView1.Rows)
             {
                 x.Cells[3].Text = x.Cells[3].Text.Replace(";", "<br />");
             }
 
-            foreach (GridViewRow g in GridAnn.Rows)
+            foreach (GridViewRow n in GridAnn.Rows)
             {
-                g.Cells[3].Text = g.Cells[3].Text.Replace(";", "<br />");
+                n.Cells[3].Text = n.Cells[3].Text.Replace(";", "<br />");
             }
 
             foreach (GridViewRow g in GridSetlmt.Rows)
