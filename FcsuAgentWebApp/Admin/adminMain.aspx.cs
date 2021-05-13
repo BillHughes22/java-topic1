@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FcsuAgentWebApp.BAL;
+using FcsuAgentWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +29,11 @@ namespace FcsuAgentWebApp.Admin
             {
                 this.Master.addDirectorMenu();
             }
+            AdminMainBAL adminBal = new AdminMainBAL();
+            List<UserListDataModel> userList = adminBal.getUsersDetails();
+            GridView2.DataSource = userList;
+            GridView2.DataBind();
+          
         }
     }
 }
