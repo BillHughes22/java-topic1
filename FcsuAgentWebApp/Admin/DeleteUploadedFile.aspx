@@ -17,14 +17,11 @@
 
 
 
-     <asp:GridView ID="GridFilesDir" runat="server"  SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
+     <asp:GridView ID="GridFilesDir" runat="server"  DataSourceID="SqlDataSource2" SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
          BorderStyle="Inset" BorderWidth="5px" BorderColor="#4B6C9E" BackColor="White"
           HeaderStyle-BackColor="BlanchedAlmond" RowStyle-BorderColor="Brown"  HorizontalAlign="Center" style="margin-top: 0px" 
          AutoGenerateColumns="False" DataKeyNames="filesdir_i" Width="559px"  ShowGridLines="False" AllowPaging="True" PageSize="25" 
-         CssClass="auto-style1"  
-         OnRowUpdating="GridFilesDir_RowUpdating" 
-         OnRowEditing="OnRowEditing" OnRowDeleting="GridFilesDir_RowDeleting" 
-         OnRowCancelingEdit="GridFilesDir_RowCancelingEdit">  
+         CssClass="auto-style1" OnRowDeleting="GridFilesDir_RowDeleting"  >  
                     <Columns >  
                          <asp:CommandField ShowEditButton="True" />
                          <asp:TemplateField>
@@ -111,9 +108,9 @@
 
      <asp:Label ID="ErrMsg" runat="server" Text=""></asp:Label>
 
-   <%-- <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
     ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 
-      
+        SelectCommand="SELECT [filesdir_i],[Filename], [Category], [Description], [Month], [Year] FROM [filesdir] order by (Year*100+ Month) desc "
         DeleteCommand="DELETE FROM filesdir WHERE filesdir_i = @filesdir_i" 
         UpdateCommand="Update filesdir set Year=@Year, Month= @Month WHERE filesdir_i = @filesdir_i" >
 
@@ -130,7 +127,7 @@
 
 </UpdateParameters> 
 
-    </asp:SqlDataSource>--%>
+    </asp:SqlDataSource>
    
     </asp:Content>
 
