@@ -16,7 +16,17 @@ namespace FcsuAgentWebApp.Account
                   this.Master.addDirectorMenu();
                
             }
-           
+            if (User.IsInRole("member"))
+            {
+                this.Master.addMemberMenu();
+
+            }
+            if (User.IsInRole("agent"))
+            {
+                this.Master.addAgentMenu();
+
+            }
+
         }
 
        
