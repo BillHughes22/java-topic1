@@ -8,6 +8,8 @@ using FcsuAgentWebApp.Classes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using FcsuAgentWebApp.BAL;
+using FcsuAgentWebApp.Models.DataModels;
 
 namespace FcsuAgentWebApp.Agent
 {
@@ -15,6 +17,7 @@ namespace FcsuAgentWebApp.Agent
     {
         string number;
         GridViewRow selectedRow;
+        DataTable grid=new DataTable();
         int index;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,6 +50,31 @@ namespace FcsuAgentWebApp.Agent
                 HideAll();
             }
             Session["Agent"] = LabelNumber.Text;
+
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            AgentMainBAL objAgent = new AgentMainBAL();
+            policyList = objAgent.getPolicyDetails( TextBox2.Text, number);
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
+           
+            for (int i = 0; i < 2; i++)
+            {
+                grid.Columns.Add(GridView1.Columns[i].ToString());
+            }
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                DataRow dr = grid.NewRow();
+                for (int j = 0; j < 2; j++)
+                {
+                    dr[GridView1.Columns[j].ToString()] = row.Cells[j].Text;
+                }
+
+                grid.Rows.Add(dr);
+            }
+            //foreach (GridViewRow x in GridView1.Rows)
+            //{
+            //    x.Cells[1].Text = "pending";
+            //}
         }
 
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
@@ -130,7 +158,7 @@ namespace FcsuAgentWebApp.Agent
             calcDateDay.Text = "";
             calcDateYear.Text = "";
             gottenAnnBalance.Text = "";
-            this.load_Information(selectedRow);
+            this.load_Information(selectedRow, index);
             if (getAnnBalTable.Visible)
             {
 
@@ -156,7 +184,16 @@ namespace FcsuAgentWebApp.Agent
             calcDateDay.Text = "";
             calcDateYear.Text = "";
             gottenAnnBalance.Text = "";
-            this.load_Information(selectedRow);
+            this.load_Information(selectedRow, index);
+            List<PolicyBeneficiaryModel> beneficiaryList = new List<PolicyBeneficiaryModel>();
+            AgentMainBAL objAgent = new AgentMainBAL();
+            beneficiaryList = objAgent.GetPolicyBeneficiaries(TextBoxPolicy.Text);
+            GridView3.DataSource = beneficiaryList;
+            GridView3.DataBind();
+            //List<PolicyRiderModel> riderList = new List<PolicyRiderModel>();
+            //riderList = objAgent.GetPolicyRiders(TextBoxPolicy.Text);
+            //GridView4.DataSource = riderList;
+            //GridView4.DataBind();
             if (getAnnBalTable.Visible)
             {
 
@@ -180,7 +217,7 @@ namespace FcsuAgentWebApp.Agent
         /// changed GridView1.SelectedRow to row
         /// </summary>
         /// <param name="row"></param>
-        protected void load_Information(GridViewRow row)
+        protected void load_Information(GridViewRow row,int index)
         {
             Table1.Visible = true;
             BenefLabel.Visible = true;
@@ -248,7 +285,7 @@ namespace FcsuAgentWebApp.Agent
                 LabelValue.Text = "Initial Deposit:";
                 //removed 08/04/2020
                 //System.Data.DataView dv = (System.Data.DataView)SqlDataSource2.Select(DataSourceSelectArguments.Empty);
-                string sqlString = "SELECT * from annsum where policy='" + TextBoxPolicy.Text + "'";
+                string sqlString = "SELECT * from annsum where policy='" + grid.Rows[index]["policy"] + "'";
                 SqlDataSource dsTemp = new SqlDataSource(System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString, sqlString);
                 System.Data.DataView dv = (System.Data.DataView)dsTemp.Select(DataSourceSelectArguments.Empty);
 
@@ -356,7 +393,7 @@ namespace FcsuAgentWebApp.Agent
         }
         protected void getAnnBalance_CLick(object sender, EventArgs e)
         {
-            this.load_Information(GridView1.Rows[index]);
+            this.load_Information(GridView1.Rows[index],index);
             this.calcBalance();
         }
 
@@ -376,8 +413,21 @@ namespace FcsuAgentWebApp.Agent
 
             // }
 
-            this.load_Information(selectedRow);
+            this.load_Information(selectedRow, index);
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            AgentMainBAL objAgent = new AgentMainBAL();
+            policyList = objAgent.getPolicyDetails(TextBox2.Text, number);
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
+            //foreach (GridViewRow x in GridView1.Rows)
+            //{
+            //    x.Cells[1].Text = "pending";
+            //}
+        }
     }
 }

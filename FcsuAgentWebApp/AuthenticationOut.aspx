@@ -1,5 +1,5 @@
-﻿<%@ Page  Title="AutOut" Language="C#" AutoEventWireup="true" CodeBehind="AutenticationOut.aspx.cs" MasterPageFile="~/Site.Master" 
-    Inherits="FcsuAgentWebApp.AutenticationOut" %>
+﻿<%@ Page  Title="AutOut" Language="C#" AutoEventWireup="true" CodeBehind="AuthenticationOut.aspx.cs" MasterPageFile="~/Site.Master" 
+    Inherits="FcsuAgentWebApp.AuthenticationOut" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">

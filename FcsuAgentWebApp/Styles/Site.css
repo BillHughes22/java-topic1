@@ -312,3 +312,43 @@ div.accountInfo
 {
     display:none;
 }
+/* Agent Commissions Report  
+----------------------------------------------------------*/
+.head_title {
+    font-size: 1.5em;
+    font-variant: small-caps;
+    text-transform: none;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    font-weight: 600;
+    display: block;
+    margin-left: 375px;
+    padding-left: 0px;
+    text-align: left;
+    color: #464646;
+}
+
+.head_name {
+    font-variant: small-caps;
+    text-transform: none;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    text-align: left;
+    color: #464646 !important;
+    padding-bottom: 40px;
+}
+
+.head_number {
+    font-variant: small-caps;
+    text-transform: none;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    text-align: left;
+    color: #464646 !important;
+}
+
+.div_spacing {
+    margin-bottom: 10px;
+}
+/* Agent Commissions Report  
+----------------------------------------------------------*/

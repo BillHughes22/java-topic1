@@ -203,6 +203,7 @@ namespace FcsuAgentWebApp.Account
                 lnameData = lnameData.Replace(" ", "");
                 lnameData = lnameData.Replace("'", "");
                 var cstNum = string.Empty;
+                var ownNum = string.Empty;
                 var altzip = string.Empty;
                 bool cstNumFoundinMemberTbl = false;
                 bool cstNumFoundinUserTbl = false;
@@ -226,18 +227,18 @@ namespace FcsuAgentWebApp.Account
                         {
                             cstNumFoundinMemberTbl = true;
                             cstNum = reader[0].ToString();
-                            
+
                         }
                     }
                     myConnection.Close();
                     // reader.Close();
                     // in case a member num registered and trying to register again will not register
 
-                    
-                   
-                        using (SqlConnection myConnPolicies = new SqlConnection(connectionString))
+
+                    // and ownnum = cst_num
+                    using (SqlConnection myConnPolicies = new SqlConnection(connectionString))
                         {
-                            string getcountPolicies = $"select count(policy)  from [policy] where cst_num = '{cstNum}' and ownnum=cst_num ";
+                            string getcountPolicies = $"select count(policy)  from [policy] where cst_num = '{cstNum}'   ";
 
                             myConnPolicies.Open();
                             SqlCommand myCommand1 = new SqlCommand(getcountPolicies, myConnPolicies);
@@ -410,7 +411,7 @@ namespace FcsuAgentWebApp.Account
                 else
                 {
                     Session["agent"] = "member";
-                    Response.Redirect("../account/Autentication.aspx");
+                    Response.Redirect("../account/Authentication.aspx");
                   
                 }
             }

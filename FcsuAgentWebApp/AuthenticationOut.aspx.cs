@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace FcsuAgentWebApp
 {
-    public partial class AutenticationOut : System.Web.UI.Page
+    public partial class AuthenticationOut : System.Web.UI.Page
     {
         string phone = string.Empty;
         string uname = string.Empty;

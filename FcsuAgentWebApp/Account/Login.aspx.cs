@@ -89,25 +89,25 @@ namespace FcsuAgentWebApp.Account
                 if (roles.Any(x => x == "admin"))
                 {
                     Session["Agent"] = "admin";
-                    LoginUser.DestinationPageUrl = "../Account/Autentication.aspx";
+                    LoginUser.DestinationPageUrl = "../Account/Authentication.aspx";
                   //  LoginUser.DestinationPageUrl = "../admin/AgentList.aspx";
                 }
                 else if (roles.Any(x => x == "member"))
                 {
                     Session["Agent"] = "member";
                     // LoginUser.DestinationPageUrl = "../member/memberMain.aspx";
-                    LoginUser.DestinationPageUrl = "../Account/Autentication.aspx";
+                    LoginUser.DestinationPageUrl = "../Account/Authentication.aspx";
                 }
                 else if (roles.Any(x => x == "agent"))
                 {
                     Session["Agent"] = "agent";
-                    LoginUser.DestinationPageUrl = "../Account/Autentication.aspx";
+                    LoginUser.DestinationPageUrl = "../Account/Authentication.aspx";
                     // LoginUser.DestinationPageUrl = "../agent/agentMain.aspx";
                 }
                 else if (roles.Any(x => x == "director"))
                 {
                     Session["Agent"] = "director";
-                    LoginUser.DestinationPageUrl = "../Account/autentication.aspx";
+                    LoginUser.DestinationPageUrl = "../Account/Authentication.aspx";
                     //Session["AgentorDirector"] = "director";
                     //int firstTymLoginInDirector=0;
                     //string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;

@@ -33,7 +33,7 @@ namespace FcsuAgentWebApp.Admin
             List<UserListDataModel> userList = adminBal.getUsersDetails();
             GridView2.DataSource = userList;
             GridView2.DataBind();
-          
+           
         }
     }
 }

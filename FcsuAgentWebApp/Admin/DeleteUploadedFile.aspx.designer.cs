@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FcsuAgentWebApp.Admin {
-    
-    
-    public partial class DeleteUploadedFile {
-        
+namespace FcsuAgentWebApp.Admin
+{
+
+
+    public partial class DeleteUploadedFile
+    {
+
         /// <summary>
         /// GridFilesDir control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace FcsuAgentWebApp.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridFilesDir;
-        
+
         /// <summary>
         /// ErrMsg control.
         /// </summary>
@@ -29,24 +31,17 @@ namespace FcsuAgentWebApp.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ErrMsg;
-        
-        /// <summary>
-        /// SqlDataSource2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
-        
+
         /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new FcsuAgentWebApp.SiteMaster Master {
-            get {
+        public new FcsuAgentWebApp.SiteMaster Master
+        {
+            get
+            {
                 return ((FcsuAgentWebApp.SiteMaster)(base.Master));
             }
         }

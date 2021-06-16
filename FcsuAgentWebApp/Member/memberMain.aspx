@@ -54,7 +54,7 @@
 
     <%--class="noprint" removed--%>
      <%--AutoGenerateSelectButton="True"--%>
-    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" DataSourceID="SqlDataSource1"
+    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" 
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
         AutoGenerateColumns="False"
         BorderStyle="Inset" BorderWidth="1px" BorderColor="#4B6C9E" BackColor="White" 
@@ -62,6 +62,7 @@
         HorizontalAlign="Center" Width="100%" Style="margin-left: 0px;"  
         OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellPadding="3"
         DataKeyNames="POLICY" onrowcommand="GridView1_RowCommand" 
+        onpageindexchanging="GridView1_PageIndexChanging"
          AllowPaging="True" Height="171px" PageSize="3" Caption='<table border="1" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ddb547"><tr height="30px"><td style="font-weight: bold;">LIFE INSURANCE</td></tr></table>'>
         <Columns>
               <asp:buttonfield ControlStyle-CssClass="button" buttontype="Button" commandname="Select" headertext="Select" text="Select" />
@@ -242,7 +243,7 @@
         <SelectedRowStyle BackColor="white" ForeColor="#660033"></SelectedRowStyle>
     </asp:GridView>
     <br />
-    <asp:GridView ID="GridAnn" runat="server" AllowSorting="True" DataSourceID="SqlDataSourceAnn"
+    <asp:GridView ID="GridAnn" runat="server" AllowSorting="True" 
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
         AutoGenerateColumns="False"  CellPadding="3"
         BorderStyle="Inset" BorderWidth="1px" BorderColor="#4B6C9E" BackColor="White"
@@ -434,7 +435,7 @@
         <SelectedRowStyle BackColor="white" ForeColor="#660033"></SelectedRowStyle>
     </asp:GridView>
     <br />
-    <asp:GridView ID="GridSetlmt" runat="server" AllowSorting="True" DataSourceID="SqlDataSourceSetlmt"
+    <asp:GridView ID="GridSetlmt" runat="server" AllowSorting="True" 
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
         AutoGenerateColumns="False"  CellPadding="3"
         BorderStyle="Inset" BorderWidth="1px" BorderColor="#4B6C9E" BackColor="White"
@@ -938,71 +939,9 @@
     <%--<asp:TextBox ID="keepBox" Visible="false" runat="server"></asp:TextBox>--%>
 
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>"
-    SelectCommand=" SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE,
-        policy.BEGBAL, policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, 
-        member.DOB, member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.MODE, policy.BASEPREM, policy.UPDATEDT, policy.LIEN, 
-        policy.LOAN, policy.CASHVAL, policy.PUADIV, policy.ACCUMDIV, policy.TOTDEATH, member_1.NAME AS oname, policy.paidto, 
-        policy.rmdcurr, policy.rmdprev 
-        FROM policy 
-        INNER JOIN member ON policy.CST_NUM = member.CST_NUM 
-        INNER JOIN member AS member_1 ON policy.OWNNUM = member_1.CST_NUM 
-        WHERE policy.OWNNUM = @number and policy.ANNRATE = 0  ORDER BY member.LASTNAME "    
-        OnSelecting="SqlDataSource1_Selecting" ProviderName="<%$ ConnectionStrings:ApplicationServices.ProviderName %>" >
-         <SelectParameters>
-            <%--<asp:FormParameter  FormField="number" Name="number"/>--%>
-            <asp:ControlParameter ControlID="memberDropdown" Name="number" DefaultValue="0000"/>
-            <%--<asp:ControlParameter ControlID="TextBox1" />--%>
-          <%--  <asp:ControlParameter ControlID="TextBox1" Name="searchText"  DbType="String" DefaultValue=" " />
-          --%>
-            <%--<asp:ControlParameter ControlID="LabelNumber" Name="number" DefaultValue="0000"/>--%>
-        </SelectParameters>
-    </asp:SqlDataSource>
+  
 
-    <asp:SqlDataSource ID="SqlDataSourceAnn" runat="server"
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>"
-    SelectCommand=" SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE,
-        policy.BEGBAL, policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, 
-        member.DOB, member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.MODE, policy.BASEPREM, policy.UPDATEDT, policy.LIEN, 
-        policy.LOAN, policy.CASHVAL, policy.PUADIV, policy.ACCUMDIV, policy.TOTDEATH, member_1.NAME AS oname, policy.paidto, 
-        policy.rmdcurr, policy.rmdprev, policy.pl_spia
-        FROM policy 
-        INNER JOIN member ON policy.CST_NUM = member.CST_NUM 
-        INNER JOIN member AS member_1 ON policy.OWNNUM = member_1.CST_NUM 
-        WHERE policy.OWNNUM = @number and policy.ANNRATE > 0 and pl_spia='N' ORDER BY member.LASTNAME "    
-        OnSelecting="SqlDataSource1_Selecting" ProviderName="<%$ ConnectionStrings:ApplicationServices.ProviderName %>" >
-         <SelectParameters>
-            <%--<asp:FormParameter  FormField="number" Name="number"/>--%>
-            <asp:ControlParameter ControlID="memberDropdown" Name="number" DefaultValue="0000"/>
-            <%--<asp:ControlParameter ControlID="TextBox1" />--%>
-          <%--  <asp:ControlParameter ControlID="TextBox1" Name="searchText"  DbType="String" DefaultValue=" " />
-          --%>
-            <%--<asp:ControlParameter ControlID="LabelNumber" Name="number" DefaultValue="0000"/>--%>
-        </SelectParameters>
-    </asp:SqlDataSource>
-
-    <asp:SqlDataSource ID="SqlDataSourceSetlmt" runat="server"
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>"
-    SelectCommand=" SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE,
-        policy.BEGBAL, policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, 
-        member.DOB, member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.MODE, policy.BASEPREM, policy.UPDATEDT, policy.LIEN, 
-        policy.LOAN, policy.CASHVAL, policy.PUADIV, policy.ACCUMDIV, policy.TOTDEATH, member_1.NAME AS oname, policy.paidto, 
-        policy.rmdcurr, policy.rmdprev, policy.pl_spia
-        FROM policy 
-        INNER JOIN member ON policy.CST_NUM = member.CST_NUM 
-        INNER JOIN member AS member_1 ON policy.OWNNUM = member_1.CST_NUM 
-        WHERE policy.OWNNUM = @number and policy.ANNRATE > 0 and policy.pl_spia='Y' ORDER BY member.LASTNAME "    
-        OnSelecting="SqlDataSource1_Selecting" ProviderName="<%$ ConnectionStrings:ApplicationServices.ProviderName %>" >
-         <SelectParameters>
-            <%--<asp:FormParameter  FormField="number" Name="number"/>--%>
-            <asp:ControlParameter ControlID="memberDropdown" Name="number" DefaultValue="0000"/>
-            <%--<asp:ControlParameter ControlID="TextBox1" />--%>
-          <%--  <asp:ControlParameter ControlID="TextBox1" Name="searchText"  DbType="String" DefaultValue=" " />
-          --%>
-            <%--<asp:ControlParameter ControlID="LabelNumber" Name="number" DefaultValue="0000"/>--%>
-        </SelectParameters>
-    </asp:SqlDataSource>
+ 
     <asp:SqlDataSource ID="SqlDataSource3" runat="server"
         ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" SelectCommand="SELECT policy, trandate, amount, descr FROM deposit WHERE (year = YEAR({ fn NOW() }))
 union

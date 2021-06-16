@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FcsuAgentWebApp.Agent {
-    
-    
-    public partial class policyView {
-        
+namespace FcsuAgentWebApp.Agent
+{
+
+
+    public partial class policyView
+    {
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// LabelNumber control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelNumber;
-        
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// TextBox2 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
-        
+
         /// <summary>
         /// TextBox2_AutoCompleteExtender control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender TextBox2_AutoCompleteExtender;
-        
+
         /// <summary>
         /// txtSize control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSize;
-        
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// GridView1 control.
         /// </summary>
@@ -83,16 +85,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-        
+
         /// <summary>
         /// SqlDataSource2 control.
         /// </summary>
@@ -101,7 +94,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
-        
+
         /// <summary>
         /// Table1 control.
         /// </summary>
@@ -110,7 +103,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table Table1;
-        
+
         /// <summary>
         /// LabelName control.
         /// </summary>
@@ -119,7 +112,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelName;
-        
+
         /// <summary>
         /// TextBoxName control.
         /// </summary>
@@ -128,7 +121,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxName;
-        
+
         /// <summary>
         /// LabelAddress control.
         /// </summary>
@@ -137,7 +130,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelAddress;
-        
+
         /// <summary>
         /// TextBoxAddress control.
         /// </summary>
@@ -146,7 +139,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxAddress;
-        
+
         /// <summary>
         /// LabelPhone control.
         /// </summary>
@@ -155,7 +148,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelPhone;
-        
+
         /// <summary>
         /// TextBoxPhone control.
         /// </summary>
@@ -164,7 +157,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPhone;
-        
+
         /// <summary>
         /// LabelEmail control.
         /// </summary>
@@ -173,7 +166,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelEmail;
-        
+
         /// <summary>
         /// TextBoxEmail control.
         /// </summary>
@@ -182,7 +175,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
-        
+
         /// <summary>
         /// Label2 control.
         /// </summary>
@@ -191,7 +184,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-        
+
         /// <summary>
         /// polinfo control.
         /// </summary>
@@ -200,7 +193,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label polinfo;
-        
+
         /// <summary>
         /// Label3 control.
         /// </summary>
@@ -209,7 +202,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-        
+
         /// <summary>
         /// LabelPolicy control.
         /// </summary>
@@ -218,7 +211,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelPolicy;
-        
+
         /// <summary>
         /// TextBoxPolicy control.
         /// </summary>
@@ -227,7 +220,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPolicy;
-        
+
         /// <summary>
         /// LabelPlan control.
         /// </summary>
@@ -236,7 +229,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelPlan;
-        
+
         /// <summary>
         /// TextBoxPlan control.
         /// </summary>
@@ -245,7 +238,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPlan;
-        
+
         /// <summary>
         /// LabelBirthDate control.
         /// </summary>
@@ -254,7 +247,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelBirthDate;
-        
+
         /// <summary>
         /// TextBoxBirthDate control.
         /// </summary>
@@ -263,7 +256,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxBirthDate;
-        
+
         /// <summary>
         /// LabelMatDate control.
         /// </summary>
@@ -272,7 +265,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelMatDate;
-        
+
         /// <summary>
         /// TextBoxMatDate control.
         /// </summary>
@@ -281,7 +274,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxMatDate;
-        
+
         /// <summary>
         /// LabelValue control.
         /// </summary>
@@ -290,7 +283,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelValue;
-        
+
         /// <summary>
         /// TextBoxValue control.
         /// </summary>
@@ -299,7 +292,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxValue;
-        
+
         /// <summary>
         /// LabelPremium control.
         /// </summary>
@@ -308,7 +301,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelPremium;
-        
+
         /// <summary>
         /// TextBoxPremium control.
         /// </summary>
@@ -317,7 +310,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPremium;
-        
+
         /// <summary>
         /// LabelIssueDate control.
         /// </summary>
@@ -326,7 +319,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelIssueDate;
-        
+
         /// <summary>
         /// TextBoxIssueDate control.
         /// </summary>
@@ -335,7 +328,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxIssueDate;
-        
+
         /// <summary>
         /// LabelCurrentRate control.
         /// </summary>
@@ -344,7 +337,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelCurrentRate;
-        
+
         /// <summary>
         /// TextBoxCurrentRate control.
         /// </summary>
@@ -353,7 +346,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxCurrentRate;
-        
+
         /// <summary>
         /// RiderLabel control.
         /// </summary>
@@ -362,7 +355,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label RiderLabel;
-        
+
         /// <summary>
         /// GridView4 control.
         /// </summary>
@@ -371,16 +364,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView4;
-        
-        /// <summary>
-        /// SqlDataSource4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
-        
+
         /// <summary>
         /// BenefLabel control.
         /// </summary>
@@ -389,7 +373,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label BenefLabel;
-        
+
         /// <summary>
         /// GridView3 control.
         /// </summary>
@@ -398,16 +382,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView3;
-        
-        /// <summary>
-        /// SqlDataSource5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource5;
-        
+
         /// <summary>
         /// Summary control.
         /// </summary>
@@ -416,7 +391,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Summary;
-        
+
         /// <summary>
         /// Table2 control.
         /// </summary>
@@ -425,7 +400,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table Table2;
-        
+
         /// <summary>
         /// LabelPrevBal control.
         /// </summary>
@@ -434,7 +409,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelPrevBal;
-        
+
         /// <summary>
         /// TextBoxPrevBal control.
         /// </summary>
@@ -443,7 +418,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxPrevBal;
-        
+
         /// <summary>
         /// LabelDeposits control.
         /// </summary>
@@ -452,7 +427,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelDeposits;
-        
+
         /// <summary>
         /// TextBoxDeposits control.
         /// </summary>
@@ -461,7 +436,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxDeposits;
-        
+
         /// <summary>
         /// LabelWithdrawals control.
         /// </summary>
@@ -470,7 +445,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelWithdrawals;
-        
+
         /// <summary>
         /// TextBoxWithdrawals control.
         /// </summary>
@@ -479,7 +454,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxWithdrawals;
-        
+
         /// <summary>
         /// LabelInterest control.
         /// </summary>
@@ -488,7 +463,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelInterest;
-        
+
         /// <summary>
         /// TextBoxInterest control.
         /// </summary>
@@ -497,7 +472,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxInterest;
-        
+
         /// <summary>
         /// LabelCurBal control.
         /// </summary>
@@ -506,7 +481,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelCurBal;
-        
+
         /// <summary>
         /// TextBoxCurBal control.
         /// </summary>
@@ -515,7 +490,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxCurBal;
-        
+
         /// <summary>
         /// Transactions control.
         /// </summary>
@@ -524,7 +499,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Transactions;
-        
+
         /// <summary>
         /// GridView2 control.
         /// </summary>
@@ -533,7 +508,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView2;
-        
+
         /// <summary>
         /// SqlDataSource3 control.
         /// </summary>
@@ -542,7 +517,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
-        
+
         /// <summary>
         /// keepBox control.
         /// </summary>
@@ -551,7 +526,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox keepBox;
-        
+
         /// <summary>
         /// getAnnBalTable control.
         /// </summary>
@@ -560,7 +535,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table getAnnBalTable;
-        
+
         /// <summary>
         /// cell_label1 control.
         /// </summary>
@@ -569,7 +544,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_label1;
-        
+
         /// <summary>
         /// annGetBalLabel1 control.
         /// </summary>
@@ -578,7 +553,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label annGetBalLabel1;
-        
+
         /// <summary>
         /// cell_label2 control.
         /// </summary>
@@ -587,7 +562,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_label2;
-        
+
         /// <summary>
         /// annGetBalLabel2 control.
         /// </summary>
@@ -596,7 +571,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label annGetBalLabel2;
-        
+
         /// <summary>
         /// cell_date control.
         /// </summary>
@@ -605,7 +580,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_date;
-        
+
         /// <summary>
         /// calcDateMonth control.
         /// </summary>
@@ -614,7 +589,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox calcDateMonth;
-        
+
         /// <summary>
         /// cell_date2 control.
         /// </summary>
@@ -623,7 +598,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_date2;
-        
+
         /// <summary>
         /// cell_date3 control.
         /// </summary>
@@ -632,7 +607,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_date3;
-        
+
         /// <summary>
         /// calcDateDay control.
         /// </summary>
@@ -641,7 +616,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox calcDateDay;
-        
+
         /// <summary>
         /// cell_date4 control.
         /// </summary>
@@ -650,7 +625,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_date4;
-        
+
         /// <summary>
         /// cell_date5 control.
         /// </summary>
@@ -659,7 +634,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_date5;
-        
+
         /// <summary>
         /// calcDateYear control.
         /// </summary>
@@ -668,7 +643,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox calcDateYear;
-        
+
         /// <summary>
         /// cell_getButton control.
         /// </summary>
@@ -677,7 +652,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_getButton;
-        
+
         /// <summary>
         /// getAnnBalance control.
         /// </summary>
@@ -686,7 +661,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button getAnnBalance;
-        
+
         /// <summary>
         /// cell_result control.
         /// </summary>
@@ -695,7 +670,7 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell_result;
-        
+
         /// <summary>
         /// gottenAnnBalance control.
         /// </summary>
@@ -704,15 +679,17 @@ namespace FcsuAgentWebApp.Agent {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox gottenAnnBalance;
-        
+
         /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new FcsuAgentWebApp.SiteMaster Master {
-            get {
+        public new FcsuAgentWebApp.SiteMaster Master
+        {
+            get
+            {
                 return ((FcsuAgentWebApp.SiteMaster)(base.Master));
             }
         }

@@ -56,6 +56,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\naga\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CODE.Framework.Core">
       <HintPath>..\_ExternalComponents\CODEFramework\CODE.Framework.Core.dll</HintPath>
     </Reference>
@@ -64,6 +67,9 @@
     </Reference>
     <Reference Include="CODE.Framework.Services.Client">
       <HintPath>..\_ExternalComponents\CODEFramework\CODE.Framework.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -84,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Account\Autentication.aspx" />
+    <Content Include="Account\Authentication.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Error.aspx" />
@@ -106,11 +112,12 @@
     <Content Include="Admin\UploadFile.aspx" />
     <Content Include="Admin\UserEdit.aspx" />
     <Content Include="Admin\UserList.aspx" />
+    <Content Include="Agent\agentCommissions.aspx" />
     <Content Include="Agent\agentMain_old.aspx" />
     <Content Include="Agent\getAgentProfile.aspx" />
     <Content Include="Agent\agentMain.aspx" />
     <Content Include="AgtMain_old.aspx" />
-    <Content Include="AutenticationOut.aspx" />
+    <Content Include="AuthenticationOut.aspx" />
     <Content Include="ChangePasswordOut.aspx" />
     <Content Include="Director\DirectorMenu.aspx" />
     <Content Include="ForgotPassword.aspx" />
@@ -143,12 +150,12 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Autentication.aspx.cs">
-      <DependentUpon>Autentication.aspx</DependentUpon>
+    <Compile Include="Account\Authentication.aspx.cs">
+      <DependentUpon>Authentication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Autentication.aspx.designer.cs">
-      <DependentUpon>Autentication.aspx</DependentUpon>
+    <Compile Include="Account\Authentication.aspx.designer.cs">
+      <DependentUpon>Authentication.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
@@ -294,6 +301,13 @@
       <DependentUpon>UserList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Agent\agentCommissions.aspx.cs">
+      <DependentUpon>agentCommissions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agent\agentCommissions.aspx.designer.cs">
+      <DependentUpon>agentCommissions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Agent\agentMain_old.aspx.cs">
       <DependentUpon>agentMain_old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -322,13 +336,17 @@
     <Compile Include="AgtMain_old.aspx.designer.cs">
       <DependentUpon>AgtMain_old.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AutenticationOut.aspx.cs">
-      <DependentUpon>AutenticationOut.aspx</DependentUpon>
+    <Compile Include="AuthenticationOut.aspx.cs">
+      <DependentUpon>AuthenticationOut.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AutenticationOut.aspx.designer.cs">
-      <DependentUpon>AutenticationOut.aspx</DependentUpon>
+    <Compile Include="AuthenticationOut.aspx.designer.cs">
+      <DependentUpon>AuthenticationOut.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BAL\AdminMainBAL.cs" />
+    <Compile Include="BAL\AgentMainBAL.cs" />
+    <Compile Include="BAL\DeleteUploadedFileBAL.cs" />
+    <Compile Include="BAL\MemberMainBAL.cs" />
     <Compile Include="ChangePasswordOut.aspx.cs">
       <DependentUpon>ChangePasswordOut.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -339,6 +357,10 @@
     <Compile Include="Classes\FcsuMembershipUser.cs" />
     <Compile Include="Classes\FcsuWebMembershipProvider.cs" />
     <Compile Include="Classes\FcsuWebRoleProvider.cs" />
+    <Compile Include="DAL\AdminMainDAL.cs" />
+    <Compile Include="DAL\AgentMainDAL.cs" />
+    <Compile Include="DAL\DeleteUploadedFileDAL.cs" />
+    <Compile Include="DAL\MemberMainDAL.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -382,6 +404,10 @@
     <Compile Include="Models\Admin\RoleListViewModel.cs" />
     <Compile Include="Models\Admin\UserEditViewModel.cs" />
     <Compile Include="Models\Admin\UserListViewModel.cs" />
+    <Compile Include="Models\DataModels\AgentPolicyModel.cs" />
+    <Compile Include="Models\DataModels\FileDirModel.cs" />
+    <Compile Include="Models\DataModels\PolicyBeneficiaryModel.cs" />
+    <Compile Include="Models\DataModels\PolicyRiderModel.cs" />
     <Compile Include="Models\DataModels\RoleDataModel.cs" />
     <Compile Include="Models\DataModels\UserListDataModel.cs" />
     <Compile Include="Models\DataModels\UserRoleListDataModel.cs" />
@@ -425,6 +451,7 @@
     <None Include="fonts\Lato-Light.ttf" />
     <None Include="fonts\Lato-LightItalic.ttf" />
     <None Include="fonts\Lato-Regular.ttf" />
+    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

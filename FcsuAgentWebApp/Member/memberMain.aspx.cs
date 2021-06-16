@@ -9,12 +9,17 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Windows.Forms;
+using FcsuAgentWebApp.Models.DataModels;
+using FcsuAgentWebApp.BAL;
 
 namespace FcsuAgentWebApp.Member
 {
 
     public partial class memberMain : System.Web.UI.Page
     {
+       
+        DataTable gridPolicy = new DataTable();
+   
         string number;
         GridViewRow selectedRow;
        
@@ -46,6 +51,19 @@ namespace FcsuAgentWebApp.Member
             }
             LabelNumber.Text = memberDropdown.Text;
             Session["member"] = LabelNumber.Text;
+            number= memberDropdown.Text;
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+            policyList = objAgent.getInsPolicyDetails(number);
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
+            policyList = objAgent.getAnnPolicyDetails(number);
+            GridAnn.DataSource = policyList;
+            GridAnn.DataBind();
+            policyList = objAgent.getSetPolicyDetails(number);
+            GridSetlmt.DataSource = policyList;
+            GridSetlmt.DataBind();
+
             GridViewRow r;
             if (GridView1.Rows.Count > 0)
             {
@@ -64,7 +82,11 @@ namespace FcsuAgentWebApp.Member
             {
                 x.Cells[3].Text = x.Cells[3].Text.Replace(";", "<br />");
             }
-
+            for (int i = 0; i < 2; i++)
+            {
+                gridPolicy.Columns.Add(GridView1.Columns[i].ToString());
+            }
+            
             foreach (GridViewRow n in GridAnn.Rows)
             {
                 n.Cells[3].Text = n.Cells[3].Text.Replace(";", "<br />");
@@ -79,35 +101,7 @@ namespace FcsuAgentWebApp.Member
 
 
 
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        public static List<string> searchNames(string prefixText, int count, string contextKey)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-            string number = HttpContext.Current.Session["member"] == null ? "" : HttpContext.Current.Session["member"].ToString();
-            using (SqlConnection myConnection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    string query = "select m.LASTNAME from member m " +
-                           "inner join policy p on p.CST_NUM = m.CST_NUM where " +
-                      "m.LASTNAME like '" + prefixText + "%' and + p.CST_NUM ='" + number + "'";
-                    cmd.CommandText = query;
-                    cmd.Connection = myConnection;
-                    myConnection.Open();
-                    List<string> names = new List<string>();
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        while (sdr.Read())
-                        {
-                            names.Add(sdr["LASTNAME"].ToString());
-                        }
-                    }
-                    myConnection.Close();
-                    return names;
-                }
-            }
-        }
+
 
         protected void HideAll()
         {
@@ -566,12 +560,20 @@ namespace FcsuAgentWebApp.Member
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            index = Convert.ToInt32(e.CommandArgument);
+
             if (e.CommandName == "Sort")
             {
                
                     selectedRow = GridView1.Rows[0];
                     this.load_Information(selectedRow);
                
+            }
+            else if (e.CommandName == "Page")
+            {
+                GridView2.Visible = false;
+                //selectedRow = GridView1.Rows[0];
+                //this.load_Information(selectedRow);
             }
             else
             {
@@ -583,7 +585,6 @@ namespace FcsuAgentWebApp.Member
 
                     //    // Convert the row index stored in the CommandArgument
                     //    // property to an Integer.
-                    index = Convert.ToInt32(e.CommandArgument);
                    
                     // Get the last name of the selected author from the appropriate
                     // cell in the GridView control.
@@ -591,7 +592,6 @@ namespace FcsuAgentWebApp.Member
 
 
                     // }
-
                     this.load_Information(selectedRow);
                 }
             }
@@ -602,6 +602,7 @@ namespace FcsuAgentWebApp.Member
       
         protected void GridAnn_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            index = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "Sort")
             {
@@ -609,6 +610,11 @@ namespace FcsuAgentWebApp.Member
                 selectedRow = GridAnn.Rows[0];
                 this.load_Information(selectedRow);
 
+            }
+            else if(e.CommandName == "Page")
+            {
+                GridView2.Visible = false;
+               
             }
             else
             {
@@ -620,14 +626,12 @@ namespace FcsuAgentWebApp.Member
 
                     //    // Convert the row index stored in the CommandArgument
                     //    // property to an Integer.
-                    index = Convert.ToInt32(e.CommandArgument);
-                    
+
                     // Get the last name of the selected author from the appropriate
                     // cell in the GridView control.
-                    selectedRow = GridAnn.Rows[index];
+                     selectedRow = GridAnn.Rows[index];
 
 
-                    // }
 
                     this.load_Information(selectedRow);
                 }
@@ -637,12 +641,17 @@ namespace FcsuAgentWebApp.Member
 
         protected void GridSetlmt_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
+            index = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName == "Sort")
             {
 
                 selectedRow = GridSetlmt.Rows[0];
                 this.load_Information(selectedRow);
+
+            }
+            else if (e.CommandName == "Page")
+            {
+                GridView2.Visible = false;
 
             }
             else
@@ -655,7 +664,7 @@ namespace FcsuAgentWebApp.Member
 
                     //    // Convert the row index stored in the CommandArgument
                     //    // property to an Integer.
-                    index = Convert.ToInt32(e.CommandArgument);
+                   
 
                     // Get the last name of the selected author from the appropriate
                     // cell in the GridView control.
@@ -667,6 +676,23 @@ namespace FcsuAgentWebApp.Member
                     this.load_Information(selectedRow);
                 }
             }
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+            policyList = objAgent.getInsPolicyDetails(number);
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
+            policyList = objAgent.getAnnPolicyDetails(number);
+            GridAnn.DataSource = policyList;
+            GridAnn.DataBind();
+            policyList = objAgent.getSetPolicyDetails(number);
+            GridSetlmt.DataSource = policyList;
+            GridSetlmt.DataBind();
+
         }
 
     }

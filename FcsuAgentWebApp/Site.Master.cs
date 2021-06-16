@@ -64,6 +64,8 @@ namespace FcsuAgentWebApp
             this.NavigationMenu.Items.Add(new MenuItem("Marketing Materials", "Marketing Materials", "", "http://fcsu.com/agent-center/marketing-material","blank"));
             this.NavigationMenu.Items.Add(new MenuItem("Contact", "Contact", "", "http://fcsu.com/contact","blank"));
             this.NavigationMenu.Items.Add(new MenuItem("Change Password", "Change Password", "", "~/Account/ChangePassword.aspx"));
+            this.NavigationMenu.Items.Add(new MenuItem("Agent Report", "Agent Report", "", "~/Agent/agentCommissions.aspx"));
+
         }
 
         public void addAdminMenu()

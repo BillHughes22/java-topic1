@@ -137,7 +137,7 @@ namespace FcsuAgentWebApp
             {
                 Session["unameorpswd"] = unameorpsd;
                 Session["forgotpassword"] = uname;
-                Response.Redirect("~/AutenticationOut.aspx");
+                Response.Redirect("~/AuthenticationOut.aspx");
             }
         }
 

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FcsuAgentWebApp {
-    
-    
-    public partial class AutenticationOut {
-        
+namespace FcsuAgentWebApp
+{
+
+
+    public partial class AuthenticationOut
+    {
+
         /// <summary>
         /// lbl control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace FcsuAgentWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl;
-        
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace FcsuAgentWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// nav control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace FcsuAgentWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label nav;
-        
+
         /// <summary>
         /// smMain control.
         /// </summary>
@@ -47,15 +49,17 @@ namespace FcsuAgentWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager smMain;
-        
+
         /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
         /// Auto-generated property.
         /// </remarks>
-        public new FcsuAgentWebApp.SiteMaster Master {
-            get {
+        public new FcsuAgentWebApp.SiteMaster Master
+        {
+            get
+            {
                 return ((FcsuAgentWebApp.SiteMaster)(base.Master));
             }
         }

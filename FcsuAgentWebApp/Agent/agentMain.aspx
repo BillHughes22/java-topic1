@@ -36,13 +36,14 @@
     <%--AutoGenerateSelectButton="True"--%>
         <asp:GridView ID="GridView1" runat="server" AllowSorting="True"  
                 SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
-            AutoGenerateColumns="False" DataSourceID="SqlDataSource1"
+            AutoGenerateColumns="False" 
             BorderStyle="Inset" BorderWidth="5px" BorderColor="#4B6C9E" BackColor="White"
             HeaderStyle-BackColor="BlanchedAlmond" RowStyle-BorderColor="Brown" 
                 HorizontalAlign="Center" Width="983px" style="margin-top: 0px" 
               onselectedindexchanged="GridView1_SelectedIndexChanged" 
                 onselectedindexchanging="GridView1_SelectedIndexChanging" 
             onrowcommand="GridView1_RowCommand" 
+            onpageindexchanging="GridView1_PageIndexChanging"
                  DataKeyNames="POLICY" 
                 ondatabound="GridView1_DataBound" AllowPaging="True"  PageSize="5" CssClass="noprint"  Height="186px" >
             <Columns >
@@ -100,21 +101,7 @@
             <RowStyle BorderColor="Brown"></RowStyle>
             <SelectedRowStyle BackColor="#CCFFFF" ForeColor="#660033"></SelectedRowStyle>
         </asp:GridView>
-   &nbsp;<%--   Data Source for Policy Gridview--%><asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>"
-        SelectCommand="SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE, policy.BEGBAL, 
-        policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, member.DOB, 
-       member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia 
-       FROM policy INNER JOIN member ON 
-        policy.CST_NUM = member.CST_NUM 
-       WHERE policy.AGENT = @number and ( member.LastName like CASE WHEN LEN(@searchText) >0 THEN  @searchText + '%' ELSE member.LASTNAME END) ORDER BY member.LASTNAME" 
-        OnSelecting="SqlDataSource1_Selecting">
-        <SelectParameters>
-            <%--<asp:FormParameter  FormField="number" Name="number"/>--%>
-            <asp:ControlParameter ControlID="LabelNumber" Name="number" DefaultValue="0000"/>
-              <asp:ControlParameter ControlID="TextBox2" Name="SearchText"  DbType="String" DefaultValue=" " />
-        </SelectParameters>
-    </asp:SqlDataSource>
+   &nbsp;
 
 <%--   Data Source for Selecting Annuity Summary Info.  --%>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
@@ -176,13 +163,13 @@
             <asp:TableCell Width="30%" ColumnSpan="6" EnableViewState ="false"><asp:TextBox ID="TextBoxCurrentRate" runat="server" Width="100%" BorderStyle="None" ReadOnly="true" EnableViewState ="false"></asp:TextBox></asp:TableCell>
         </asp:TableRow>
 
-    </asp:Table>
+    </asp:Table><br />
      <asp:Label ID="RiderLabel" runat="server" Text="Rider Information:" 
         Visible="false" Font-Size="Medium"></asp:Label>
 
     <%--   Labels for the bottom of the Grid--%>
 
- <asp:GridView ID="GridView4" runat="server" DataSourceID="SqlDataSource4" AutoGenerateColumns="False" Height="26px" Width="16px">
+ <asp:GridView ID="GridView4" runat="server"  AutoGenerateColumns="False" Height="26px" Width="16px">
         <Columns>
             <asp:BoundField DataField="policy" HeaderText="Policy" ReadOnly="true" SortExpression="policy" ItemStyle-Width="100" ItemStyle-HorizontalAlign="Center"/>
             <asp:BoundField DataField="riderprem1" HeaderText="Premium1" ReadOnly="true" SortExpression="riderprem1" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center"/>
@@ -195,21 +182,19 @@
         </Columns>
    </asp:GridView>  
 
-    &nbsp;
-
-    <%--   Policy Information--%>
-    <asp:SqlDataSource ID="SqlDataSource4" runat="server" 
+    <br />
+&nbsp;<%--   Policy Information--%><%--<asp:SqlDataSource ID="SqlDataSource4" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" SelectCommand="SELECT policy, riderprem1,ridertype1,riderprem2,ridertype2,riderprem3,ridertype3 FROM policy where policy=@policyNum and (riderprem1 > 00.00  or riderprem2 > 00.00 or  riderprem3 > 00.00)">
         
          <SelectParameters>
             <asp:ControlParameter ControlID="TextBoxPolicy" Name="policyNum" DefaultValue=""/>
         </SelectParameters>
-       </asp:SqlDataSource><asp:Label ID="BenefLabel" runat="server" Text="Beneficiary Information:" 
+       </asp:SqlDataSource>--%><asp:Label ID="BenefLabel" runat="server" Text="Beneficiary Information:" 
         Visible="false" Font-Size="Medium"></asp:Label>
 
    
     <%--   Labels for the bottom of the Grid--%>
-<asp:GridView ID="GridView3" runat="server" DataSourceID="SqlDataSource5" AutoGenerateColumns="False" Height="34px" Width="491px">
+<asp:GridView ID="GridView3" runat="server"  AutoGenerateColumns="False" Height="34px" Width="491px">
         <Columns>
             <asp:BoundField DataField="policy" HeaderText="Policy" ReadOnly="true" SortExpression="policy" ItemStyle-Width="100" ItemStyle-HorizontalAlign="Center"/>
             <asp:BoundField DataField="bname" HeaderText="Name" ReadOnly="true" SortExpression="bname" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center"/>
@@ -224,14 +209,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     <%--   Policy Information--%>
-    <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" SelectCommand="SELECT policy, bname, relate, btype FROM bnefcary where policy=@policyNum order by btype desc">
-        
-         <SelectParameters>
-            <asp:ControlParameter ControlID="TextBoxPolicy" Name="policyNum" DefaultValue=""/>
-        </SelectParameters>
-        
-        </asp:SqlDataSource>
+    
     <br/>
     
 
