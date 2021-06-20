@@ -125,7 +125,44 @@
     <Content Include="img\FCSUCross.jpg" />
     <Content Include="img\FCSUCross.png" />
     <Content Include="img\FCSUlogo.png" />
+    <Content Include="Member\Complete\Default.aspx" />
+    <Content Include="Member\images\americanexpress.jpg" />
+    <Content Include="Member\images\buynow.jpg" />
+    <Content Include="Member\images\buynow_over.jpg" />
+    <Content Include="Member\images\checkout-button.jpg" />
+    <Content Include="Member\images\checkout-button_over.jpg" />
+    <Content Include="Member\images\csv.jpg" />
+    <Content Include="Member\images\delete.jpg" />
+    <Content Include="Member\images\discover.jpg" />
+    <Content Include="Member\images\error.jpg" />
+    <Content Include="Member\images\free-shipping.jpg" />
+    <Content Include="Member\images\free-shipping2.jpg" />
+    <Content Include="Member\images\loader.gif" />
+    <Content Include="Member\images\loader3.gif" />
+    <Content Include="Member\images\loader_black_fast.gif" />
+    <Content Include="Member\images\mastercard.jpg" />
+    <Content Include="Member\images\new_coupon.jpg" />
+    <Content Include="Member\images\new_coupon_over.jpg" />
+    <Content Include="Member\images\next.jpg" />
+    <Content Include="Member\images\next_over.jpg" />
+    <Content Include="Member\images\PP-payment.jpg" />
+    <Content Include="Member\images\PP-shopping-cart.jpg" />
+    <Content Include="Member\images\PP-summary.jpg" />
+    <Content Include="Member\images\previous.jpg" />
+    <Content Include="Member\images\shopping-cart.jpg" />
+    <Content Include="Member\images\step-1.jpg" />
+    <Content Include="Member\images\step-2.jpg" />
+    <Content Include="Member\images\step-3.jpg" />
+    <Content Include="Member\images\step-4.jpg" />
+    <Content Include="Member\images\summary-address-button.jpg" />
+    <Content Include="Member\images\summary-address-button_over.jpg" />
+    <Content Include="Member\images\update.jpg" />
+    <Content Include="Member\images\visa.jpg" />
     <Content Include="Member\memberMain.aspx" />
+    <Content Include="Member\Payments\Default.aspx" />
+    <Content Include="Member\ShoppingCart\Default.aspx" />
+    <Content Include="Styles\Payment.css" />
+    <Content Include="Styles\Site-print.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -347,6 +384,13 @@
     <Compile Include="BAL\AgentMainBAL.cs" />
     <Compile Include="BAL\DeleteUploadedFileBAL.cs" />
     <Compile Include="BAL\MemberMainBAL.cs" />
+    <Compile Include="Cart.Master.cs">
+      <DependentUpon>Cart.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.Master.designer.cs">
+      <DependentUpon>Cart.Master</DependentUpon>
+    </Compile>
     <Compile Include="ChangePasswordOut.aspx.cs">
       <DependentUpon>ChangePasswordOut.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -392,6 +436,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Member\Complete\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\Complete\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Member\memberMain.aspx.cs">
       <DependentUpon>memberMain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -399,11 +450,26 @@
     <Compile Include="Member\memberMain.aspx.designer.cs">
       <DependentUpon>memberMain.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Member\Payments\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\Payments\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Member\ShoppingCart\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\ShoppingCart\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MessageBox.cs" />
     <Compile Include="Models\Admin\RoleEditViewModel.cs" />
     <Compile Include="Models\Admin\RoleListViewModel.cs" />
     <Compile Include="Models\Admin\UserEditViewModel.cs" />
     <Compile Include="Models\Admin\UserListViewModel.cs" />
+    <Compile Include="Models\Checkout\Checkout.cs" />
     <Compile Include="Models\DataModels\AgentPolicyModel.cs" />
     <Compile Include="Models\DataModels\FileDirModel.cs" />
     <Compile Include="Models\DataModels\PolicyBeneficiaryModel.cs" />
@@ -411,7 +477,16 @@
     <Compile Include="Models\DataModels\RoleDataModel.cs" />
     <Compile Include="Models\DataModels\UserListDataModel.cs" />
     <Compile Include="Models\DataModels\UserRoleListDataModel.cs" />
+    <Compile Include="Payment.Master.cs">
+      <DependentUpon>Payment.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payment.Master.designer.cs">
+      <DependentUpon>Payment.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Business\BusinessLayer.cs" />
+    <Compile Include="Services\DataAccess\DataLayer.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,6 +512,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cart.Master" />
     <None Include="fonts\DroidSerif-Bold.ttf" />
     <None Include="fonts\DroidSerif-BoldItalic.ttf" />
     <None Include="fonts\DroidSerif-Italic.ttf" />
@@ -451,7 +527,9 @@
     <None Include="fonts\Lato-Light.ttf" />
     <None Include="fonts\Lato-LightItalic.ttf" />
     <None Include="fonts\Lato-Regular.ttf" />
+    <Content Include="Member\images\Thumbs.db" />
     <None Include="packages.config" />
+    <Content Include="Payment.Master" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

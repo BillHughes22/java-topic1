@@ -1,0 +1,482 @@
+﻿/* Grid View CSS 
+----------------------------------------------------------*/
+.grid_coupons {
+    float: right;
+}
+
+.grid_text {
+    float: left;
+}
+
+.rounded-corners {
+    border: 1px solid #CCCCCC;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+    /*margin-left: auto;
+    margin-right: auto;*/
+}
+
+.Grid td, .Grid th {
+    /*border: 1px solid #CCCCCC;*/
+    border-bottom: 1px #CCC solid;
+    border-right: 1px #CCC solid;
+    border-top: none;
+    border: 1px solid #CCCCCC;
+}
+
+.grid_view_header {
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    background-color: #E4E4E4;
+    height: 40px;
+}
+
+.grid_view_main_bold {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    padding: 10px 10px 0 10px;
+}
+
+.grid_view_main_bold_center {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 10px 0 10px;
+}
+
+.item_second {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: left;
+    text-decoration: none;
+    padding: 2px 10px 0 10px;
+}
+
+.item_sku {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    padding: 7px 10px 0 10px;
+}
+
+.item_vehicle {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    padding: 7px 10px 10px 10px;
+}
+
+.header_coupon {
+    font-family: Arial;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #00539F;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lbl_sku_label {
+    font-weight: bold;
+    width: 100px;
+}
+
+.lbl_sku_data {
+    font-weight: normal;
+    padding: 7px 10px 0 10px;
+}
+
+.lbl_qty_label {
+    vertical-align: middle;
+    padding: 0 2px 0 0;
+}
+
+.bttn_qty {
+    vertical-align: middle;
+    padding: 5px 0 0 0;
+}
+
+.bttn_checkout {
+    vertical-align: top;
+    padding: 15px 0px 20px 75px;
+    float: right;
+}
+
+.bttn_next {
+    vertical-align: top;
+    float: left;
+    padding: 15px 0px 20px 0px;
+}
+
+.bttn_previous {
+    vertical-align: top;
+    float: left;
+    padding: 15px 0px 20px 0px;
+}
+
+.box_qty {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    border-bottom: 1px #CCC solid;
+    border-right: 1px #777 solid;
+    border-top: none;
+    border: 1px solid #777;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #0053A0;
+}
+
+.Ck_ViewCart_FooterStyle td, Ck_ViewCart_FooterStyle th {
+    font-weight: bold;
+    border: none;
+    font-family: Arial;
+    font-size: 13px;
+    color: #333;
+}
+
+.Qty_FooterStyle td, Qty_FooterStyle th {
+    border-style: none;
+    border: none;
+}
+
+.articleborder {
+    border-bottom: 1px #8DB0E2 solid;
+}
+
+.footer td {
+    border: none
+}
+
+.footer th {
+    border: none
+}
+
+.Price_ItemStyle {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: right;
+    text-decoration: none;
+    color: #333;
+    padding: 0 15px 0 15px;
+    vertical-align: middle;
+}
+
+.Coupon_ItemStyle {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: right;
+    text-decoration: none;
+    color: #333;
+    padding: 0 15px 0 15px;
+    vertical-align: middle;
+}
+
+.Qty_ItemStyle {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    padding: 0 15px 0 15px;
+    vertical-align: middle;
+}
+
+.Shipping_ItemStyle {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: right;
+    text-decoration: none;
+    color: #333;
+    padding: 0 15px 0 15px;
+    vertical-align: middle;
+    width: 200px;
+}
+
+.header_shipping {
+    padding: 0 10px 0 10px;
+}
+
+.Total_ItemStyle {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    text-align: right;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px 0 15px;
+    vertical-align: middle;
+
+
+}
+
+.total_value {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    color: navy;
+    padding: 0px 35px 35px 0;
+    width: 100%;
+}
+
+.total_lbl_money {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: right;
+    text-decoration: none;
+    color: #333;
+    width: 75px;
+    text-align: right;
+    float: right;
+    padding: 5px 100px 0 0;
+}
+
+.total_lbl_money_coupon {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: right;
+    text-decoration: none;
+    color: Red;
+    width: 50px;
+    text-align: right;
+    float: right;
+    padding: 5px 30px 0 0;
+}
+
+.total_lbl_money_bold {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: bold;
+    text-align: right;
+    text-decoration: none;
+    color: navy;
+    width: 85px;
+    text-align: right;
+    float: right;
+    padding: 5px 10px 0 0;
+}
+
+.total_lbl {
+    display: block;
+    width: 700px;
+    text-align: right;
+    float: left;
+    padding-top: 5px;
+    font-weight: bold;
+}
+.total_lbl_payment {
+    display: block;
+    width: 300px;
+    text-align: right;
+    float: left;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.total_lbl_coupon {
+    display: block;
+    width: 935px;
+    text-align: right;
+    float: left;
+    padding-top: 5px;
+    font-weight: bold;
+    color: Red;
+}
+
+.grid_view_only_instore {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #FF0000;
+}
+
+.grid_view_ship_both {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: left;
+    text-decoration: none;
+    color: #000;
+}
+
+/* End Grid View CSS
+----------------------------------------------------------*/
+
+/* button placement */
+.bttn_area {
+    width: 815px;
+    padding: 0;
+    float: left;
+    
+}
+#left_column {
+    float: left;
+    width: 128px;
+    padding: 5px 0 0 0;
+}
+
+#center_column {
+    display: inline-block;
+    width: 33%;
+    padding: 5px 0 0 0;
+    text-align: center;
+}
+
+#right_column {
+    float: right;
+    width: 33%;
+    padding: 5px 0 0 0;
+}
+
+/* Summary Page */
+
+.transaction_column {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    color: #333;
+    padding: 0px 35px 35px 0;
+    width: 100%;
+}
+.buyer_column {
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    color: #333;
+    padding: 0px 35px 35px 0;
+    width: 100%;
+}
+
+.transactionIDlbl {
+    display: block;
+    width: 100px;
+    text-align: left;
+    float: left;
+    padding-top: 5px;
+    font-weight: normal;
+    font-size: 13px;
+    color: black;
+}
+.transactionID {
+    display: block;
+    width: 150px;
+    text-align: left;
+    float: left;
+    padding-top: 5px;
+    font-weight: normal;
+    font-size: 13px;
+    color: cadetblue;
+}
+.datelbl {
+    display: block;
+    width: 350px;
+    text-align: left;
+    float: left;
+    padding-top: 5px;
+    font-weight: normal;
+    font-size: 13px;
+    color: black;
+}
+.buyerHeader {
+    display: block;
+    width: 300px;
+    text-align: left;
+    float: left;
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    color: cadetblue;
+}
+
+.userName {
+    display: block;
+    width: 400px;
+    text-align: left;
+    float: left;
+    padding-top: 5px;
+    font-weight: normal;
+    font-size: 13px;
+    color: black;
+}
+.userName2 {
+    display: block;
+    width: 400px;
+    text-align: left;
+    float: left;
+    padding: 5px 0 10px 0;
+    font-weight: normal;
+    font-size: 13px;
+    color: black;
+}
+
+#payment_right_column {
+    float: right;
+    width: 40%;
+    padding: 5px 0 0 0;
+}
+
+.printing {
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: cadetblue;
+}
+.printlbl {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+
+
+

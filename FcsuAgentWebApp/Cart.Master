@@ -1,0 +1,244 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Cart.Master.cs" Inherits="FcsuAgentWebApp.Cart" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<script runat="server">
+    void LoginStatus_LoggedOut(Object sender, System.EventArgs e)
+    {
+
+        // Perform any post-logout processing, such as setting the
+        // user's last logout time or clearing a per-user cache of 
+        // objects here.
+        string urlAfterLogout = string.Empty;
+        if (chgHeading.InnerHtml.Equals("FCSU Director Portal"))
+        {
+            urlAfterLogout = "https://www.fcsu.com/about/board-of-directors/";
+        }
+        else if(chgHeading.InnerHtml.Equals("FCSU Member Portal"))
+        {
+            urlAfterLogout = "~/Account/Login.aspx?heading=member";
+        }
+        else
+        {
+            urlAfterLogout = "~/Account/Login.aspx";
+        }
+        Session["Login"] = null;
+        Session.Abandon();
+        FormsAuthentication.SignOut();
+        Response.Redirect(urlAfterLogout);
+    }
+
+</script>
+
+<script type="text/javascript">
+
+    var counter = 60;
+    var idleTime = 0;
+    var countdown;
+    $(document).ready(function () {
+
+        $(window).click(function () {
+            //alert("Key up activity.");
+            console.log("click has occured");
+            idleTime = 0;
+        })
+        $(window).keyup(function () {
+            console.log("key up has occured")
+            idleTime = 0;
+        })
+
+        //Increment the idle time counter every minute.
+        var idleInterval = setInterval(timerIncrement, 60000); //found
+
+        $('#keep').click(function () {
+            idleTime = 0;
+            $('#timeOutWarningOverlay').hide();
+        });
+
+
+    });
+
+    function timerIncrement() {
+        idleTime = idleTime + 1;
+        console.log(idleTime);
+        if (idleTime > 28) //13
+        {
+            //alert("Test 1...");
+            $('#timeOutWarningOverlay').show();
+            startTimer();
+        }
+        if (idleTime > 29) { // 14 
+            //alert("Test 2...");
+            window.location.href = 'https://www.fraternalsoftware.net/fcsuportal/Account/Login.aspx?heading=member';
+            //alert("You session has expired due to no activity.");
+        }
+    };
+
+
+    function startTimer() {
+        //alert("Test 4...");
+        countdown = setInterval(countDownClock, 1000);
+    };
+
+    function countDownClock() {
+        //alert("Test 3...");
+        counter = counter - 1
+        if (counter < 10) {
+            console.log(counter);
+            $('#time').text("0" + counter);
+        }
+        else {
+            console.log(counter);
+            $('#time').text(counter);
+        }
+        if (counter == 0) {
+            counter = 60;
+            clearInterval(countdown);
+            console.log(counter);
+            console.log("done");
+        }
+    };
+
+</script>
+   
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Payment.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Site-print.css" rel="stylesheet" type="text/css" media="print" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+     <style type="text/css">
+        .auto-style1 {
+            padding: 0px 12px;
+            margin: 12px 8px 8px 8px;
+            min-height: 420px;
+            width: 1017px;
+        }
+    </style>
+
+   <style type="text/css">
+        #timeOutWarningOverlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2000;
+            border-radius: 25px;
+            border: 2px solid #73AD21;
+        }
+
+        #keep {
+            background-color: black;
+            color: white;
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            text-decoration: none;
+            width: 200px;
+            text-align: center;
+        }
+
+
+</style>
+</head>
+<body>
+     <!-- ----------------------------------------------------------------- 
+        This is the start of the auto timeout overlay                 -->
+    <div id="timeOutWarningOverlay">
+        <div style="height: auto; width: 400px; background-color: white; position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); padding: 30px; text-align: center; border: 2px solid black; border-radius: 15px; font-size: 14px; font-weight: bold;">
+            <div>
+                <b>Your session will expire in <span style="background-color: yellow;">00:</span><span id="time" style="background-color: yellow;">59</span> seconds.</b><b> Please click button below to keep this session current.</b>
+
+                <div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button id="keep" type="button" class="btn btn-default" style="padding: 0; text-align: center; margin: auto; font-size: 14px; font-weight: normal; display:inline-block; border: 1px solid transparent; border-radius: 4px; background-color: #428bca; color: #FFF; cursor: pointer;">Keep Me Logged In</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of the auto timeout overlay
+        ----------------------------------------------------------------- -->
+    
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <table border="0">
+                    <tr>
+                        <%--<td><img src="/fcsuportal/img/FCSUCross.jpg" alt=" " height="75" /></td>--%>
+                        <td><img src="/fcsuportal/img/FCSUCross.png" alt=" " height="75" /></td>
+                        <td><h1 id="chgHeading"  style="margin-left:0px; padding-left:0px; text-align:left;" runat="server">FCSU Portal</h1></td>
+
+                    </tr>
+                </table>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" OnLoggedOut="LoginStatus_LoggedOut" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                    EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" 
+                    onmenuitemclick="NavigationMenu_MenuItemClick">
+                    <Items>
+                        <%--<asp:MenuItem NavigateUrl="~/Account/Login.aspx" Text="Home"/>--%>
+                        <asp:MenuItem Text="About" NavigateUrl="http://fcsu.com/about" Target="blank" Selectable="True" Value="About FCSU" >
+                           <%-- <asp:MenuItem NavigateUrl="http://fcsu.com/about" Target="blank" 
+                                Text="About FCSU" Value="About FCSU"></asp:MenuItem>--%>
+                            <%--<asp:MenuItem NavigateUrl="http://fcsu.com/about/licensed-states" 
+                                Target="blank" Text="Licensed States" Value="Licensed States">
+                            </asp:MenuItem>--%>
+                        </asp:MenuItem>
+                    </Items>
+<%--                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                        <asp:MenuItem Text="Agent" Value="Agent">
+                            <asp:MenuItem NavigateUrl="~/Agent/agentMain.aspx" Text="Agent Main" 
+                                Value="Agent Main"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Agent/getAgentProfile.aspx" Text="Info. Screen" 
+                                Value="Info. Screen"></asp:MenuItem>
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Account/ChangePassword.aspx" 
+                            Text="Change Password" Value="Change Password"></asp:MenuItem>
+                        <asp:MenuItem Text="Admin" Value="Admin">
+                            <asp:MenuItem NavigateUrl="~/Admin/UserList.aspx" 
+                                Text="Users" Value="Users"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Admin/RoleList.aspx" 
+                                Text="Roles" Value="Roles"></asp:MenuItem>
+                        </asp:MenuItem>
+                    </Items>
+--%>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
