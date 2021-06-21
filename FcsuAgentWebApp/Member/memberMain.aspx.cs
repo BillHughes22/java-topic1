@@ -622,8 +622,19 @@ namespace FcsuAgentWebApp.Member
                 // index containst the row that was selected.
                 int index = gRow.RowIndex;
                 // We need to make sure the Balance is not 0 so the person can make a payment on the policy
-                string balance = gRow.Cells[10].Text;
-                if (balance.Contains("0.00"))
+                string balance = gRow.Cells[20].Text;
+                decimal balValue = 0;
+                try
+                {
+                    balance = Regex.Replace(balance, "[^0-9.]", "");
+                    balValue = Convert.ToDecimal(balance);
+                }
+                catch (Exception exp)
+                {
+                    var seeError = exp;
+                    balValue = 0;
+                }
+                if (balValue == 0)
                 {
                     // Show message if the balance is $0
                     Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
@@ -688,7 +699,18 @@ namespace FcsuAgentWebApp.Member
                 int index = gRow.RowIndex;
                 // We need to make sure the Balance is not 0 so the person can make a payment on the policy
                 string balance = gRow.Cells[10].Text;
-                if (balance.Contains("0.00"))
+                decimal balValue = 0;
+                try
+                {
+                    balance = Regex.Replace(balance, "[^0-9.]", "");
+                    balValue = Convert.ToDecimal(balance);
+                }
+                catch (Exception exp)
+                {
+                    var seeError = exp;
+                    balValue = 0;
+                }
+                if (balValue == 0)
                 {
                     // Show message if the balance is $0
                     Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
@@ -749,7 +771,18 @@ namespace FcsuAgentWebApp.Member
                 int index = gRow.RowIndex;
                 // We need to make sure the Balance is not 0 so the person can make a payment on the policy
                 string balance = gRow.Cells[10].Text;
-                if (balance.Contains("0.00"))
+                decimal balValue = 0;
+                try
+                {
+                    balance = Regex.Replace(balance, "[^0-9.]", "");
+                    balValue = Convert.ToDecimal(balance);
+                }
+                catch (Exception exp)
+                {
+                    var seeError = exp;
+                    balValue = 0;
+                }
+                if (balValue == 0)
                 {
                     // Show message if the balance is $0
                     Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
