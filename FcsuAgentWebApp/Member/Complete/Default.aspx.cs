@@ -19,7 +19,7 @@ namespace FcsuAgentWebApp.Member.Complete
             // Make sure a member is logged in before allowing access to this page
             if (!User.IsInRole("member"))
             {
-                Response.Redirect("/Member/ShoppingCart/Default.aspx");
+                Response.Redirect("~/Member/ShoppingCart/Default.aspx");
             }
             //string fullname1 = Request.QueryString["details"];
 
@@ -97,8 +97,8 @@ namespace FcsuAgentWebApp.Member.Complete
         protected void bttnReturn_Click(object sender, EventArgs e)
         {
             // Clear out the order information
-            Session["orderID"] = "";
-            Response.Redirect("/Member/memberMain.aspx");
+            Session["orderID"] = null;
+            Response.Redirect("~/Member/memberMain.aspx");
         }
         //-------------------------------------------------------------------------------------------------------------------------
         // End Bind the data to the grid

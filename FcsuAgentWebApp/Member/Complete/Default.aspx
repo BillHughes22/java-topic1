@@ -20,6 +20,7 @@
 
     <div class="checkout-status">
         <img src='../images/PP-summary.jpg' width='403px' height='31px' alt='Shopping Cart' /><br />
+        <asp:Label ID="Label4" runat="server" Text="Payment Completed Successfully" ></asp:Label>
         <br />
 
     </div>
@@ -68,7 +69,7 @@
 
 
 
-
+    
 
 
     <!-- --------------------------------------------------------------------------- -->
@@ -172,6 +173,10 @@
     <!-- --------------------------------------------------------------------------- -->
     <!-- End Grid that will show the shopping cart -->
     <!-- --------------------------------------------------------------------------- -->
+
+
+    <asp:Label ID="Label5" runat="server" style="color:red" Text="Allow 48 hours for payment to post to your account"></asp:Label>
+    <br />
 
 
     <br />
