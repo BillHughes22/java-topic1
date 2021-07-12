@@ -12,6 +12,14 @@ namespace FcsuAgentWebApp.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+
+                if (HttpContext.Current.Request["myGVPageId"] != null)
+                {
+                    GridViewMem.PageIndex = Convert.ToInt32(HttpContext.Current.Request["myGVPageId"]);
+                }
+            }
             if (User.IsInRole("member"))
             {
                 this.Master.addMemberMenu();
@@ -38,6 +46,7 @@ namespace FcsuAgentWebApp.Admin
         {
             var row = GridViewMem.SelectedRow;
             var userPk = GridViewMem.DataKeys[row.RowIndex].Value;
+            Session["gridIndex"] = GridViewMem.PageIndex;
             Session["prevurl"] = "../admin/MemberList.aspx";
             Response.Redirect("../admin/UserEdit.aspx?userPk=" + userPk.ToString());
         }

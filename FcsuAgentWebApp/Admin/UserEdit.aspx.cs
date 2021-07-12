@@ -13,9 +13,12 @@ namespace FcsuAgentWebApp.Admin
     public partial class UserEdit : System.Web.UI.Page
     {
         string prevUrl = string.Empty;
+        int gridIndex = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            prevUrl = Session["prevurl"] == null ? string.Empty: Session["prevurl"].ToString();
+            gridIndex = Session["gridIndex"] == null ? 0 : Convert.ToInt32(Session["gridIndex"]);
+            prevUrl = Session["prevurl"] == null ? string.Empty: string.Concat(Session["prevurl"].ToString(), "?myGVPageId=", gridIndex);
+            
             if (IsPostBack) return ;
             var userQuery = Request.QueryString["userPk"];
             
@@ -98,6 +101,7 @@ namespace FcsuAgentWebApp.Admin
                     myConnection.Close();
                 }
             }
+            Session["gridIndex"] = gridIndex;
             if (success ) Response.Redirect(prevUrl);//"../admin/NewUserList.aspx" 09/28/2020
 
            

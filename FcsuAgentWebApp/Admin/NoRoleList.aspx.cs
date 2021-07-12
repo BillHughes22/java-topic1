@@ -12,6 +12,16 @@ namespace FcsuAgentWebApp.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+            if (!IsPostBack)
+            {
+
+                if (HttpContext.Current.Request["myGVPageId"] != null)
+                {
+                    GridViewNoRole.PageIndex = Convert.ToInt32(HttpContext.Current.Request["myGVPageId"]);
+                }
+            }
             if (User.IsInRole("member"))
             {
                 this.Master.addMemberMenu();
@@ -39,6 +49,7 @@ namespace FcsuAgentWebApp.Admin
         {
             var row = GridViewNoRole.SelectedRow;
             var userPk = GridViewNoRole.DataKeys[row.RowIndex].Value;
+            Session["gridIndex"] = GridViewNoRole.PageIndex;
             Session["prevurl"] = "../admin/NoRoleList.aspx";
             Response.Redirect("../admin/UserEdit.aspx?userPk=" + userPk.ToString());
         }
