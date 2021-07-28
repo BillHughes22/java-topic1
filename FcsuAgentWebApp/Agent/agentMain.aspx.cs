@@ -17,8 +17,8 @@ namespace FcsuAgentWebApp.Agent
     {
         string number;
         GridViewRow selectedRow;
-        DataTable grid=new DataTable();
-        int index;
+        DataTable grid = new DataTable();
+        //int index;
         protected void Page_Load(object sender, EventArgs e)
         {
             GridView2.Visible = false;
@@ -31,10 +31,10 @@ namespace FcsuAgentWebApp.Agent
             if (User.IsInRole("agent"))
             {
                 this.Master.addAgentMenu();
-            }  
-            if(User.IsInRole("admin"))
+            }
+            if (User.IsInRole("admin"))
             {
-//                this.Master.addNavMenu("Admin", "~/admin/userlist.aspx");
+                //                this.Master.addNavMenu("Admin", "~/admin/userlist.aspx");
                 this.Master.addAdminMenu();
             }
             if (User.IsInRole("director"))
@@ -50,13 +50,16 @@ namespace FcsuAgentWebApp.Agent
                 HideAll();
             }
             Session["Agent"] = LabelNumber.Text;
+            if(!IsPostBack)
+            {
+                List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+                AgentMainBAL objAgent = new AgentMainBAL();
+                policyList = objAgent.getPolicyDetails(TextBox2.Text, number);
+                GridView1.DataSource = policyList;
+                GridView1.DataBind();
 
-            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
-            AgentMainBAL objAgent = new AgentMainBAL();
-            policyList = objAgent.getPolicyDetails( TextBox2.Text, number);
-            GridView1.DataSource = policyList;
-            GridView1.DataBind();
-           
+               
+            }
             for (int i = 0; i < 2; i++)
             {
                 grid.Columns.Add(GridView1.Columns[i].ToString());
@@ -71,21 +74,19 @@ namespace FcsuAgentWebApp.Agent
 
                 grid.Rows.Add(dr);
             }
-            //foreach (GridViewRow x in GridView1.Rows)
-            //{
-            //    x.Cells[1].Text = "pending";
-            //}
-        }
+            foreach (GridViewRow x in GridView1.Rows)
+            {
+                if (x.Cells[11].Text == "*")
+                {
+                    x.Cells[1].Text = "pending";
+                }
 
-        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-//            var foo = "Yes";
-        }
-
-        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
+            }
 
         }
+
+
+
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
@@ -117,15 +118,13 @@ namespace FcsuAgentWebApp.Agent
             }
         }
 
-        protected void calcBalance()
+        protected void calcBalance(string policy)
         {
-            DateTime getBalanceDate;
-            Boolean result;
-            result = DateTime.TryParse(calcDateMonth.Text + "/" + calcDateDay.Text + "/" + calcDateYear.Text, out getBalanceDate);
-
-            if (result)
+            string getBalanceDate = string.Concat(calcDateYear.Text, "-", calcDateMonth.Text, "-", calcDateDay.Text);
+               
+            if (!string.IsNullOrWhiteSpace(getBalanceDate) && !string.IsNullOrWhiteSpace(policy))
             {
-                string sqlString = "SELECT annbal.balance FROM annbal WHERE (annbal.policy = '" + TextBoxPolicy.Text + "') and (annbal.trandate = '" + getBalanceDate.ToShortDateString() + "')";
+                string sqlString = "SELECT annbal.balance FROM annbal WHERE annbal.policy = '" + policy + "' and annbal.trandate = '" + getBalanceDate + "'";
 
 
                 SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString);
@@ -147,36 +146,17 @@ namespace FcsuAgentWebApp.Agent
                     gottenAnnBalance.Text = "Balance not found for given date.";
                 }
             }
-            else
-            {
-                gottenAnnBalance.Text = "Invalid date.";
-            }
+            //else
+            //{
+            //    gottenAnnBalance.Text = "Invalid date.";
+            //}
+
         }
         protected void GridView1_RowCommand(object sender, EventArgs e)
         {
-            calcDateMonth.Text = "";
-            calcDateDay.Text = "";
-            calcDateYear.Text = "";
-            gottenAnnBalance.Text = "";
-            this.load_Information(selectedRow, index);
-            if (getAnnBalTable.Visible)
-            {
 
-                DateTime getBalanceDate2;
-                Boolean result2;
-                result2 = DateTime.TryParse(calcDateMonth.Text + "/" + calcDateDay.Text + "/" + calcDateYear.Text, out getBalanceDate2);
-                if (result2)
-                {
-                    this.calcBalance();
-                }
-                else
-                {
-                    calcDateMonth.Text = "";
-                    calcDateDay.Text = "";
-                    calcDateYear.Text = "";
-                }
+            //this.load_Information(selectedRow, index);
 
-            }
         }
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -184,46 +164,59 @@ namespace FcsuAgentWebApp.Agent
             calcDateDay.Text = "";
             calcDateYear.Text = "";
             gottenAnnBalance.Text = "";
-            this.load_Information(selectedRow, index);
+            int index = GridView1.SelectedIndex;
+            this.load_Information(GridView1.SelectedRow, index);
             List<PolicyBeneficiaryModel> beneficiaryList = new List<PolicyBeneficiaryModel>();
             AgentMainBAL objAgent = new AgentMainBAL();
             beneficiaryList = objAgent.GetPolicyBeneficiaries(TextBoxPolicy.Text);
-            GridView3.DataSource = beneficiaryList;
-            GridView3.DataBind();
-            //List<PolicyRiderModel> riderList = new List<PolicyRiderModel>();
-            //riderList = objAgent.GetPolicyRiders(TextBoxPolicy.Text);
-            //GridView4.DataSource = riderList;
-            //GridView4.DataBind();
+            if (beneficiaryList.Count > 0)
+            {
+                GridView3.DataSource = beneficiaryList;
+                GridView3.DataBind();
+            }
+            else
+            {
+                GridView3.Visible = false;
+                GridView4.Visible = false;
+                BenefLabel.Visible = false;
+            }
+
             if (getAnnBalTable.Visible)
             {
 
-                DateTime getBalanceDate2;
-                Boolean result2;
-                result2 = DateTime.TryParse(calcDateMonth.Text + "/" + calcDateDay.Text + "/" + calcDateYear.Text, out getBalanceDate2);
-                if (result2)
-                {
-                    this.calcBalance();
-                }
-                else
-                {
-                    calcDateMonth.Text = "";
-                    calcDateDay.Text = "";
-                    calcDateYear.Text = "";
-                }
+                this.calcBalance(TextBoxPolicy.Text);
 
+            }
+        }
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            AgentMainBAL objAgent = new AgentMainBAL();
+            policyList = objAgent.getPolicyDetails(TextBox2.Text, number);
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
+            GridView3.Visible = false;
+            foreach (GridViewRow x in GridView1.Rows)
+            {
+                if (x.Cells[11].Text == "*")
+                {
+                    x.Cells[1].Text = "pending";
+                }
+                    
             }
         }
         /// <summary>
         /// changed GridView1.SelectedRow to row
         /// </summary>
         /// <param name="row"></param>
-        protected void load_Information(GridViewRow row,int index)
+        protected void load_Information(GridViewRow row, int index)
         {
             Table1.Visible = true;
-            BenefLabel.Visible = true;
+
             RiderLabel.Visible = true;
             // Policy Info
-            TextBoxPolicy.Text = row.Cells[1].Text;
+            TextBoxPolicy.Text = grid.Rows[index][1].ToString();
             TextBoxName.Text = row.Cells[2].Text;
             TextBoxAddress.Text = row.Cells[3].Text;
             TextBoxPlan.Text = row.Cells[4].Text;
@@ -242,7 +235,7 @@ namespace FcsuAgentWebApp.Agent
             TextBoxIssueDate.Text = row.Cells[10].Text;
 
             DateTime tmpDate;
-           
+
             if (row.Cells[21].Text.Equals("Y"))
             {
                 TextBoxBirthDate.Visible = false;
@@ -285,13 +278,13 @@ namespace FcsuAgentWebApp.Agent
                 LabelValue.Text = "Initial Deposit:";
                 //removed 08/04/2020
                 //System.Data.DataView dv = (System.Data.DataView)SqlDataSource2.Select(DataSourceSelectArguments.Empty);
-                string sqlString = "SELECT * from annsum where policy='" + grid.Rows[index]["policy"] + "'";
+                string sqlString = "SELECT * from annsum where policy='" + grid.Rows[index][1] + "'";
                 SqlDataSource dsTemp = new SqlDataSource(System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString, sqlString);
                 System.Data.DataView dv = (System.Data.DataView)dsTemp.Select(DataSourceSelectArguments.Empty);
 
                 Table2.Visible = row.Cells[21].Text.Equals("N");
                 Summary.Visible = row.Cells[21].Text.Equals("N");
-                if(row.Cells[21].Text.Equals("N"))
+                if (row.Cells[21].Text.Equals("N")&& dv.Count>0)
                 {
                     TextBoxPrevBal.Text = ((decimal)dv[0][2]).ToString("C2");
                     TextBoxDeposits.Text = ((decimal)dv[0][4]).ToString("N2");
@@ -300,7 +293,7 @@ namespace FcsuAgentWebApp.Agent
                     TextBoxCurBal.Text = ((decimal)dv[0][3]).ToString("C2");
                     TextBoxCurrentRate.Text = annuityRate.ToString("N3") + "%";
                 }
-               
+
 
                 GridView2.Visible = true;
                 //Table2.Visible = true;
@@ -365,20 +358,20 @@ namespace FcsuAgentWebApp.Agent
                 RiderLabel.Visible = false;
             }
 
-            
+
         }
-            protected void GridView1_DataBound(object sender, EventArgs e)
+        protected void GridView1_DataBound(object sender, EventArgs e)
         {
-//            GridView1.Columns[5].Visible = false;
-  //          GridView1.Columns[6].Visible = false;
-    //        GridView1.Columns[7].Visible = false;
-      //      GridView1.Columns[11].Visible = false;
-        //    GridView1.Columns[12].Visible = false;
-          //  GridView1.Columns[13].Visible = false;
+            //            GridView1.Columns[5].Visible = false;
+            //          GridView1.Columns[6].Visible = false;
+            //        GridView1.Columns[7].Visible = false;
+            //      GridView1.Columns[11].Visible = false;
+            //    GridView1.Columns[12].Visible = false;
+            //  GridView1.Columns[13].Visible = false;
             //GridView1.Columns[14].Visible = false;
 
         }
-        
+
         protected void HideAll()
         {
             getAnnBalTable.Visible = false;
@@ -393,41 +386,47 @@ namespace FcsuAgentWebApp.Agent
         }
         protected void getAnnBalance_CLick(object sender, EventArgs e)
         {
-            this.load_Information(GridView1.Rows[index],index);
-            this.calcBalance();
+
+            
+            load_Information(GridView1.SelectedRow, GridView1.SelectedIndex);
+            this.calcBalance(TextBoxPolicy.Text);
+
         }
 
-        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            //if (e.CommandName == "Select")
-            //{
-
-            //    // Convert the row index stored in the CommandArgument
-            //    // property to an Integer.
-             index = Convert.ToInt32(e.CommandArgument);
-
-            // Get the last name of the selected author from the appropriate
-            // cell in the GridView control.
-             selectedRow = GridView1.Rows[index];
-
-
-            // }
-
-            this.load_Information(selectedRow, index);
-        }
-
-        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridView1.PageIndex = e.NewPageIndex;
-            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+      
+            protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+            {
+                
+             List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
             AgentMainBAL objAgent = new AgentMainBAL();
-            policyList = objAgent.getPolicyDetails(TextBox2.Text, number);
-            GridView1.DataSource = policyList;
+            GridView1.DataSource = objAgent.getPolicyDetails(TextBox2.Text, number, e.SortExpression);
             GridView1.DataBind();
-            //foreach (GridViewRow x in GridView1.Rows)
-            //{
-            //    x.Cells[1].Text = "pending";
-            //}
+            GridView3.Visible = false;
         }
+
+      
+
+
+
+
+
+        //protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    //if (e.CommandName == "Select")
+        //    //{
+
+        //    //    // Convert the row index stored in the CommandArgument
+        //    //    // property to an Integer.
+        //     index = Convert.ToInt32(e.CommandArgument);
+
+        //    // Get the last name of the selected author from the appropriate
+        //    // cell in the GridView control.
+        //     selectedRow = GridView1.Rows[index];
+
+
+        //    // }
+
+        //    this.load_Information(selectedRow);
+        //}
     }
 }

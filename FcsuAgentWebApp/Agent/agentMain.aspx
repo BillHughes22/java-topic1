@@ -40,15 +40,13 @@
             BorderStyle="Inset" BorderWidth="5px" BorderColor="#4B6C9E" BackColor="White"
             HeaderStyle-BackColor="BlanchedAlmond" RowStyle-BorderColor="Brown" 
                 HorizontalAlign="Center" Width="983px" style="margin-top: 0px" 
-              onselectedindexchanged="GridView1_SelectedIndexChanged" 
-                onselectedindexchanging="GridView1_SelectedIndexChanging" 
-            onrowcommand="GridView1_RowCommand" 
-            onpageindexchanging="GridView1_PageIndexChanging"
-                 DataKeyNames="POLICY" 
+              onselectedindexchanged="GridView1_SelectedIndexChanged"  onpageindexchanging="GridView1_PageIndexChanging"
+              onSorting="GridView1_Sorting" CurrentSortField="Policy" CurrentSortDirection="ASC"
+                DataKeyNames="POLICY" 
                 ondatabound="GridView1_DataBound" AllowPaging="True"  PageSize="5" CssClass="noprint"  Height="186px" >
             <Columns >
                  <asp:buttonfield buttontype="Button" commandname="Select" headertext="Select" text="Select"/>
-                <asp:BoundField DataField="POLICY" HeaderText="POLICY" SortExpression="POLICY" ItemStyle-Width="65px">
+                <asp:BoundField DataField="POLICY" HeaderText="POLICY" SortExpression="POLICY" ItemStyle-Width="65px" >
                     <ItemStyle Width="65px"></ItemStyle></asp:BoundField>
                 <asp:BoundField DataField="NAME" HeaderText="NAME" SortExpression="LASTNAME" ItemStyle-Width="200px">
                     <ItemStyle Width="200px"></ItemStyle></asp:BoundField>
@@ -300,7 +298,7 @@
      <asp:TableCell ID="cell_date5" Width="7%" VerticalAlign="Middle"><asp:TextBox ID="calcDateYear" runat="server" Text=""  Width="70%" MaxLength="4"></asp:TextBox></asp:TableCell>
 
   <asp:TableCell id="cell_getButton" Width="12%" HorizontalAlign="Center"> <asp:Button ID="getAnnBalance" runat="server" Text="Get Balance" OnClick="getAnnBalance_CLick" /> </asp:TableCell>
-  <asp:TableCell id="cell_result" Width="23%" HorizontalAlign="Left">&nbsp&nbsp&nbsp <asp:TextBox ID="gottenAnnBalance" runat="server" Text="" Width="80%" style="text-align:right;"></asp:TextBox> </asp:TableCell>
+  <asp:TableCell id="cell_result" Width="23%" HorizontalAlign="Left">&nbsp&nbsp&nbsp <asp:TextBox ID="gottenAnnBalance" runat="server" Text="" Width="85%" style="text-align:right;"></asp:TextBox> </asp:TableCell>
  </asp:TableRow>
 </asp:Table>
       <script type="text/javascript">
