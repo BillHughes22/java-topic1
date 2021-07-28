@@ -156,7 +156,7 @@ namespace FcsuAgentWebApp.Services.Business
         {
             int idItem = 0;
             // Initialize the variables
-            decimal order_total = 0, total_price = 0;
+            decimal order_total = 0, order_totalAnnIns = 0, total_price = 0;
             decimal surchageAmount = 0;
             int order_id = 0;
             // Iterate throught the collection
@@ -166,23 +166,23 @@ namespace FcsuAgentWebApp.Services.Business
                 foreach (var item in allItems)
                 {
                     // See if a surcharge has already been applied
-                    if (item.polDescr.ToString() == "Surcharge")
+                    if (item.polDescr.ToString().Equals("Surcharge"))
                     {
                         isSurcharge = true;
                         surchargeChanged = false;
                         idItem = Convert.ToInt32(item.payhist_i);
                         surchageAmount = Convert.ToDecimal(item.amountPaid.ToString());
                     }
-                        
+
 
                     // Ok if rows were found we need to get the values
 
                     //Now lets take care of the total price
-                    order_total = order_total + Convert.ToDecimal(item.amountPaid.ToString());
+                    order_total = item.isAnnuity ? order_total + Convert.ToDecimal(item.amountPaid.ToString()) : order_total;
+                    order_totalAnnIns = order_totalAnnIns + Convert.ToDecimal(item.amountPaid.ToString());
                     // Store the order_id incase we need it
                     order_id = item.order_id;
                 }
-
                 // Now let's see if we need to add a surcharge
                 if (!isSurcharge && order_total > 500)
                 {
@@ -190,7 +190,7 @@ namespace FcsuAgentWebApp.Services.Business
                     // Remove Surcharge row to order.
                     DataLayer SaveItems = new DataLayer();
                     Checkout addCheckoutItem = new Checkout();
-                    addCheckoutItem.payment = decimal.Multiply(order_total, (decimal).03);
+                    addCheckoutItem.payment = decimal.Multiply(order_total, (decimal).02);
                     addCheckoutItem.policyDesc = "Surcharge";
                     addCheckoutItem.policyNumber = "";
                     // Get the userName
@@ -199,20 +199,28 @@ namespace FcsuAgentWebApp.Services.Business
                     addCheckoutItem.userName = cartOwnerInfo.Item1.ToString();
                     // Get the currentUser
                     addCheckoutItem.memberNumber = Convert.ToInt32(cartOwnerInfo.Item2.ToString());
+                    // Add the payyear
+                    addCheckoutItem.payYear = 0;
+                    // Add the isannuity
+                    addCheckoutItem.isAnnuity = true;
                     // Add the Surcharge to the database.
                     SaveItems.SaveCheckoutItem(addCheckoutItem);
 
                     // Make sure to update the total amount
-                    order_total = decimal.Multiply(order_total, (decimal)1.03);
+                    order_total = decimal.Multiply(order_total, (decimal)1.02);
+                    order_totalAnnIns = decimal.Multiply(order_totalAnnIns, (decimal)1.02);
                     isSurcharge = true;
                 }
+
+
+
                 // If the Surchage is already present but the user adds more to their shopping cart
                 // we need to modify the surcharge amount.
-                if (isSurcharge && order_total != (surchageAmount/(decimal).03 + surchageAmount))
+                if (isSurcharge && order_total != (surchageAmount / (decimal).02 + surchageAmount))
                 {
                     // If we fall into here we need to update the surchage amount
                     DataLayer UpdateSurch = new DataLayer();
-                    UpdateSurch.UpdateSurcharge(idItem, ((order_total - surchageAmount) * (decimal).03));
+                    UpdateSurch.UpdateSurcharge(idItem, ((order_total - surchageAmount) * (decimal).02));
                     surchargeChanged = true;
                 }
 
@@ -228,7 +236,8 @@ namespace FcsuAgentWebApp.Services.Business
                     isSurcharge = false;
                 }
             }
-            return order_total;
+
+                return order_totalAnnIns;
         }
     }
 }

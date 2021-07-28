@@ -47,9 +47,8 @@ namespace FcsuAgentWebApp.Models.DataModels
         public decimal rmdcurr { get; set; }
         public decimal rmdprev { get; set; }
         public decimal totdeath { get; set; }
-        
-
-
+        public string ira { get; set; }
+        public decimal dueamt { get; set; }
 
     }
 }

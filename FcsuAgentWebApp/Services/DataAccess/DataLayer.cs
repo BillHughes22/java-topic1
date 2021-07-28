@@ -30,9 +30,9 @@ namespace FcsuAgentWebApp.Services.DataAccess
             insertResults.isSuccessful = true;
             insertResults.newId = 0;
 
-            string usersSelectCommand = string.Format(@"INSERT INTO payhist (policy, polDescr, datetimePaid, amountPaid, userName, memberNumber, order_id)
+            string usersSelectCommand = string.Format(@"INSERT INTO payhist (policy, polDescr, datetimePaid, amountPaid, userName, memberNumber, order_id, payyear, isAnnuity)
                                                         OUTPUT INSERTED.payhist_i
-                                                        VALUES (@policy, @polDescr, @datetimePaid, @amountPaid, @userName, @memberNumber, @order_id)");
+                                                        VALUES (@policy, @polDescr, @datetimePaid, @amountPaid, @userName, @memberNumber, @order_id, @payyear, @isAnnuity)");
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -45,6 +45,8 @@ namespace FcsuAgentWebApp.Services.DataAccess
                         cmd.Parameters.AddWithValue("@amountPaid", checkoutItems.payment);
                         cmd.Parameters.AddWithValue("@userName", checkoutItems.userName);
                         cmd.Parameters.AddWithValue("@memberNumber", checkoutItems.memberNumber);
+                        cmd.Parameters.AddWithValue("@payyear", checkoutItems.payYear);
+                        cmd.Parameters.AddWithValue("@isAnnuity", checkoutItems.isAnnuity);
                         // Test to see if this is the first order or if we already have an order id
                         if (System.Web.HttpContext.Current.Session["orderID"] != null)
                             cmd.Parameters.AddWithValue("@order_id", Convert.ToInt32(System.Web.HttpContext.Current.Session["orderID"]));
@@ -106,7 +108,7 @@ namespace FcsuAgentWebApp.Services.DataAccess
             {
                 connection.Open();
                 // Define the query
-                string query = string.Format(@"SELECT payhist_i, order_id, policy, polDescr, amountPaid FROM [payhist] WHERE order_id = '{0}' ORDER BY payhist_i", orderID);
+                string query = string.Format(@"SELECT payhist_i, order_id, policy, polDescr, amountPaid, isAnnuity FROM [payhist] WHERE order_id = '{0}' ORDER BY payhist_i", orderID);
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -122,6 +124,8 @@ namespace FcsuAgentWebApp.Services.DataAccess
                             checkout.policy = reader["policy"].ToString();
                             checkout.polDescr = reader["polDescr"].ToString();
                             checkout.amountPaid = Convert.ToDecimal(reader["amountPaid"]);
+                            checkout.isAnnuity = Convert.ToBoolean(reader["isAnnuity"]);
+
                             // Add each payment so we can pass back all the rows
                             cartResults.Add(checkout);
                         }

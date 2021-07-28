@@ -16,6 +16,9 @@ namespace FcsuAgentWebApp.Models.Checkout
         public int memberNumber { get; set; }
         public string policyNumber { get; set; }
         public string policyDesc { get; set; }
+        public int payYear { get; set; }
+
+        public bool isAnnuity { get; set; }
     }
 
     /// <summary>
@@ -37,6 +40,7 @@ namespace FcsuAgentWebApp.Models.Checkout
         public string polDescr { get; set; }
         public int order_id { get; set; }
         public int payhist_i { get; set; }
+        public bool isAnnuity { get; set; }
     }
 
     /// <summary>
