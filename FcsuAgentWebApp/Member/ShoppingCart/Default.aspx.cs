@@ -30,7 +30,7 @@ namespace FcsuAgentWebApp.Member.ShoppingCart
             // Make sure a member is logged in before allowing access to this page
             if (!User.IsInRole("member"))
             {
-                Response.Redirect("/Member/ShoppingCart/Default.aspx");
+                Response.Redirect("~/Member/ShoppingCart/Default.aspx");
             }
 
             // Configure the next button
@@ -143,7 +143,7 @@ namespace FcsuAgentWebApp.Member.ShoppingCart
         {
             // Now lets redirect to the address page
             //Response.Redirect("~/address");
-            Response.Redirect("/Member/Payments/Default.aspx");
+            Response.Redirect("~/Member/Payments/Default.aspx"); 
 
         }
         //-------------------------------------------------------------------------------------------------------------------------
@@ -161,7 +161,7 @@ namespace FcsuAgentWebApp.Member.ShoppingCart
         {
             // Now lets redirect to the address page
             //Response.Redirect("~/address");
-            Response.Redirect("/Member/memberMain.aspx");
+            Response.Redirect("~/Member/memberMain.aspx");
 
         }
         //-------------------------------------------------------------------------------------------------------------------------

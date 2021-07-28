@@ -96,6 +96,15 @@ namespace FcsuAgentWebApp.Member
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Payment_Div;
 
         /// <summary>
+        /// annrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label annrate;
+
+        /// <summary>
         /// lbl_Payment control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,51 @@ namespace FcsuAgentWebApp.Member
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Desc;
+
+        /// <summary>
+        /// lbl_Prem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Prem;
+
+        /// <summary>
+        /// lbl_PremDue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_PremDue;
+
+        /// <summary>
+        /// lbl_DueAmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_DueAmt;
+
+        /// <summary>
+        /// lbl_PayYr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_PayYr;
+
+        /// <summary>
+        /// years control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList years;
 
         /// <summary>
         /// Label5 control.

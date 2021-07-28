@@ -19,6 +19,24 @@
             if (charCode >= 46 && charCode <= 57) { return true; }
             else { return false; }
         }
+
+        function ValidAmount() {
+            
+
+                // Get the amount in the textbox
+                var amount = document.getElementById('<%=tbPayment.ClientID%>').value;
+                if (amount < 10) {
+                    alert("Annuities require a minimum of $10 - Please enter a payment amount greater than or equal to $10");
+                    return false;
+                }
+            if(amount > 20000) {
+                alert("Please enter a payment amount less than or equal to $20,000");
+                return false;
+            }
+            
+
+            return true;
+        }
     </script>
 
     <%--   Policies Gridview--%>
@@ -64,7 +82,7 @@
     <%--AutoGenerateSelectButton="True"--%>
     <asp:GridView ID="GridView1" runat="server" AllowSorting="True"
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
-        AutoGenerateColumns="False"
+        AutoGenerateColumns="False" onSorting="GridView1_Sorting"
         BorderStyle="Inset" BorderWidth="1px" BorderColor="#4B6C9E" BackColor="White"
         RowStyle-BorderColor="brown"
         HorizontalAlign="Center" Width="100%" Style="margin-left: 0px;"
@@ -75,7 +93,7 @@
         <Columns>
             <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="Select" HeaderText="Select" Text="Select" />
             <%-- Payment Column and Button - Added 06/17/2021 --%>
-            <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Payment" />
+           <asp:ButtonField ControlStyle-CssClass="button"  ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Pay Now" visible="false"/>
             <%-- End Payment Column and Button --%>
             <asp:BoundField DataField="POLICY" HeaderText="POLICY" SortExpression="POLICY" ItemStyle-Width="140px">
                 <ItemStyle Width="166px"></ItemStyle>
@@ -243,7 +261,16 @@
 
                 <ItemStyle CssClass="hideGridColumn"></ItemStyle>
             </asp:BoundField>
+             <asp:BoundField DataField="ira" HeaderText="ira" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn"
+                SortExpression="ira" Visible="True">
+                <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
 
+                <ItemStyle CssClass="hideGridColumn"></ItemStyle>
+            </asp:BoundField>
+           <asp:BoundField DataField="DUEAMT" HeaderText="DUE AMOUNT" DataFormatString="{0:C}" SortExpression="DUEAMT" ItemStyle-Width="150px">
+                <ItemStyle Width="100px"></ItemStyle>
+            </asp:BoundField>
+            
         </Columns>
 
         <FooterStyle Height="0px" />
@@ -257,15 +284,15 @@
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
         AutoGenerateColumns="False" CellPadding="3"
         BorderStyle="Inset" BorderWidth="1px" BorderColor="#4B6C9E" BackColor="White"
-        RowStyle-BorderColor="Brown"
+        RowStyle-BorderColor="Brown" onSorting="GridAnn_Sorting"
         HorizontalAlign="Center" Style="margin-left: 0px;"
         OnSelectedIndexChanged="GridAnn_SelectedIndexChanged"
         DataKeyNames="POLICY" OnRowCommand="GridAnn_RowCommand"
-        OnSorted="GridAnn_Sorted" AllowPaging="True" Height="171px" PageSize="3" Caption='<table border="1" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ddb547"><tr height="30px"><td style="font-weight: bold;">ANNUITY</td></tr></table>'>
+         AllowPaging="True" OnPageIndexChanging ="GridAnn_PageIndexChanging" Height="171px" PageSize="3" Caption='<table border="1" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ddb547"><tr height="30px"><td style="font-weight: bold;">ANNUITY</td></tr></table>'>
         <Columns>
             <asp:ButtonField ButtonType="Button" CommandName="Select" HeaderText="Select" Text="Select" ControlStyle-CssClass="button" />
             <%-- Payment Column and Button - Added 06/17/2021 --%>
-            <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Payment" />
+            <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Deposit" visible="false"/>
             <%-- End Payment Column and Button --%>
             <asp:BoundField DataField="POLICY" HeaderText="POLICY" SortExpression="POLICY" ItemStyle-Width="164px">
                 <ItemStyle Width="214px"></ItemStyle>
@@ -435,6 +462,13 @@
                 <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
 
                 <ItemStyle CssClass="hideGridColumn"></ItemStyle>
+
+            </asp:BoundField>
+             <asp:BoundField DataField="ira" HeaderText="ira" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn"
+                SortExpression="ira" Visible="True">
+                <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
+
+                <ItemStyle CssClass="hideGridColumn"></ItemStyle>
             </asp:BoundField>
 
         </Columns>
@@ -450,14 +484,15 @@
         SelectedRowStyle-BackColor="#a46cc0" SelectedRowStyle-ForeColor="Gold"
         AutoGenerateColumns="False" CellPadding="3"
         BorderStyle="Inset" BorderWidth="1px" BorderColor="#4B6C9E" BackColor="White"
-        RowStyle-BorderColor="Brown"
+        RowStyle-BorderColor="Brown" onSorting="GridSetlmt_Sorting"
         HorizontalAlign="Center" Style="margin-left: 0px;"
-        DataKeyNames="POLICY" OnRowCommand="GridSetlmt_RowCommand"
+        DataKeyNames="POLICY" 
+        OnSelectedIndexChanged="GridSetlmt_SelectedIndexChanged" OnPageIndexChanging ="GridSetlmt_PageIndexChanging"
         AllowPaging="True" Height="171px" PageSize="3" Caption='<table border="1" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ddb547"><tr height="30px"><td style="font-weight: bold;">SETTLEMENT OPTION</td></tr></table>'>
         <Columns>
             <asp:ButtonField ButtonType="Button" CommandName="Select" HeaderText="Select" Text="Select" ControlStyle-CssClass="button" />
             <%-- Payment Column and Button - Added 06/17/2021 --%>
-            <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Payment" />
+         <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Payment" visible="false"/>
             <%-- End Payment Column and Button --%>
             <asp:BoundField DataField="POLICY" HeaderText="POLICY" SortExpression="POLICY" ItemStyle-Width="164px">
                 <ItemStyle Width="214px"></ItemStyle>
@@ -628,6 +663,13 @@
                 <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
 
                 <ItemStyle CssClass="hideGridColumn"></ItemStyle>
+
+            </asp:BoundField>
+             <asp:BoundField DataField="ira" HeaderText="ira" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn"
+                SortExpression="ira" Visible="True">
+                <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
+
+                <ItemStyle CssClass="hideGridColumn"></ItemStyle>
             </asp:BoundField>
 
         </Columns>
@@ -641,7 +683,7 @@
 
     <%-- Payment section -- Updated 05/14/2021 --%>
     <div id="Payment_Div" runat="server" style="width: 50%; margin-top: 20px; align-content: center;">
-
+        <asp:label ID="annrate" runat="server"  Style="color:white"></asp:label>
         <asp:TableRow Width="100%" EnableViewState="false">
             <asp:TableCell Width="100%" ColumnSpan="6" EnableViewState="false">
                 <asp:Label ID="lbl_Payment" runat="server" Text="Make a Payment" Style="text-align: center; margin-bottom: 5px;" Font-Size="16" Width="90%" ForeColor="Navy" EnableViewState="false"></asp:Label>
@@ -649,17 +691,36 @@
             <asp:TableCell Width="100%" ColumnSpan="6" EnableViewState="false">
                 <asp:Label ID="lbl_Desc" runat="server" Text="" Style="text-align: center; margin-bottom: 7px;" Font-Size="12" Width="90%" ForeColor="Navy" EnableViewState="false"></asp:Label>
             </asp:TableCell>
+            <asp:TableCell Width="100%" ColumnSpan="6" EnableViewState="false">
+                <asp:Label ID="lbl_Prem" runat="server" Text="" Style="text-align: center; margin-bottom: 7px;" Font-Size="12" Width="90%" ForeColor="Navy" EnableViewState="false"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell Width="100%" ColumnSpan="6" EnableViewState="false">
+                <asp:Label ID="lbl_PremDue" runat="server" Text="" Style="text-align: center; margin-bottom: 7px;" Font-Size="12"  Width="100%" ForeColor="Navy" EnableViewState="false" Visible="false"></asp:Label>
+            </asp:TableCell>
+             <asp:TableCell Width="100%" ColumnSpan="12" EnableViewState="false">
+                <asp:Label ID="lbl_DueAmt" runat="server" Text="" Style="text-align: center; margin-bottom: 7px;" Font-Size="12"  Width="90%" ForeColor="Navy" EnableViewState="false"></asp:Label>
+            </asp:TableCell><br />
+              <asp:TableCell  ColumnSpan="6" EnableViewState="false" style="text-align: center; margin-bottom: 7px; color:navy" Width="30%" font-size="12"  forecolor="Navy">
+            <asp:label for="years" ID="lbl_PayYr" runat="server"   EnableViewState="false">Pay Year:</asp:label>
+            <asp:DropDownList runat="server" ID="years" style="color:navy">
+            <asp:ListItem  value="2020" >2020</asp:ListItem>
+            <asp:ListItem  value="2021" Selected="True">2021</asp:ListItem>
+            </asp:DropDownList>
+            </asp:TableCell>
             <asp:TableCell Width="10%" ColumnSpan="2" EnableViewState="false">
                 <asp:Label ID="Label5" runat="server" Text="Payment Amount: $" Style="text-align: right" Width="30%" ForeColor="Navy" EnableViewState="false"></asp:Label>
             </asp:TableCell>
-            <asp:TableCell Width="10%" ColumnSpan="2" EnableViewState="false">
-                <asp:TextBox ID="tbPayment" runat="server" Width="20%" BorderStyle="Inset" ReadOnly="false" EnableViewState="false" onkeypress="return ValidNumeric()"></asp:TextBox>
+            
+            <asp:TableCell Width="100%" ColumnSpan="2" EnableViewState="false">
+                <asp:TextBox ID="tbPayment" runat="server" Width="10%" BorderStyle="Inset" ReadOnly="false" EnableViewState="false" onkeypress="return ValidNumeric()" ></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell Width="10%" ColumnSpan="2" EnableViewState="false">
-                <asp:Button CssClass="PaymentBtn" ID="bttnPayment" runat="server" Width="30%" CausesValidation="false" OnClick="bttnPayment_Click" Text="Add To Shopping Cart" />
+                <asp:Button CssClass="PaymentBtn" ID="bttnPayment" runat="server" Width="30%" CausesValidation="false" OnClientClick="return ValidAmount()" OnClick="bttnPayment_Click" Text="Add To Shopping Cart" />
             </asp:TableCell>
-        </asp:TableRow>
-
+         
+          
+            </asp:TableRow><br />
+      
     </div>
     <%-- End Payment section --%>
     <br />
@@ -1006,6 +1067,7 @@ ORDER BY trandate"></asp:SqlDataSource>
     <style type="text/css">
         .button {
             width: 77px;
+            color:red;
         }
 
         .auto-style2 {

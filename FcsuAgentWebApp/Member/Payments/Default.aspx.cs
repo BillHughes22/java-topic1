@@ -70,7 +70,7 @@ namespace FcsuAgentWebApp.Member.Payments
             // Make sure a member is logged in before allowing access to this page
             if (!User.IsInRole("member"))
             {
-                Response.Redirect("/Member/ShoppingCart/Default.aspx");
+                Response.Redirect("~/Member/ShoppingCart/Default.aspx");
             }
 
             Label3a.Visible = false;
@@ -232,7 +232,7 @@ namespace FcsuAgentWebApp.Member.Payments
         //
         //-------------------------------------------------------------------------------------------------------------------------
 
-
+       
 
     }
 }

@@ -14,7 +14,6 @@ using FcsuAgentWebApp.BAL;
 using System.Text.RegularExpressions;
 using FcsuAgentWebApp.Models.Checkout;
 using FcsuAgentWebApp.Services.Business;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,17 +72,21 @@ namespace FcsuAgentWebApp.Member
             LabelNumber.Text = memberDropdown.Text;
             Session["member"] = LabelNumber.Text;
             number= memberDropdown.Text;
-            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
-            MemberMainBAL objAgent = new MemberMainBAL();
-            policyList = objAgent.getInsPolicyDetails(number);
-            GridView1.DataSource = policyList;
-            GridView1.DataBind();
-            policyList = objAgent.getAnnPolicyDetails(number);
-            GridAnn.DataSource = policyList;
-            GridAnn.DataBind();
-            policyList = objAgent.getSetPolicyDetails(number);
-            GridSetlmt.DataSource = policyList;
-            GridSetlmt.DataBind();
+            if(!IsPostBack)
+            {
+                List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+                MemberMainBAL objAgent = new MemberMainBAL();
+                policyList = objAgent.getInsPolicyDetails(number);
+                GridView1.DataSource = policyList;
+                GridView1.DataBind();
+                policyList = objAgent.getAnnPolicyDetails(number);
+                GridAnn.DataSource = policyList;
+                GridAnn.DataBind();
+                policyList = objAgent.getSetPolicyDetails(number);
+                GridSetlmt.DataSource = policyList;
+                GridSetlmt.DataBind();
+            }
+           
 
             GridViewRow r;
             if (GridView1.Rows.Count > 0)
@@ -176,11 +179,7 @@ namespace FcsuAgentWebApp.Member
             memberDropdown.SelectedValue = number;
         }
 
-        public void agtDropDownChg()
-        {
-
-        }
-
+       
         protected void load_Information(GridViewRow row)
         {
            
@@ -497,7 +496,7 @@ namespace FcsuAgentWebApp.Member
 
                 decimal tempDecimal;
                 result = Decimal.TryParse(row.Cells[20].Text, out tempDecimal);
-                if (result) { TextBoxPremium.Text = String.Format("{0:C}", tempDecimal) + " " + row.Cells[18].Text; } else { TextBoxPremium.Text = ""; }
+                if (result) { TextBoxPremium.Text = String.Format("{0:C}", tempDecimal); } else { TextBoxPremium.Text = ""; }
                 LabelPremium.Text = "Premium:";
 
             }
@@ -509,87 +508,26 @@ namespace FcsuAgentWebApp.Member
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            //            gottenAnnBalance.Text = "";
-            //selectedRow=GridView1.Rows[GridView1.SelectedIndex];
-            //oldindex = GridView1.SelectedIndex;
-            //this.load_Information(selectedRow);
-            
-            //if (getAnnBalTable.Visible)
-            //{
 
-            //    DateTime getBalanceDate2;
-            //    Boolean result2;
-            //    result2 = DateTime.TryParse(calcDateMonth.Text + "/" + calcDateDay.Text + "/" + calcDateYear.Text, out getBalanceDate2);
-            //    if (result2)
-            //    {
-            //        this.calcBalance();
-            //    }
-            //    else
-            //    {
-            //        calcDateMonth.Text = "";
-            //        calcDateDay.Text = "";
-            //        calcDateYear.Text = "";
-            //    }
+             this.load_Information(GridView1.SelectedRow);
 
-            //}
         }
 
         protected void GridAnn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ////selectedRow = GridAnn.Rows[GridAnn.SelectedIndex];
-
-            
-            ////    oldindex = GridAnn.SelectedIndex;
-            
-            //////            gottenAnnBalance.Text = "";
-            ////this.load_Information(selectedRow);
-            //if (getAnnBalTable.Visible)
-            //{
-
-            //    DateTime getBalanceDate2;
-            //    Boolean result2;
-            //    result2 = DateTime.TryParse(calcDateMonth.Text + "/" + calcDateDay.Text + "/" + calcDateYear.Text, out getBalanceDate2);
-            //    if (result2)
-            //    {
-            //        this.calcBalance();
-            //    }
-            //    else
-            //    {
-            //        calcDateMonth.Text = "";
-            //        calcDateDay.Text = "";
-            //        calcDateYear.Text = "";
-            //    }
-
-            //}
+            this.load_Information(GridAnn.SelectedRow);
+           
         }
 
-
-
-        protected void GridView1_Sorted(object sender, EventArgs e)
+        protected void GridSetlmt_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //if (GridView1.SelectedIndex > -1)
-            //{
-            //    this.load_Information(GridView1.Rows[index]);
-            //}
-        }
-        protected void GridAnn_Sorted(object sender, EventArgs e)
-        {
-
-            //    if (GridAnn.SelectedIndex > -1)
-            //    {
-            //        this.load_Information(GridAnn.Rows[index]);
-            //    }
+            this.load_Information(GridSetlmt.SelectedRow);
         }
 
-        //protected void agentDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //}
-        protected void txtSize_TextChanged1(object sender, EventArgs e)
-        {
-            // GridView1.PageSize = Convert.ToInt32(txtSize.Text);
-        }
+
+
+
 
         /// <summary>
         /// On Row Command for Payment Button - Added 06/17/2021
@@ -598,29 +536,15 @@ namespace FcsuAgentWebApp.Member
         /// <param name="e"></param>
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            index = Convert.ToInt32(e.CommandArgument);
-            selectedRow = GridView1.Rows[index];
+            if (e.CommandName == "GetPayment")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow gRow = GridView1.Rows[index];
+                //First get the row that was selected.
 
-            if (e.CommandName == "Sort")
-            {
-               
-                    selectedRow = GridView1.Rows[0];
-                    this.load_Information(selectedRow);
-               
-            }
-            else if (e.CommandName == "Page")
-            {
-                GridView2.Visible = false;
-                //selectedRow = GridView1.Rows[0];
-                //this.load_Information(selectedRow);
-            }
-            // CommandName property to determine which button was clicked.
-            else if (e.CommandName == "GetPayment")
-            {
-                // First get the row that was selected.
-                GridViewRow gRow = selectedRow;
-                // index containst the row that was selected.
-                int index = gRow.RowIndex;
+                //GridViewRow gRow = GridView1.SelectedRow; 
+                //index containst the row that was selected.
+                //  int index = gRow.RowIndex;
                 // We need to make sure the Balance is not 0 so the person can make a payment on the policy
                 string balance = gRow.Cells[20].Text;
                 decimal balValue = 0;
@@ -636,67 +560,102 @@ namespace FcsuAgentWebApp.Member
                 }
                 if (balValue == 0)
                 {
-                    // Show message if the balance is $0
+                    //Show message if the balance is $0
                     Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
                 }
                 else
                 {
-                    // Goto the methold to get the payment information
+                    //Goto the methold to get the payment information
                     this.LoadPaymentInfo(gRow);
                 }
 
 
             }
-            else
-            {
-               // if (GridView1.SelectedIndex > -1)
-                {
-                   
-                    //if (e.CommandName == "Select")
-                    //{
+            //    index = Convert.ToInt32(e.CommandArgument);
+            //    selectedRow = GridView1.Rows[index];
 
-                    //    // Convert the row index stored in the CommandArgument
-                    //    // property to an Integer.
-                   
-                    // Get the last name of the selected author from the appropriate
-                    // cell in the GridView control.
-                    selectedRow = GridView1.Rows[index];
+            //    if (e.CommandName == "Sort")
+            //    {
+
+            //        selectedRow = GridView1.Rows[0];
+            //        this.load_Information(selectedRow);
+
+            //    }
+            //    else if (e.CommandName == "Page")
+            //    {
+            //        GridView2.Visible = false;
+            //        //selectedRow = GridView1.Rows[0];
+            //        //this.load_Information(selectedRow);
+            //    }
+            //    // CommandName property to determine which button was clicked.
+            //    else
+            //    if (e.CommandName == "GetPayment")
+            //    {
+            //        // First get the row that was selected.
+            //        GridViewRow gRow = (GridViewRow)((System.Web.UI.Control)e.CommandSource).NamingContainer; ;
+            //        // index containst the row that was selected.
+            //        int index = gRow.RowIndex;
+            //        // We need to make sure the Balance is not 0 so the person can make a payment on the policy
+            //        string balance = gRow.Cells[20].Text;
+            //        decimal balValue = 0;
+            //        try
+            //        {
+            //            balance = Regex.Replace(balance, "[^0-9.]", "");
+            //            balValue = Convert.ToDecimal(balance);
+            //        }
+            //        catch (Exception exp)
+            //        {
+            //            var seeError = exp;
+            //            balValue = 0;
+            //        }
+            //        if (balValue == 0)
+            //        {
+            //            // Show message if the balance is $0
+            //            Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
+            //        }
+            //        else
+            //        {
+            //            // Goto the methold to get the payment information
+            //            this.LoadPaymentInfo(gRow);
+            //        }
 
 
-                    // }
-                    this.load_Information(selectedRow);
-                }
-            }
-           
-                
+            //    }
+            //    else
+            //    {
+            //        // if (GridView1.SelectedIndex > -1)
+            //        {
+
+            //            //if (e.CommandName == "Select")
+            //            //{
+
+            //            //    // Convert the row index stored in the CommandArgument
+            //            //    // property to an Integer.
+
+            //            // Get the last name of the selected author from the appropriate
+            //            // cell in the GridView control.
+            //            selectedRow = GridView1.Rows[index];
+
+
+            //            // }
+            //            this.load_Information(selectedRow);
+            //        }
+            //    }
+
+
         }
 
-      
         protected void GridAnn_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            index = Convert.ToInt32(e.CommandArgument);
-            selectedRow = GridAnn.Rows[index];
-
-            if (e.CommandName == "Sort")
+            if (e.CommandName == "GetPayment")
             {
-
-                selectedRow = GridAnn.Rows[0];
-                this.load_Information(selectedRow);
-
-            }
-            else if(e.CommandName == "Page")
-            {
-                GridView2.Visible = false;
-               
-            }
-            // CommandName property to determine which button was clicked.
-            else if (e.CommandName == "GetPayment")
-            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow gRow = GridAnn.Rows[index];
                 // First get the row that was selected.
-                int index2 = Convert.ToInt32(e.CommandArgument);
-                GridViewRow gRow = GridAnn.Rows[index2];
+                //int index2 = Convert.ToInt32(e.CommandArgument);
+                //GridViewRow gRow = GridAnn.Rows[index2];
                 // index containst the row that was selected.
-                int index = gRow.RowIndex;
+               // int index = gRow.RowIndex;
                 // We need to make sure the Balance is not 0 so the person can make a payment on the policy
                 string balance = gRow.Cells[10].Text;
                 decimal balValue = 0;
@@ -723,102 +682,122 @@ namespace FcsuAgentWebApp.Member
 
 
             }
-            else
-            {
-                //if (GridAnn.SelectedIndex > -1)
-                {
+            //    index = Convert.ToInt32(e.CommandArgument);
+            //    selectedRow = GridAnn.Rows[index];
 
-                    //if (e.CommandName == "Select")
-                    //{
+            //    if (e.CommandName == "Sort")
+            //    {
 
-                    //    // Convert the row index stored in the CommandArgument
-                    //    // property to an Integer.
+            //        selectedRow = GridAnn.Rows[0];
+            //        this.load_Information(selectedRow);
 
-                    // Get the last name of the selected author from the appropriate
-                    // cell in the GridView control.
-                     selectedRow = GridAnn.Rows[index];
+            //    }
+            //    else if(e.CommandName == "Page")
+            //    {
+            //        GridView2.Visible = false;
+
+            //    }
+            //    // CommandName property to determine which button was clicked.
+            //    else 
+            //    else
+            //    {
+            //        //if (GridAnn.SelectedIndex > -1)
+            //        {
+
+            //            //if (e.CommandName == "Select")
+            //            //{
+
+            //            //    // Convert the row index stored in the CommandArgument
+            //            //    // property to an Integer.
+
+            //            // Get the last name of the selected author from the appropriate
+            //            // cell in the GridView control.
+            //             selectedRow = GridAnn.Rows[index];
 
 
 
-                    this.load_Information(selectedRow);
-                }
+            //            this.load_Information(selectedRow);
+            //        }
+            //    }
             }
-        }
 
 
-        protected void GridSetlmt_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            index = Convert.ToInt32(e.CommandArgument);
-            selectedRow = GridSetlmt.Rows[index];
-            if (e.CommandName == "Sort")
-            {
-
-                selectedRow = GridSetlmt.Rows[0];
-                this.load_Information(selectedRow);
-
-            }
-            else if (e.CommandName == "Page")
-            {
-                GridView2.Visible = false;
-
-            }
-            // CommandName property to determine which button was clicked.
-            else if (e.CommandName == "GetPayment")
-            {
-                // First get the row that was selected.
-                GridViewRow gRow = selectedRow;
-                // index containst the row that was selected.
-                int index = gRow.RowIndex;
-                // We need to make sure the Balance is not 0 so the person can make a payment on the policy
-                string balance = gRow.Cells[10].Text;
-                decimal balValue = 0;
-                try
-                {
-                    balance = Regex.Replace(balance, "[^0-9.]", "");
-                    balValue = Convert.ToDecimal(balance);
-                }
-                catch (Exception exp)
-                {
-                    var seeError = exp;
-                    balValue = 0;
-                }
-                if (balValue == 0)
-                {
-                    // Show message if the balance is $0
-                    Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
-                }
-                else
-                {
-                    // Goto the methold to get the payment information
-                    this.LoadPaymentInfo(gRow);
-                }
+        //protected void GridSetlmt_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //      if (e.CommandName == "GetPayment")
+        //    {
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        GridViewRow gRow = GridView1.Rows[index];
+        //        // First get the row that was selected.
+        //        //GridViewRow gRow = selectedRow;
+        //        // index containst the row that was selected.
+        //        //int index = gRow.RowIndex;
+        //        // We need to make sure the Balance is not 0 so the person can make a payment on the policy
+        //        string balance = gRow.Cells[10].Text;
+        //        decimal balValue = 0;
+        //        try
+        //        {
+        //            balance = Regex.Replace(balance, "[^0-9.]", "");
+        //            balValue = Convert.ToDecimal(balance);
+        //        }
+        //        catch (Exception exp)
+        //        {
+        //            var seeError = exp;
+        //            balValue = 0;
+        //        }
+        //        if (balValue == 0)
+        //        {
+        //            // Show message if the balance is $0
+        //            Response.Write("<script>alert('The balance is $0 so no payment can be made at this time.  If there are any questions please contact your agent.');</script>");
+        //        }
+        //        else
+        //        {
+        //            // Goto the methold to get the payment information
+        //            this.LoadPaymentInfo(gRow);
+        //        }
 
 
-            }
-            else
-            {
-                //if (GridAnn.SelectedIndex > -1)
-                {
+        //    }
+        //    //index = Convert.ToInt32(e.CommandArgument);
+        //    //selectedRow = GridSetlmt.Rows[index];
+        //    //if (e.CommandName == "Sort")
+        //    //{
 
-                    //if (e.CommandName == "Select")
-                    //{
+        //    //    selectedRow = GridSetlmt.Rows[0];
+        //    //    this.load_Information(selectedRow);
 
-                    //    // Convert the row index stored in the CommandArgument
-                    //    // property to an Integer.
-                   
+        //    //}
+        //    //else if (e.CommandName == "Page")
+        //    //{
+        //    //    GridView2.Visible = false;
 
-                    // Get the last name of the selected author from the appropriate
-                    // cell in the GridView control.
-                    selectedRow = GridSetlmt.Rows[index];
+        //    //}
+        //    //// CommandName property to determine which button was clicked.
+
+        //    //else
+        //    //{
+        //    //    //if (GridAnn.SelectedIndex > -1)
+        //    //    {
+
+        //    //        //if (e.CommandName == "Select")
+        //    //        //{
+
+        //    //        //    // Convert the row index stored in the CommandArgument
+        //    //        //    // property to an Integer.
 
 
-                    // }
+        //    //        // Get the last name of the selected author from the appropriate
+        //    //        // cell in the GridView control.
+        //    //        selectedRow = GridSetlmt.Rows[index];
 
-                    this.load_Information(selectedRow);
-                }
-            }
-            
-        }
+
+        //    //        // }
+
+        //    //        this.load_Information(selectedRow);
+        //    //    }
+        //    //}
+
+        //}
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -828,12 +807,60 @@ namespace FcsuAgentWebApp.Member
             policyList = objAgent.getInsPolicyDetails(number);
             GridView1.DataSource = policyList;
             GridView1.DataBind();
+           
+
+        }
+        protected void GridAnn_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridAnn.PageIndex = e.NewPageIndex;
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+
             policyList = objAgent.getAnnPolicyDetails(number);
             GridAnn.DataSource = policyList;
             GridAnn.DataBind();
+
+
+        }
+        protected void GridSetlmt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridSetlmt.PageIndex = e.NewPageIndex;
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+
             policyList = objAgent.getSetPolicyDetails(number);
             GridSetlmt.DataSource = policyList;
             GridSetlmt.DataBind();
+
+        }
+        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+            policyList = objAgent.getInsPolicyDetails(memberDropdown.Text,e.SortExpression);
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
+
+        }
+        protected void GridSetlmt_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+            policyList = objAgent.getSetPolicyDetails(memberDropdown.Text, e.SortExpression);
+            GridSetlmt.DataSource = policyList;
+            GridSetlmt.DataBind();
+
+        }
+        protected void GridAnn_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            MemberMainBAL objAgent = new MemberMainBAL();
+            policyList = objAgent.getAnnPolicyDetails(memberDropdown.Text, e.SortExpression);
+            GridAnn.DataSource = policyList;
+            GridAnn.DataBind();
 
         }
 
@@ -883,32 +910,27 @@ namespace FcsuAgentWebApp.Member
                 checkoutItems.policyNumber = Session["policyNumber"].ToString();
                 // Get the policy description
                 checkoutItems.policyDesc = Session["policyDesc"].ToString();
-
+                checkoutItems.payYear = Convert.ToInt32(years.Text);
+                checkoutItems.isAnnuity = annrate.Text.Equals("0.00000") ? false : true;
                 // Save this info to the temp shopping cart
                 // and return if it is successful and last inserted id
                 BusinessLayer SaveItems = new BusinessLayer();
                 ReturnData dbInsertResults = new ReturnData();
                 dbInsertResults = SaveItems.SaveCheckoutItems(checkoutItems);
-                if (!dbInsertResults.isSuccessful)
-                {
-                    // Show message if member number can not be converted to int
-                    Response.Write("<script>alert('The information did not get saved correctly.  Please try again...');</script>");
-                }
-                else
+                //if (!dbInsertResults.isSuccessful)
+                //{
+                //    // Show message if member number can not be converted to int
+                //    Response.Write("<script>alert('The information did not get saved correctly.  Please try again...');</script>");
+                //}
+                //else
                 {
                     // If the data was saved correctly, set this flag so we can now display the checkout now button.
                     Session["cartData"] = true;
                     Session["orderID"] = dbInsertResults.newId;
 
-                    Response.Redirect("/Member/ShoppingCart/Default.aspx");
+                    Response.Redirect("~/Member/ShoppingCart/Default.aspx");
                 }
             }
-
-
-
-
-
-
 
         }
 
@@ -928,9 +950,39 @@ namespace FcsuAgentWebApp.Member
             // Show the payment policy number
             lbl_Payment.Text = "Make a Payment for Policy #: " + gvRow.Cells[2].Text;
             lbl_Desc.Text = "Plan: " + gvRow.Cells[5].Text;
+            annrate.Text = gvRow.Cells[9].Text;
+            if(Convert.ToDecimal(gvRow.Cells[9].Text)==0m)
+            {
+                lbl_DueAmt.Visible = true;
+                lbl_DueAmt.Text = "Due Amount: " + gvRow.Cells[33].Text;
+            }
+            
+            if (gvRow.Cells[9].Text!="0.00")
+            {
+                lbl_Prem.Text = "Premium: " + gvRow.Cells[20].Text;
+                if(gvRow.Cells[29].Text!= "&nbsp;")
+                {
+                    lbl_PremDue.Text = "Premium Due: " + Convert.ToDateTime(gvRow.Cells[29].Text).ToShortDateString();
+
+                }
+            }
+            string ira = gvRow.Cells.Count == 34 ? gvRow.Cells[33].Text : gvRow.Cells[32].Text;
+            
+                if (ira.Equals("Y"))//ira
+                {
+                    lbl_PayYr.Visible = true;
+                    years.Visible = true;
+                }
+            else
+            {
+                lbl_PayYr.Visible = false;
+                years.Visible = false;
+            }
+            
             // Define the session variables
             Session["policyNumber"] = gvRow.Cells[2].Text;
             Session["policyDesc"] = gvRow.Cells[5].Text;
+            Session["annRate"] = gvRow.Cells[9].Text;
             Payment_Div.Visible = true;
             HideAll();
             transactions2.Visible = false;
