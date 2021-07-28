@@ -10,10 +10,10 @@ namespace FcsuAgentWebApp.BAL
     public class AgentMainBAL
     {
 
-        public List<AgentPolicyModel> getPolicyDetails( string searchText, string number)
+        public List<AgentPolicyModel> getPolicyDetails( string searchText, string number, string sortColumn=null)
         {
             AgentMainDAL objAgent = new AgentMainDAL();
-            return objAgent.getPolicyDetails(searchText, number);
+            return objAgent.getPolicyDetails(searchText, number, sortColumn);
         }
 
         public List<PolicyBeneficiaryModel> GetPolicyBeneficiaries(string policyNumber)
