@@ -12,7 +12,7 @@ namespace FcsuAgentWebApp.DAL
 {
     public class MemberMainDAL
     {
-        internal List<AgentPolicyModel> getPolicyDetails(string memnumber, string gridType)
+        internal List<AgentPolicyModel> getPolicyDetails(string memnumber, string gridType, string sortField=null)
         {
             List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
 
@@ -23,7 +23,7 @@ namespace FcsuAgentWebApp.DAL
             query.Append("policy.BEGBAL, policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL,");
             query.Append("member.DOB, member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.MODE, policy.BASEPREM, policy.UPDATEDT, policy.LIEN,");
             query.Append("policy.LOAN, policy.CASHVAL, policy.PUADIV, policy.ACCUMDIV, policy.TOTDEATH, member_1.NAME AS oname, policy.paidto, " );
-        query.Append("policy.rmdcurr, policy.rmdprev ");
+        query.Append("policy.rmdcurr, policy.rmdprev, policy.ira, policy.dueamt ");
         if(gridType.Equals("SETL")|| gridType.Equals("ANN"))
             {
                 query.Append(",policy.pl_spia ");
@@ -34,19 +34,26 @@ namespace FcsuAgentWebApp.DAL
          
         if(gridType.Equals("SETL"))
                 {
-                query.Append($"WHERE(policy.OWNNUM = {memnumber} or policy.cst_num = {memnumber}) and policy.ANNRATE > 0 and policy.pl_spia = 'Y' ORDER BY member.LASTNAME ");
+                query.Append($"WHERE(policy.OWNNUM = {memnumber} or policy.cst_num = {memnumber}) and policy.ANNRATE > 0 and policy.pl_spia = 'Y' ");
          }
         else if(gridType.Equals("ANN"))
          {
-                query.Append($"WHERE(policy.OWNNUM = {memnumber} or policy.cst_num = {memnumber}) and policy.ANNRATE > 0 and pl_spia = 'N' ORDER BY member.LASTNAME ");
+                query.Append($"WHERE(policy.OWNNUM = {memnumber} or policy.cst_num = {memnumber}) and policy.ANNRATE > 0 and pl_spia = 'N' ");
 
          }
             else
             {
-                query.Append($"WHERE policy.OWNNUM = {memnumber} and policy.ANNRATE = 0  ORDER BY member.LASTNAME ");
+                query.Append($"WHERE policy.OWNNUM = {memnumber} and policy.ANNRATE = 0 ");
             }
 
-
+        if(sortField!=null)
+            {
+                query.Append($" ORDER BY {sortField}");
+            }
+        else
+            {
+                query.Append($" ORDER BY LASTNAME");
+            }
            string usersSelectCommand = query.ToString();
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             {
@@ -91,8 +98,9 @@ namespace FcsuAgentWebApp.DAL
                     objPolicy.paidto = dr["paidto"] != DBNull.Value ? (DateTime?)(dr["paidto"]) : null;
                     objPolicy.oname = dr["oname"].ToString();
                     objPolicy.totdeath = (decimal)dr["totdeath"];
-
-                    if(gridType.Equals("SETL")|| gridType.Equals("ANN"))
+                    objPolicy.ira =dr["ira"].ToString();
+                    objPolicy.dueamt = (decimal)dr["dueamt"];
+                    if (gridType.Equals("SETL")|| gridType.Equals("ANN"))
                     {
                         objPolicy.Pl_spia = dr["pl_spia"].ToString();
 

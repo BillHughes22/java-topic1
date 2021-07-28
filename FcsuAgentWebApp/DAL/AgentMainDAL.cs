@@ -11,12 +11,13 @@ namespace FcsuAgentWebApp.DAL
 {
     public class AgentMainDAL
     {
-        internal List<AgentPolicyModel> getPolicyDetails(string searchText, string number)
+        internal List<AgentPolicyModel> getPolicyDetails(string searchText, string number, string sortColumn=null)
         {
             List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
 
             string connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
             string usersSelectCommand = string.Empty;
+            string sort = sortColumn != null ? " order by "+sortColumn : " order by lastname";
             if (string.IsNullOrEmpty(searchText))
             {
 
@@ -25,7 +26,7 @@ namespace FcsuAgentWebApp.DAL
             member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia 
             FROM policy INNER JOIN member ON 
             policy.CST_NUM = member.CST_NUM 
-            WHERE policy.AGENT = {0} and ( member.LastName like  member.LASTNAME ) ORDER BY member.LASTNAME", number, searchText, searchText + "'%'");
+            WHERE policy.AGENT = {0} and ( member.LastName like  member.LASTNAME ) {1}" , number, sort );
             }//
             else {
                 usersSelectCommand = string.Format(@"SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE, policy.BEGBAL, 
@@ -33,10 +34,10 @@ namespace FcsuAgentWebApp.DAL
             member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia 
             FROM policy INNER JOIN member ON 
             policy.CST_NUM = member.CST_NUM 
-            WHERE policy.AGENT = {0} and ( member.LastName like CASE WHEN LEN({1}) >0 THEN {2} ELSE  member.LASTNAME END) ORDER BY member.LASTNAME", number, searchText, searchText + "'%'");
+            WHERE policy.AGENT = {0} and ( member.LastName like CASE WHEN LEN('{1}') >0 THEN '{2}%' ELSE  member.LASTNAME END) {3}", number, searchText, searchText , sort);
 
             }
-
+           
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             {
                 AgentPolicyModel objPolicy;
