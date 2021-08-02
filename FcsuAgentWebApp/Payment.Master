@@ -145,6 +145,10 @@
             width: 200px;
             text-align: center;
         }
+        .button {
+           color: #464646 !important;
+           cursor: pointer;
+        }
 
 
 </style>
@@ -189,8 +193,10 @@
                         [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
                     </AnonymousTemplate>
                     <LoggedInTemplate>
-                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
-                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" OnLoggedOut="LoginStatus_LoggedOut" LogoutPageUrl="~/"/> ]
+                        <span style="color:#464646;">Welcome</span> <span class="bold" style="color:#464646;"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        <%--[ <asp:LoginStatus style="color:#464646;" ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" OnLoggedOut="LoginStatus_LoggedOut" LogoutPageUrl="~/Account/Login.aspx"/> ]--%>
+                        <a href="../../Account/Login.aspx" class="button">Log Out</a>
+
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>

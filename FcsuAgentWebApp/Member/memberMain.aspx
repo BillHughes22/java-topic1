@@ -93,7 +93,7 @@
         <Columns>
             <asp:ButtonField ControlStyle-CssClass="button" ButtonType="Button" CommandName="Select" HeaderText="Select" Text="Select" />
             <%-- Payment Column and Button - Added 06/17/2021 --%>
-           <asp:ButtonField ControlStyle-CssClass="button"  ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Pay Now" visible="false"/>
+           <asp:ButtonField ControlStyle-CssClass="button"  ButtonType="Button" CommandName="GetPayment" HeaderText="Make Payment" Text="Pay Now" visible="true"/>
             <%-- End Payment Column and Button --%>
             <asp:BoundField DataField="POLICY" HeaderText="POLICY" SortExpression="POLICY" ItemStyle-Width="140px">
                 <ItemStyle Width="166px"></ItemStyle>
