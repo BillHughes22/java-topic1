@@ -91,7 +91,12 @@
                 SortExpression="pl_spia" Visible="True">
                 </asp:BoundField>
               
-                
+                 <asp:BoundField DataField="oname" HeaderText="ownername" HeaderStyle-CssClass="hideGridColumn" ItemStyle-CssClass="hideGridColumn"
+                SortExpression="oname" Visible="True">
+                <HeaderStyle CssClass="hideGridColumn"></HeaderStyle>
+
+                <ItemStyle CssClass="hideGridColumn"></ItemStyle>
+            </asp:BoundField>
             </Columns>
 
             <FooterStyle Height="0px" />
@@ -128,7 +133,14 @@
             <asp:TableCell Width="10%" ColumnSpan="2" EnableViewState ="false"><asp:Label ID="LabelEmail" runat="server" Text="Email:" style="text-align:right" Width="100%" ForeColor="Navy" EnableViewState ="false"></asp:Label></asp:TableCell>
             <asp:TableCell Width="50%" ColumnSpan="10" EnableViewState ="false"><asp:TextBox ID="TextBoxEmail" runat="server" Width="100%" BorderStyle="None" ReadOnly="true" EnableViewState ="false"></asp:TextBox></asp:TableCell>
         </asp:TableRow>
-
+        <asp:TableRow Width="100%" EnableViewState="false">
+            <asp:TableCell Width="10%" ColumnSpan="2" EnableViewState="false">
+                <asp:Label ID="LabelOwner" runat="server" Text="Owner:" Style="color: navy; text-align: right" Width="100%" eColor="Navy" EnableViewState="false"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell Width="90%" ColumnSpan="18" EnableViewState="false">
+                <asp:TextBox ID="TextBoxOwner" runat="server" Width="100%" BorderStyle="None" ReadOnly="true" EnableViewState="false"></asp:TextBox>
+            </asp:TableCell>
+        </asp:TableRow>
         <asp:TableRow Width="100%" EnableViewState ="false">
             <asp:TableCell Width="100%" ColumnSpan="20" EnableViewState ="false"><hr width="95%" align="center"  /></asp:TableCell>
         </asp:TableRow>

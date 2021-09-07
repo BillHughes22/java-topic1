@@ -177,6 +177,24 @@ namespace FcsuAgentWebApp.Agent
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
 
         /// <summary>
+        /// LabelOwner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelOwner;
+
+        /// <summary>
+        /// TextBoxOwner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxOwner;
+
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>

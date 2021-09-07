@@ -173,6 +173,7 @@ namespace FcsuAgentWebApp.Agent
             {
                 GridView3.DataSource = beneficiaryList;
                 GridView3.DataBind();
+                GridView3.Visible = true;
             }
             else
             {
@@ -213,6 +214,7 @@ namespace FcsuAgentWebApp.Agent
         protected void load_Information(GridViewRow row, int index)
         {
             Table1.Visible = true;
+             GridView3.Visible = GridView3.Rows.Count>0?true:false;
 
             RiderLabel.Visible = true;
             // Policy Info
@@ -220,7 +222,7 @@ namespace FcsuAgentWebApp.Agent
             TextBoxName.Text = row.Cells[2].Text;
             TextBoxAddress.Text = row.Cells[3].Text;
             TextBoxPlan.Text = row.Cells[4].Text;
-
+            TextBoxOwner.Text = row.Cells[22].Text;
 
             bool result;
 
@@ -383,6 +385,12 @@ namespace FcsuAgentWebApp.Agent
         {
             GridView2.Visible = false;
             GridView1.PageSize = Convert.ToInt32(txtSize.Text);
+            List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
+            AgentMainBAL objAgent = new AgentMainBAL();
+            policyList = objAgent.getPolicyDetails(string.Empty, number);
+
+            GridView1.DataSource = policyList;
+            GridView1.DataBind();
         }
         protected void getAnnBalance_CLick(object sender, EventArgs e)
         {

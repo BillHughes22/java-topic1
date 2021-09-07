@@ -23,17 +23,19 @@ namespace FcsuAgentWebApp.DAL
 
                 usersSelectCommand = string.Format(@"SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE, policy.BEGBAL, 
             policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, member.DOB, 
-            member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia 
-            FROM policy INNER JOIN member ON 
-            policy.CST_NUM = member.CST_NUM 
-            WHERE policy.AGENT = {0} and ( member.LastName like  member.LASTNAME ) {1}" , number, sort );
+            member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia, member_1.NAME AS oname   
+            FROM policy 
+            INNER JOIN member ON policy.CST_NUM = member.CST_NUM 
+            INNER JOIN member AS member_1 ON policy.OWNNUM = member_1.CST_NUM 
+            WHERE policy.AGENT = {0} and ( member.LastName like  member.LASTNAME ) {1}", number, sort );
             }//
             else {
                 usersSelectCommand = string.Format(@"SELECT policy.POLICY, member.NAME, member.ADDRESS, policy.PLANTYPE, policy.VALUE, policy.BEGBAL, 
             policy.YTD_INT, policy.ANNRATE, policy.CURBAL, policy.POLDATE, policy.STATUS, member.PHONE, member.EMAIL, member.DOB, 
-            member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia 
+            member.MEMBERDT, member.LASTNAME, policy.MATDATE, policy.mode, policy.baseprem, policy.updatedt, policy.pl_spia, member_1.NAME AS oname  
             FROM policy INNER JOIN member ON 
             policy.CST_NUM = member.CST_NUM 
+            INNER JOIN member AS member_1 ON policy.OWNNUM = member_1.CST_NUM 
             WHERE policy.AGENT = {0} and ( member.LastName like CASE WHEN LEN('{1}') >0 THEN '{2}%' ELSE  member.LASTNAME END) {3}", number, searchText, searchText , sort);
 
             }
@@ -72,7 +74,7 @@ namespace FcsuAgentWebApp.DAL
                     objPolicy.Updatedt = dr["updatedt"] != DBNull.Value ? (DateTime?)(dr["updatedt"]) : null;
                     objPolicy.Mode = dr["mode"].ToString();
                     objPolicy.Pl_spia = dr["pl_spia"].ToString();
-                   
+                    objPolicy.oname = dr["oname"].ToString();
                     policyList.Add(objPolicy);
                 }
 
