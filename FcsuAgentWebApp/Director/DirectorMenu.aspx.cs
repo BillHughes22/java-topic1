@@ -38,8 +38,8 @@ namespace FcsuAgentWebApp.Director
             if (!Page.IsPostBack)
             {
              
-                setLists(showAll_, bListDirector, "Board Of Directors", btnmoreDirector);
-                setLists(showAll_, bListExecutive, "Executive Committe",btnmoreExecutive);
+                setLists(showAll_, bListDirector, "Board Of Directors Meeting", btnmoreDirector);
+                setLists(showAll_, bListExecutive, "Executive Committee Meeting",btnmoreExecutive);
                 setLists(showAll_, bListAnnouncements, "Announcements",btnmoreAnnouncement);
                 setLists(showAll_, bListMiscellaneous, "Miscellaneous", btnmoreMiscellaneous);
             }
@@ -49,11 +49,11 @@ namespace FcsuAgentWebApp.Director
         //--------------
         protected void btnmoreDirector_Click(object sender, EventArgs e)
         {
-            showMoreorLess(btnmoreDirector, bListDirector, "Board Of Directors");
+            showMoreorLess(btnmoreDirector, bListDirector, "Board Of Directors Meeting");
         }
         protected void btnmoreExecutive_Click(object sender, EventArgs e)
         {
-             showMoreorLess(btnmoreExecutive, bListExecutive, "Executive Committe");
+             showMoreorLess(btnmoreExecutive, bListExecutive, "Executive Committee Meeting");
         }
         protected void btnmoreAnnouncement_Click(object sender, EventArgs e)
         {
