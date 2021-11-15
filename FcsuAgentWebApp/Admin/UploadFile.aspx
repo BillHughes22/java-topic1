@@ -13,8 +13,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time Period</strong><br />
 <asp:FileUpload ID="FileUpload" Width="400px" runat="server" Font-Size="Medium" Height="31px" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <asp:DropDownList ID="cbBxCategory" AppendDataBoundItems="true" runat="server" Font-Size="Medium" Height="31px">
-     <asp:ListItem Text="Board Of Directors" Value="1" />
-     <asp:ListItem Text="Executive Committe" Value="2" />
+     <asp:ListItem Text="Board Of Directors Meeting" Value="1" />
+     <asp:ListItem Text="Executive Committee Meeting" Value="2" />
      <asp:ListItem Text="Announcements" Value="3" />
      <asp:ListItem Text="Miscellaneous" Value="4" />
     </asp:DropDownList>&nbsp;&nbsp;&nbsp; 
