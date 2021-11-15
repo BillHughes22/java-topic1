@@ -93,11 +93,11 @@ namespace FcsuAgentWebApp.Director
             ad.Fill(dtCategory);
             list.Items.Clear();
             btnMore.Visible = dtCategory.Rows.Count > 5 ? true : false;
-            if (category.Equals("Board Of Directors"))
+            if (category.Equals("Board Of Directors Meeting"))
             {
                 directorheader.Visible = dtCategory.Rows.Count > 0 ? true : false;
              }
-            else if (category.Equals("Executive Committe"))
+            else if (category.Equals("Executive Committee Meeting"))
             {
                 executiveheader.Visible = dtCategory.Rows.Count > 0 ? true : false;
             }
