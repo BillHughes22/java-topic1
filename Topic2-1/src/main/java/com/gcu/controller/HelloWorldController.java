@@ -11,7 +11,7 @@ public class HelloWorldController
 {
 	/**
 	 * Simple Hello World Controller that returns a String in the response body
-	 * Invoke using /test1 URI.
+	 * Invoke using /test1 URI. Test Comment
 	 * 
 	 * @ return Hello World test string
 	 */
