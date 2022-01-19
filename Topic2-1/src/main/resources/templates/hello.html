@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- We have added a String "message" variable to our context,
+		 and now we can display it in our template.
+		 ${...} is a variable expression value.
+		 The ${message} expression simply means "get the variable called message".  -->
+	<h2 th:text="${message}">This is my default text</h2><br/>
+</body>
+</html>
