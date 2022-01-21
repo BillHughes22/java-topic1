@@ -1,4 +1,4 @@
-﻿using FcsuAgentWebApp.Models.Checkout;
+﻿using FcsuAgentWebApp.Models.CheckoutPayPal;
 using FcsuAgentWebApp.Services.DataAccess;
 using FcsuAgentWebApp.Classes;
 using System;
@@ -17,7 +17,7 @@ namespace FcsuAgentWebApp.Services.Business
         /// </summary>
         /// <param name="checkOutItems"></param>
         /// <returns></returns>
-        public ReturnData SaveCheckoutItems(Checkout checkOutItems)
+        public ReturnData SaveCheckoutItems(CheckoutPayPal checkOutItems)
         {
             DataLayer SaveItems = new DataLayer();
             return SaveItems.SaveCheckoutItem(checkOutItems);
@@ -189,7 +189,7 @@ namespace FcsuAgentWebApp.Services.Business
                     surchargeChanged = true;
                     // Remove Surcharge row to order.
                     DataLayer SaveItems = new DataLayer();
-                    Checkout addCheckoutItem = new Checkout();
+                    CheckoutPayPal addCheckoutItem = new CheckoutPayPal();
                     addCheckoutItem.payment = decimal.Multiply(order_total, (decimal).02);
                     addCheckoutItem.policyDesc = "Surcharge";
                     addCheckoutItem.policyNumber = "";

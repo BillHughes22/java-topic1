@@ -19,7 +19,8 @@ using System.Collections.Generic;
 using System.Web.Services;
 using System.Text.RegularExpressions;
 using FcsuAgentWebApp.Services.Business;
-using FcsuAgentWebApp.Models.Checkout;
+using FcsuAgentWebApp.Models.CheckoutPayPal;
+using Com.Alacriti.Checkout;
 
 namespace FcsuAgentWebApp.Member.ShoppingCart
 {
@@ -32,6 +33,46 @@ namespace FcsuAgentWebApp.Member.ShoppingCart
             {
                 Response.Redirect("~/Member/ShoppingCart/Default.aspx");
             }
+
+            //---------------------------------------------------------------------------------
+            // Used for testing
+            //---------------------------------------------------------------------------------
+            //string errorMessage = "";
+            //try
+            //{
+            //    Checkout.initProperties(AppDomain.CurrentDomain.BaseDirectory + "Files\\orbipay_checkout_config.json");
+
+            //    // Customer Identifiers
+            //    string feeAmount = "0.00";
+            //    string liveMode = "false";
+            //    //String customFields = "";
+            //    Dictionary<string, string> customFields = new Dictionary<string, string>();
+            //    string keyBankToken = "123";
+            //    string keyBankDigiSign = "123";
+            //    string keyBankCustRef = "123";
+
+            //    string client_key = "2421355621";
+            //    string signatureKey = "4K79PXBSPP20SMB4";
+            //    string clientApiKey = "capik_c62af8fe-5aa0-4aa1-96d6-c78aa06639f7";
+            //    //tbkeyBankToken.Text = Session["cartTotal"].ToString();
+
+            //    Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, "89.00")
+            //        .withToken(keyBankToken, keyBankDigiSign)
+            //        .withFee(feeAmount)
+            //        .forClient(client_key, signatureKey, clientApiKey)
+            //        //.withCustomFields(customFields)
+            //        .confirm(liveMode);
+            //}
+            //catch (Exception exp)
+            //{
+            //    errorMessage = exp.Message;
+            //}
+            
+
+            //---------------------------------------------------------------------------------
+            // End - Used for testing
+            //---------------------------------------------------------------------------------
+
 
             // Configure the next button
             btnCart.Attributes.Add("onmouseover", "src='../images/next_over.jpg'");

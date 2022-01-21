@@ -1,7 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Payment.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FcsuAgentWebApp.Member.Payments.Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/PaymentMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FcsuAgentWebApp.Member.Payments.Default" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
@@ -10,6 +11,17 @@
         .Hide {
             display: none;
         }
+
+        .columnGrid {
+            float: left;
+            width: 50%;
+        }
+
+        .columnSmall {
+            float: left;
+            width: 25%;
+        }
+
 
         .column1 {
             float: left;
@@ -20,10 +32,15 @@
             float: right;
             width: 50%;
         }
-
-        
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
     </style>
 
+   
 </asp:Content>
 
 
@@ -33,87 +50,19 @@
     <div class="checkout-status">
         <img src='../images/PP-payment.jpg' width='403px' height='31px' alt='Shopping Cart' /><br />
         <br />
-        <br />
+
 
     </div>
 
-
-
-
     <div class="row">
-        <!-- column1 is for PayPal -->
-        <div class="column1">
-            <div style="width: 80%; float: left; margin-left: 20px">
-                <asp:Label ID="Label1" runat="server" Text="Select Payment Option" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
-                
-
-                <script src="https://www.paypal.com/sdk/js?client-id=AWxMwR_BHnLSoq4F6inV027CkYVA66hXMFwzMupxl67oi7b6Idvyh-cBTwv9K-zGkr6zRz9VzaFp9mVb" data-page-type="checkout"> // Use this for the sandbox testing </script>
-                <%--<script src="https://www.paypal.com/sdk/js?client-id=AS926yHAwMmIHpHJVgTwEKGqNuVGWsBw3ODVywK6OY2SG-S7u4M7aUSC4oIiIox34JgVkQqbLizsAKck" data-page-type="checkout"> // Use this for the production mode</script>--%>
-                
-
-
-                <div id="paypal-button-container"></div>
-
-
-                <!-- Add the checkout buttons, set up the order and approve the order -->
-
-                <script>
-
-                    paypal.Buttons({
-
-                        createOrder: function (data, actions) {
-
-                            return actions.order.create({
-
-                                purchase_units: [{
-                                    
-                                    description: "<%=Session["orderID"]%>",
-
-                                    
-                                    amount: {
-                                        currency_code: "USD",
-                                        value: "<%=Session["cartTotal"]%>",
-                                        breakdown: {
-                                            item_total: {
-                                                currency_code: "USD",
-                                                value: "<%=Session["cartTotal"]%>"
-                                            }
-
-
-                                        }
-                                    },
-                                    items: [<%=Session["cartItems"]%>],
-
-                                }]
-                            })
-
-                        },
-
-                        onApprove: function (data, actions) {
-
-                            return actions.order.capture().then(function (details) {
-
-                                // Send the PayPal Transaction ID to the completion screen
-                                document.getElementById('JSON').value = details.purchase_units[0].payments.captures[0].id;
-                                var myform = document.getElementById('form_id');
-                                myform.submit();
-
-                            });
-
-                        }
-
-                    }).render('#paypal-button-container'); // Display payment options on your web page
-
-                </script>
-
-            </div>
+        <!-- Placeholder for small left side -->
+        <div class="columnSmall">
 
         </div>
 
-
-        <!-- column2 is for the Order Summary -->
-        <div class="column2">
-            <asp:Label ID="Label2" runat="server" Text="Selected Payment Summary" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
+        <!-- columnGrid is for "Selected Payment Summary" grid -->
+        <div class="columnGrid" style="padding-bottom: 50px">
+            <asp:Label ID="Label2" runat="server" Text="Payment Summary" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="rounded-corners" style="width: 80%; float: right; margin-right: 40px">
@@ -208,6 +157,127 @@
 
                     </div>
 
+
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+        </div>
+
+        <!-- Placeholder for small right side -->
+        <div class="columnSmall">
+            <p>
+                keyBankToken: <asp:TextBox ID="tbkeyBankToken" runat="server"></asp:TextBox></p>
+            <p>
+                Error: <asp:Label ID="Label4" runat="server" Text=""></asp:Label></p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <!-- column1 is for PayPal -->
+        <div class="column1">
+            <div style="width: 80%; float: left; margin-left: 20px">
+                <asp:Label ID="Label1" runat="server" Text="Pay With Debit/Credit Card or PayPal" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
+
+
+                <script src="https://www.paypal.com/sdk/js?client-id=AWxMwR_BHnLSoq4F6inV027CkYVA66hXMFwzMupxl67oi7b6Idvyh-cBTwv9K-zGkr6zRz9VzaFp9mVb" data-page-type="checkout"> // Use this for the sandbox testing </script>
+                <%--<script src="https://www.paypal.com/sdk/js?client-id=AS926yHAwMmIHpHJVgTwEKGqNuVGWsBw3ODVywK6OY2SG-S7u4M7aUSC4oIiIox34JgVkQqbLizsAKck" data-page-type="checkout"> // Use this for the production mode</script>--%>
+
+
+
+                <div id="paypal-button-container"></div>
+
+
+                <!-- Add the checkout buttons, set up the order and approve the order -->
+
+                <script>
+
+                    paypal.Buttons({
+
+                        createOrder: function (data, actions) {
+
+                            return actions.order.create({
+
+                                purchase_units: [{
+
+                                    description: "<%=Session["orderID"]%>",
+
+
+                                    amount: {
+                                        currency_code: "USD",
+                                        value: "<%=Session["cartTotal"]%>",
+                                        breakdown: {
+                                            item_total: {
+                                                currency_code: "USD",
+                                                value: "<%=Session["cartTotal"]%>"
+                                            }
+
+
+                                        }
+                                    },
+                                    items: [<%=Session["cartItems"]%>],
+
+                                }]
+                            })
+
+                        },
+
+                        onApprove: function (data, actions) {
+
+                            return actions.order.capture().then(function (details) {
+
+                                // Send the PayPal Transaction ID to the completion screen
+                                document.getElementById('JSON').value = details.purchase_units[0].payments.captures[0].id;
+                                var myform = document.getElementById('form_id');
+                                myform.submit();
+
+                            });
+
+                        }
+
+                    }).render('#paypal-button-container'); // Display payment options on your web page
+
+                </script>
+
+            </div>
+
+        </div>
+
+
+        <!-- column2 is for the KeyBank -->
+        <div class="column2">
+            <asp:Label ID="Label3" runat="server" Text="Selected Payment Summary" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+
+
+                    <%-- KeyBank Web UI Integration --%>
+                    <div id="orbipay-checkout-iframe-div">
+
+                        <button id="orbipay-checkout-button">Pay</button>
+                        <form id="orbipay-checkout-form" action="Default.aspx.cs" method="post" onsubmit="post_secure_token();">
+                            <script id="orbipay-checkout-script"
+                                src="https://sbjsco.billerpayments.com/app/opco/v3/scripts/checkoutofsc.js" <%-- used for sandbox --%>
+                                <%-- src="https://jsco.billerpayments.com/app/opco/v3/scripts/checkoutofsc.js" --- use this for production --%>
+                                data-client_key="2421355621"
+                                data-customer_account_reference="<%=Session["orderID"]%>"
+                                data-amount="<%=Session["cartTotal"]%>"
+                                <%--data-customer_first_name="<%=Session["fName"]%>"
+                                data-customer_last_name="<%=Session["lName"]%>"
+                                data-customer_reference="<%=Session["custRef"]%>"
+                                data-customer_email=""--%>
+                                data-api_event="create_payment">
+
+                                <%--data-payment_reference="<%=Session["orderID"]%>"
+
+                                data-payment_option=""--%>
+                                
+                                
+                            </script>
+                        </form>
+                    </div>
+                    <%-- End - KeyBank Web UI Integration --%>
                 </ContentTemplate>
             </asp:UpdatePanel>
 

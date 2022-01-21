@@ -1,4 +1,4 @@
-﻿using FcsuAgentWebApp.Models.Checkout;
+﻿using FcsuAgentWebApp.Models.CheckoutPayPal;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,7 +24,7 @@ namespace FcsuAgentWebApp.Services.DataAccess
         /// Save the payment items to the database and return the last inserted id and if successful
         /// </summary>
         /// <param name="checkoutItems"></param>
-        public ReturnData SaveCheckoutItem(Checkout checkoutItems)
+        public ReturnData SaveCheckoutItem(CheckoutPayPal checkoutItems)
         {
             ReturnData insertResults = new ReturnData();
             insertResults.isSuccessful = true;

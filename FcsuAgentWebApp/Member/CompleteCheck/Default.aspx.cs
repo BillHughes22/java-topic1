@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FcsuAgentWebApp.Member.Complete
+namespace FcsuAgentWebApp.Member.CompleteCheck
 {
     public partial class Default : System.Web.UI.Page
     {
@@ -37,13 +37,13 @@ namespace FcsuAgentWebApp.Member.Complete
                 // Make sure there is an id value
                 if (Session["orderID"] != null)
                 {
-                    // Update the PayPal Transaction ID
-                    BusinessLayer UpdatePayPalTransID = new BusinessLayer();
-                    bool isSuccessful = UpdatePayPalTransID.UpdatePayPalTransID(Convert.ToInt32(Session["orderID"]), TransactionID);
+                    //// Update the PayPal Transaction ID
+                    //BusinessLayer UpdatePayPalTransID = new BusinessLayer();
+                    //bool isSuccessful = UpdatePayPalTransID.UpdatePayPalTransID(Convert.ToInt32(Session["orderID"]), TransactionID);
 
-                    // Populate the grid with all the cart rows
-                    gv_cart_DataBind();
-                    GetUserInfo();
+                    //// Populate the grid with all the cart rows
+                    //gv_cart_DataBind();
+                    //GetUserInfo();
                 }
                 else
                 {

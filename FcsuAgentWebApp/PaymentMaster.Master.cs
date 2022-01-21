@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace FcsuAgentWebApp
 {
-    public partial class Payment: System.Web.UI.MasterPage
+    public partial class PaymentMaster: System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

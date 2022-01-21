@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FcsuAgentWebApp.Models.Checkout
+namespace FcsuAgentWebApp.Models.CheckoutPayPal
 {
     /// <summary>
     /// Model for checkout info to be stored in db
     /// </summary>
-    public class Checkout
+    public class CheckoutPayPal
     {
         // Define the items that are captured for the cart
         public decimal payment { get; set; }

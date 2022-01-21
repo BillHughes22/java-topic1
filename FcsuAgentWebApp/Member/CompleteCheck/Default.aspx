@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Cart.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FcsuAgentWebApp.Member.Complete.Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Cart.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="FcsuAgentWebApp.Member.CompleteCheck.Default" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>

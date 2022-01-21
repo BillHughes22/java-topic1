@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="memberMain.aspx.cs"
-    Inherits="FcsuAgentWebApp.Member.memberMain" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="memberMain.aspx.cs" Inherits="FcsuAgentWebApp.Member.memberMain" %>
 
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <%--   Policies Gridview--%>
@@ -44,8 +43,11 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
 
-
-
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <p>Order ID: <%=Session["orderID"]%></p>
+            <p>First Name: <%=Session["fName"]%></p>
+            <p>Last Name: <%=Session["lName"]%></p>
+            <p>Customer Reference: <%=Session["custRef"]%></p>
 
     <asp:Label ID="Lbl_update" runat="server" Text=""></asp:Label>
     &nbsp;<asp:Label ID="Label1" runat="server" Text="Member Number:" class="noprint"></asp:Label>

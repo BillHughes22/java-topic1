@@ -1,4 +1,9 @@
-﻿using System.Data;
+﻿//------------------------------------------------------------------------------------------
+// Updated 12/29/2021
+// By: Bill Hughes
+// Purpose: Integrate KeyBank payment process
+//-----------------------------------------------------------------------------------------
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System;
@@ -19,7 +24,12 @@ using System.Collections.Generic;
 using System.Web.Services;
 using System.Text.RegularExpressions;
 using FcsuAgentWebApp.Services.Business;
-using FcsuAgentWebApp.Models.Checkout;
+using FcsuAgentWebApp.Models.CheckoutPayPal;
+using Com.Alacriti.Checkout;
+using System.Net;
+using Com.Alacriti.Checkout.Api;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
 
 namespace FcsuAgentWebApp.Member.Payments
 {
@@ -27,22 +37,12 @@ namespace FcsuAgentWebApp.Member.Payments
     {
         //Define Variables
 
-        SqlConnection myConnection;
+        public object live_mode = false;
 
-        DateTime start_date, end_date;
-
-        int LastInserted_id;
-
-        string id, shipping, pickup, coupon_used, entire_order_coupon2;
-        string coupon_name, discount_type, discount_applies, products, date_range_active, active, categories, categories_coupon, coupon_continue, entire_order_coupon, greater_than_coupon, qb_sku, category, category_coupon;
+        // Variables for KeyBank
+        string keyBankToken, keyBankDigiSign, keyBankCustRef;
 
 
-
-        Decimal discount_price, total_product_price, discount_total, discount_percentage_coupon, greater_price, coupon_amount, discount_price_coupon;
-        Int32 discount_percentage, times_allowed, used, coupon_id, cart_id, coupon_qty;
-
-        int quantity_value;
-        Decimal total_price, shipping_price, shipping_cost_master, total_shipping;
         //-----------------------------------------------------
 
         //-------------------------------------------------------------------------------------------------------------------------
@@ -81,14 +81,122 @@ namespace FcsuAgentWebApp.Member.Payments
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
+            //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "First Message");
+
             // Only perform this upon page load and not post backs
             if (!IsPostBack)
             {
-                // Lets first determine if the session variable is set.  If not then lets start a new order
-                if (Session["orderID"] == null)
+                //-------------------------------------------------------------------------------------------------------------
+                // New section for reading POST response for KeyBank
+                //-------------------------------------------------------------------------------------------------------------
+
+                // Define the array that will contain the json contents.
+                // Request.Form.AllKeys is used to return the collection of form elements that posted to HTTP request body.
+                string[] keys = Request.Form.AllKeys;
+                // We know if there is a data when the collection is not empty
+                if (keys.Length > 1)
                 {
+                    
+
+                    // Iterate through the array and pull out the required data.
+                    for (int i = 0; i < keys.Length; i++)
+                    {
+                        // Retrieve the token
+                        if (keys[i] == "token")
+                        {
+                            keyBankToken = Request[keys[i]];
+                        }
+                        // Retrieve the digiSign
+                        if (keys[i] == "digiSign")
+                        {
+                            keyBankDigiSign = Request[keys[i]];
+                        }
+                        // Retrieve the customer_account_reference
+                        if (keys[i] == "customer_account_reference")
+                        {
+                            keyBankCustRef = Request[keys[i]];
+                            //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", keyBankCustRef); // used for testing
+                        }
+                    }
+
+
+
+
+                    Label4.Text = (AppDomain.CurrentDomain.BaseDirectory).ToString();
+                    try
+                    {
+                        //Checkout.initProperties("E:\\web\\fraterna\\portfcs\\Files\\orbipay_checkout_config.json");
+                        //Checkout.initProperties("~\\Files\\orbipay_checkout_config.json");
+                        ServicePointManager.Expect100Continue = true;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                        Checkout.initProperties("C:\\Users\\bill\\source\\repos\\FcsAgentWebApp\\FcsuAgentWebApp\\Files\\orbipay_checkout_config.json");
+
+                        // Customer Identifiers
+                        string feeAmount = "0.00";
+                        string liveMode = "false";
+                        //String customFields = "";
+                        Dictionary<string, string> customFields = new Dictionary<string, string>();
+
+                        string client_key = "2421355621";
+                        string signatureKey = "4K79PXBSPP20SMB4";
+                        string clientApiKey = "capik_c62af8fe-5aa0-4aa1-96d6-c78aa06639f7";
+                        tbkeyBankToken.Text = Session["cartTotal"].ToString();
+
+                        //Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, Session["cartTotal"].ToString())
+                        //    .withToken(keyBankToken, keyBankDigiSign)
+                        //    //.withFee(feeAmount)
+                        //    .forClient(client_key, signatureKey, clientApiKey)
+                        //    //.forClient(client_key, signatureKey)
+                        //    //.withCustomFields(customFields)
+                        //    .confirm();
+
+                        Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, Session["cartTotal"].ToString())
+                                 .withToken(keyBankToken, keyBankDigiSign)
+                                 .forClient(client_key, signatureKey, clientApiKey)
+                                 .confirm("false");
+
+                        //var obj = new paymentStructure
+                        //{
+
+                        //}
+
+                        // Convert the object to a json string
+                        var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(payment);
+                        var details = JObject.Parse(jsonString);
+                        
+                        string bill22 = details["payment_status"].ToString();
+                        
+                        string bill26 = (details["funding_account"]["account_number"]).ToString();
+                        
+
+                        //var obj = JObject.Parse(json);
+                        //var url = (string)obj["data"]["img_url"];
+
+                        //Label4.Text = payment.ToString();
+                        Label4.Text = jsonString;
+                    }
+                    catch (Exception exp)
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "There was an error!");
+                        Label4.Text = exp.Message;
+                    }
+
+                    string bill = "test";
+
+                    //Payment payment = new Com.Alacriti.Checkout.Api.Payment(customer_account_reference, amount)
+                    //    .withToken(token, digiSign)
+                    //    .withFee(feeAmount)
+                    //    .forClient(client_key, signatureKey, clientApiKey)
+                    //    .withCustomFields(customFields)
+                    //    .confirm("false");
+
+                    //string bill = payment;
 
                 }
+                //-------------------------------------------------------------------------------------------------------------
+                // End -- New section for reading POST response for KeyBank
+                //-------------------------------------------------------------------------------------------------------------
+
 
                 //-------------------------------------------------------------------------------------------------------------------------
                 //
@@ -96,7 +204,6 @@ namespace FcsuAgentWebApp.Member.Payments
                 //
                 //-------------------------------------------------------------------------------------------------------------------------
                 // We can only add products to an order if the session has started
-
 
                 if (!IsPostBack)
                 {
@@ -120,6 +227,13 @@ namespace FcsuAgentWebApp.Member.Payments
                 //-------------------------------------------------------------------------------------------------------------------------
 
             }
+
+
+
+
+
+
+            
         }
 
         /// <summary>
@@ -130,7 +244,7 @@ namespace FcsuAgentWebApp.Member.Payments
             // Populate the grid with all the cart rows
             BusinessLayer GetCartContents = new BusinessLayer();
             var cartContents = GetCartContents.GetItemsJsonTotal(Convert.ToInt32(Session["orderID"]));
-            
+
             gv_summary.DataSource = cartContents.Item1.ToList();
             gv_summary.DataBind();
             calculate_totals(Convert.ToInt32(Session["orderID"]));
@@ -138,7 +252,7 @@ namespace FcsuAgentWebApp.Member.Payments
             Session["cartItems"] = cartContents.Item2.ToString();
             // Set the Total Cost
             Session["cartTotal"] = cartContents.Item3.ToString();
-            
+
             //Session["cartItems"] = bill;
             //string testString = "{name: 'T -Shirt', description: 'Green XL', sku: 'sku01', unit_amount: { currency_code: 'USD', value: '90.00'}, tax: { currency_code: 'USD', value: '0.00' }, quantity: '1'}";
             //Session["testing"] = testString;
@@ -232,7 +346,7 @@ namespace FcsuAgentWebApp.Member.Payments
         //
         //-------------------------------------------------------------------------------------------------------------------------
 
-       
+
 
     }
 }

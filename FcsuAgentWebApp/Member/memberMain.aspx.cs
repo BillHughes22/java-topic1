@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using FcsuAgentWebApp.Models.DataModels;
 using FcsuAgentWebApp.BAL;
 using System.Text.RegularExpressions;
-using FcsuAgentWebApp.Models.Checkout;
+using FcsuAgentWebApp.Models.CheckoutPayPal;
 using FcsuAgentWebApp.Services.Business;
 using System;
 using System.Collections.Generic;
@@ -34,16 +34,17 @@ namespace FcsuAgentWebApp.Member
 
     public partial class memberMain : System.Web.UI.Page
     {
-       
+
         DataTable gridPolicy = new DataTable();
-   
+
         string number;
         GridViewRow selectedRow;
-       
+
         int index;
         protected void Page_Load(object sender, EventArgs e)
 
         {
+            TextBox1.Text = "I am here22";
             if (User.IsInRole("member"))
             {
                 this.Master.addMemberMenu();
@@ -56,7 +57,11 @@ namespace FcsuAgentWebApp.Member
             var currentUser = (FcsuMembershipUser)new FcsuWebMembershipProvider().GetUser(userName, true);
 
             number = currentUser.MemberNumber;
-            LabelNumber.Text = number;
+            //LabelNumber.Text = number;
+            LabelNumber.Text = "I am there";
+
+
+            loadKeyBank();
 
             if (Page.IsPostBack)
             {
@@ -65,14 +70,18 @@ namespace FcsuAgentWebApp.Member
             else
             {
                 load_memberDropdown();
+                // Load the data needed for KeyBank integration
+                loadKeyBank();
+
             }
             // Hide payment information
             hidePayment();
 
-            LabelNumber.Text = memberDropdown.Text;
+            //LabelNumber.Text = memberDropdown.Text;
+            LabelNumber.Text = "I am there";
             Session["member"] = LabelNumber.Text;
-            number= memberDropdown.Text;
-            if(!IsPostBack)
+            number = memberDropdown.Text;
+            if (!IsPostBack)
             {
                 List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
                 MemberMainBAL objAgent = new MemberMainBAL();
@@ -86,22 +95,22 @@ namespace FcsuAgentWebApp.Member
                 GridSetlmt.DataSource = policyList;
                 GridSetlmt.DataBind();
             }
-           
+
 
             GridViewRow r;
             if (GridView1.Rows.Count > 0)
             {
-               r=GridView1.Rows[0];
+                r = GridView1.Rows[0];
             }
-            else if(GridAnn.Rows.Count > 0)
+            else if (GridAnn.Rows.Count > 0)
             {
                 r = GridAnn.Rows[0];
             }
-            else if(GridSetlmt.Rows.Count > 0)
+            else if (GridSetlmt.Rows.Count > 0)
             {
                 r = GridSetlmt.Rows[0];
             }
-           
+
             foreach (GridViewRow x in GridView1.Rows)
             {
                 x.Cells[4].Text = x.Cells[4].Text.Replace(";", "<br />");
@@ -110,7 +119,7 @@ namespace FcsuAgentWebApp.Member
             {
                 gridPolicy.Columns.Add(GridView1.Columns[i].ToString());
             }
-            
+
             foreach (GridViewRow n in GridAnn.Rows)
             {
                 n.Cells[4].Text = n.Cells[4].Text.Replace(";", "<br />");
@@ -129,7 +138,7 @@ namespace FcsuAgentWebApp.Member
 
         protected void HideAll()
         {
-           
+
             BenfLabel.Visible = false;
 
         }
@@ -148,16 +157,16 @@ namespace FcsuAgentWebApp.Member
             //            var foo = "Yes";
         }
 
-       
 
-      
+
+
 
         protected void load_memberDropdown()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
             string updateSqlStatement;
 
-            updateSqlStatement = "SELECT member.cst_num, member.LASTNAME FROM member WHERE member.cst_num = '" + number + "' order by cst_num";
+            updateSqlStatement = "SELECT member.cst_num, member.LASTNAME, member.FNAME FROM member WHERE member.cst_num = '" + number + "' order by cst_num";
 
             using (SqlConnection myConnection = new SqlConnection(connectionString))
             {
@@ -177,14 +186,59 @@ namespace FcsuAgentWebApp.Member
             }
 
             memberDropdown.SelectedValue = number;
+            TextBox1.Text = "I am here22";
         }
 
-       
+        //------------------------------------------------------------------------------------
+        // Populate Data for KeyBank
+        //------------------------------------------------------------------------------------
+        protected void loadKeyBank()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+            string updateSqlStatement;
+
+            updateSqlStatement = "SELECT member.cst_num, member.LASTNAME, member.LNAME, member.FNAME FROM member WHERE member.cst_num = '" + number + "' order by cst_num";
+
+            using (SqlConnection myConnection = new SqlConnection(connectionString))
+            {
+
+                using (SqlCommand cmd = new SqlCommand(updateSqlStatement, myConnection))
+                {
+                    myConnection.Open();
+                    using (SqlDataReader reader_admin = cmd.ExecuteReader())
+                    {
+                        if (reader_admin.HasRows)
+                        {
+                            // Lets now read in the data
+                            while (reader_admin.Read())
+                            {
+                                // Get the Session variables that will be used for KeyBank
+                                Session["fName"] = reader_admin["FNAME"];
+                                Session["lName"] = reader_admin["LNAME"];
+                                Session["custRef"] = reader_admin["cst_num"];
+                                TextBox1.Text = "I am here";
+
+                            }
+
+
+                        }
+                    }
+                    myConnection.Close();
+
+                }
+
+            }
+        }
+        //------------------------------------------------------------------------------------
+        // End Populate Data for KeyBank
+        //------------------------------------------------------------------------------------
+
+
         protected void load_Information(GridViewRow row)
         {
-           
-           string address= row.Cells[4].Text.Replace("<br />", " ");
-           
+
+            string address = row.Cells[4].Text.Replace("<br />", " ");
+
             Table1.Visible = true;
 
             BenfLabel.Visible = true;
@@ -281,7 +335,7 @@ namespace FcsuAgentWebApp.Member
                 //lblrmdreq.Text = string.Concat(DateTime.Now.Year, " RMD Required");
                 decimal tmpDecimal;
                 result = Decimal.TryParse(row.Cells[30].Text, out tmpDecimal);
-                
+
                 if (result)
                 {
                     ////currRmdBox.Text = String.Format("{0:C}", tmpDecimal);
@@ -318,7 +372,7 @@ namespace FcsuAgentWebApp.Member
                 TextBox_loan.Visible = false;
                 Lbl_div.Visible = false;
                 TextBox_div.Visible = false;
-               
+
                 // Annuity Grid and TextBoxes
                 polinfo.Text = "Annuity Information";
                 LabelValue.Text = "Initial Deposit:";
@@ -330,7 +384,7 @@ namespace FcsuAgentWebApp.Member
                 SqlDataSource dsTemp = new SqlDataSource(System.Configuration.ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString, sqlString);
                 System.Data.DataView dv = (System.Data.DataView)dsTemp.Select(DataSourceSelectArguments.Empty);
 
-                if (dv.Count>0)
+                if (dv.Count > 0)
                 {
                     TextBoxPrevBal.Text = ((decimal)dv[0][2]).ToString("C2");
                     TextBoxDeposits.Text = ((decimal)dv[0][4]).ToString("N2");
@@ -491,8 +545,8 @@ namespace FcsuAgentWebApp.Member
 
                 DateTime tmpPaidTo;
                 result = DateTime.TryParse(row.Cells[29].Text, out tmpPaidTo);
-               // if (result) { TextBoxCurrentRate.Text = String.Format("{0:d}", tmpUpDate); } else { TextBoxCurrentRate.Text = ""; }
-                  if (result) { TextBoxCurrentRate.Text = String.Format("{0:d}", tmpPaidTo); } else { TextBoxCurrentRate.Text = ""; }
+                // if (result) { TextBoxCurrentRate.Text = String.Format("{0:d}", tmpUpDate); } else { TextBoxCurrentRate.Text = ""; }
+                if (result) { TextBoxCurrentRate.Text = String.Format("{0:d}", tmpPaidTo); } else { TextBoxCurrentRate.Text = ""; }
 
                 decimal tempDecimal;
                 result = Decimal.TryParse(row.Cells[20].Text, out tempDecimal);
@@ -509,14 +563,14 @@ namespace FcsuAgentWebApp.Member
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-             this.load_Information(GridView1.SelectedRow);
+            this.load_Information(GridView1.SelectedRow);
 
         }
 
         protected void GridAnn_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.load_Information(GridAnn.SelectedRow);
-           
+
         }
 
         protected void GridSetlmt_SelectedIndexChanged(object sender, EventArgs e)
@@ -655,7 +709,7 @@ namespace FcsuAgentWebApp.Member
                 //int index2 = Convert.ToInt32(e.CommandArgument);
                 //GridViewRow gRow = GridAnn.Rows[index2];
                 // index containst the row that was selected.
-               // int index = gRow.RowIndex;
+                // int index = gRow.RowIndex;
                 // We need to make sure the Balance is not 0 so the person can make a payment on the policy
                 string balance = gRow.Cells[10].Text;
                 decimal balValue = 0;
@@ -719,7 +773,7 @@ namespace FcsuAgentWebApp.Member
             //            this.load_Information(selectedRow);
             //        }
             //    }
-            }
+        }
 
 
         //protected void GridSetlmt_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -807,7 +861,7 @@ namespace FcsuAgentWebApp.Member
             policyList = objAgent.getInsPolicyDetails(number);
             GridView1.DataSource = policyList;
             GridView1.DataBind();
-           
+
 
         }
         protected void GridAnn_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -838,7 +892,7 @@ namespace FcsuAgentWebApp.Member
 
             List<AgentPolicyModel> policyList = new List<AgentPolicyModel>();
             MemberMainBAL objAgent = new MemberMainBAL();
-            policyList = objAgent.getInsPolicyDetails(memberDropdown.Text,e.SortExpression);
+            policyList = objAgent.getInsPolicyDetails(memberDropdown.Text, e.SortExpression);
             GridView1.DataSource = policyList;
             GridView1.DataBind();
 
@@ -879,7 +933,7 @@ namespace FcsuAgentWebApp.Member
             // Only continue if the dollar value is valid
             if (isValidCurency)
             {
-                Checkout checkoutItems = new Checkout();
+                CheckoutPayPal checkoutItems = new CheckoutPayPal();
                 // Get the value to add
                 try
                 {
@@ -951,34 +1005,34 @@ namespace FcsuAgentWebApp.Member
             lbl_Payment.Text = "Make a Payment for Policy #: " + gvRow.Cells[2].Text;
             lbl_Desc.Text = "Plan: " + gvRow.Cells[5].Text;
             annrate.Text = gvRow.Cells[9].Text;
-            if(Convert.ToDecimal(gvRow.Cells[9].Text)==0m)
+            if (Convert.ToDecimal(gvRow.Cells[9].Text) == 0m)
             {
                 lbl_DueAmt.Visible = true;
                 lbl_DueAmt.Text = "Due Amount: " + gvRow.Cells[33].Text;
             }
-            
-            if (gvRow.Cells[9].Text!="0.00")
+
+            if (gvRow.Cells[9].Text != "0.00")
             {
                 lbl_Prem.Text = "Premium: " + gvRow.Cells[20].Text;
-                if(gvRow.Cells[29].Text!= "&nbsp;")
+                if (gvRow.Cells[29].Text != "&nbsp;")
                 {
                     lbl_PremDue.Text = "Premium Due: " + Convert.ToDateTime(gvRow.Cells[29].Text).ToShortDateString();
 
                 }
             }
             string ira = gvRow.Cells.Count == 34 ? gvRow.Cells[33].Text : gvRow.Cells[32].Text;
-            
-                if (ira.Equals("Y"))//ira
-                {
-                    lbl_PayYr.Visible = true;
-                    years.Visible = true;
-                }
+
+            if (ira.Equals("Y"))//ira
+            {
+                lbl_PayYr.Visible = true;
+                years.Visible = true;
+            }
             else
             {
                 lbl_PayYr.Visible = false;
                 years.Visible = false;
             }
-            
+
             // Define the session variables
             Session["policyNumber"] = gvRow.Cells[2].Text;
             Session["policyDesc"] = gvRow.Cells[5].Text;

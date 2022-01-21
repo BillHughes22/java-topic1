@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Com.Alacriti.Checkout;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -36,7 +38,7 @@ namespace FcsuAgentWebApp.Account
 
                     Button RegisterAgent = (Button)this.LoginUser.FindControl("RegisterAgent");
                     RegisterAgent.Visible = false;
-                    this.Master.disableLogin();
+                    //this.Master.disableLogin();
 
                 }
                
@@ -73,6 +75,9 @@ namespace FcsuAgentWebApp.Account
 
 
             SetFocus(LoginUser.FindControl("UserName"));
+
+            Checkout.initProperties("~\\Files\\orbipay_checkout_config.json");
+                        
         }
 
         protected void LoginUser_LoggedIn(object sender, EventArgs e)

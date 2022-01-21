@@ -11,7 +11,7 @@ namespace FcsuAgentWebApp
 {
 
 
-    public partial class Payment
+    public partial class PaymentMaster
     {
 
         /// <summary>
