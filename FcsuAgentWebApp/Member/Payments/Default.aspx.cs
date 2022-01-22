@@ -120,9 +120,6 @@ namespace FcsuAgentWebApp.Member.Payments
                     }
 
 
-
-
-                    Label4.Text = (AppDomain.CurrentDomain.BaseDirectory).ToString();
                     try
                     {
                         //Checkout.initProperties("E:\\web\\fraterna\\portfcs\\Files\\orbipay_checkout_config.json");
@@ -140,7 +137,6 @@ namespace FcsuAgentWebApp.Member.Payments
                         string client_key = "2421355621";
                         string signatureKey = "4K79PXBSPP20SMB4";
                         string clientApiKey = "capik_c62af8fe-5aa0-4aa1-96d6-c78aa06639f7";
-                        tbkeyBankToken.Text = Session["cartTotal"].ToString();
 
                         //Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, Session["cartTotal"].ToString())
                         //    .withToken(keyBankToken, keyBankDigiSign)
@@ -163,22 +159,20 @@ namespace FcsuAgentWebApp.Member.Payments
                         // Convert the object to a json string
                         var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(payment);
                         var details = JObject.Parse(jsonString);
+                        // Get the Confirmation Number so we can store it to the db
+                        string TransactionID = details["confirmation_number"].ToString();
                         
-                        string bill22 = details["payment_status"].ToString();
-                        
-                        string bill26 = (details["funding_account"]["account_number"]).ToString();
-                        
+                        //string bill26 = (details["funding_account"]["account_number"]).ToString();
 
-                        //var obj = JObject.Parse(json);
-                        //var url = (string)obj["data"]["img_url"];
+                        // Update the KeyBank Transaction ID
+                        BusinessLayer UpdateKeyBankTransID = new BusinessLayer();
+                        bool isSuccessful = UpdateKeyBankTransID.UpdateKeyBankTransID(Convert.ToInt32(Session["orderID"]), TransactionID);
 
-                        //Label4.Text = payment.ToString();
-                        Label4.Text = jsonString;
                     }
                     catch (Exception exp)
                     {
                         ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "There was an error!");
-                        Label4.Text = exp.Message;
+                        //Label4.Text = exp.Message;
                     }
 
                     string bill = "test";
@@ -261,14 +255,12 @@ namespace FcsuAgentWebApp.Member.Payments
         //-------------------------------------------------------------------------------------------------------------------------
         // Pop Up Message Routine
         //-------------------------------------------------------------------------------------------------------------------------
-
         protected void popupmessage(String message)
         {
             //WilsToolbox.MessageBox.Show("This is my message");
             string script = "<script>alert('" + message + "');</script>";
             Page.RegisterStartupScript("sample pop up alert", script);
         }
-
         //-------------------------------------------------------------------------------------------------------------------------
         // End of Pop Up Message
         //-------------------------------------------------------------------------------------------------------------------------
@@ -279,7 +271,6 @@ namespace FcsuAgentWebApp.Member.Payments
         // Calculate the totals and store them in the db
         //
         //-------------------------------------------------------------------------------------------------------------------------
-
         protected void calculate_totals(int total_id)
         {
             //Label3a.Text = "here................: " + total_id;

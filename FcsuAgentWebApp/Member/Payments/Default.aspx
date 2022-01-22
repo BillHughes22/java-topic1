@@ -57,7 +57,7 @@
     <div class="row">
         <!-- Placeholder for small left side -->
         <div class="columnSmall">
-
+            <p></p>
         </div>
 
         <!-- columnGrid is for "Selected Payment Summary" grid -->
@@ -166,11 +166,10 @@
 
         <!-- Placeholder for small right side -->
         <div class="columnSmall">
-            <p>
-                keyBankToken: <asp:TextBox ID="tbkeyBankToken" runat="server"></asp:TextBox></p>
-            <p>
-                Error: <asp:Label ID="Label4" runat="server" Text=""></asp:Label></p>
+            <p></p>
         </div>
+
+        
     </div>
 
 
@@ -247,7 +246,7 @@
 
         <!-- column2 is for the KeyBank -->
         <div class="column2">
-            <asp:Label ID="Label3" runat="server" Text="Selected Payment Summary" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="Pay With Checking or Savings Account" Style="text-align: center; margin-bottom: 15px;" Font-Size="16" Width="100%" ForeColor="Navy" EnableViewState="false"></asp:Label>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
 
@@ -255,7 +254,7 @@
                     <%-- KeyBank Web UI Integration --%>
                     <div id="orbipay-checkout-iframe-div">
 
-                        <button id="orbipay-checkout-button">Pay</button>
+                        <div align="center"><button id="orbipay-checkout-button">Pay Using Your Checking or Savings Account</button></div>
                         <form id="orbipay-checkout-form" action="Default.aspx.cs" method="post" onsubmit="post_secure_token();">
                             <script id="orbipay-checkout-script"
                                 src="https://sbjsco.billerpayments.com/app/opco/v3/scripts/checkoutofsc.js" <%-- used for sandbox --%>

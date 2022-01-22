@@ -55,14 +55,15 @@ namespace FcsuAgentWebApp.Services.DataAccess
 
                         conn.Open();
                         // ExecuteNonQuery used for executing queries that do not return any data. 
-                        cmd.ExecuteNonQuery();
+                        //cmd.ExecuteNonQuery();
+                        insertResults.newId = (Int32)cmd.ExecuteScalar();
 
                         // Get the last inserted ID so we can pass it back up.
                         // We always want to return the orderID if this is the second order
-                        if (System.Web.HttpContext.Current.Session["orderID"] != null)
-                            insertResults.newId = (Int32)System.Web.HttpContext.Current.Session["orderID"];
-                        else
-                            insertResults.newId = (Int32)cmd.ExecuteScalar();
+                        //if (System.Web.HttpContext.Current.Session["orderID"] != null)
+                        //    insertResults.newId = (Int32)System.Web.HttpContext.Current.Session["orderID"];
+                        //else
+                        //    insertResults.newId = (Int32)cmd.ExecuteScalar();
 
                     }
                     conn.Close();
@@ -188,10 +189,51 @@ namespace FcsuAgentWebApp.Services.DataAccess
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     // We need to update the paypal transaction id
-                    string updateCommand = string.Format(@"UPDATE payhist SET paypal_trans_id = @paypal_id WHERE order_id = '" + order_id + "'");
+                    string updateCommand = string.Format(@"UPDATE payhist SET trans_id = @paypal_id WHERE order_id = '" + order_id + "'");
                     using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
                     {
                         cmd.Parameters.AddWithValue("@paypal_id", paypalTransID);
+
+                        conn.Open();
+                        // ExecuteNonQuery used for executing queries that do not return any data. 
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    conn.Close();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                // If there is an error set the flag to false
+                isSuccessful = false;
+            }
+
+            return isSuccessful;
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------
+        // End Update PayPal Transaction ID
+        //-------------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Update the sales cart items to include the KeyBank Transaction ID, paymentType and return if successful
+        /// </summary>
+        /// <param name="checkoutItems"></param>
+        public bool UpdateKeyBankTransID(int order_id, string keybankTransID)
+        {
+            bool isSuccessful = true;
+
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // We need to update the KeyBank transaction id and paymentType
+                    string updateCommand = string.Format(@"UPDATE payhist SET trans_id = @keybank_id, paymentType = 'KeyBank' WHERE order_id = '" + order_id + "'");
+                    using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keybank_id", keybankTransID);
 
                         conn.Open();
                         // ExecuteNonQuery used for executing queries that do not return any data. 

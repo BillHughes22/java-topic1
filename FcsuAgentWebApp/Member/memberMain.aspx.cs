@@ -44,7 +44,6 @@ namespace FcsuAgentWebApp.Member
         protected void Page_Load(object sender, EventArgs e)
 
         {
-            TextBox1.Text = "I am here22";
             if (User.IsInRole("member"))
             {
                 this.Master.addMemberMenu();
@@ -186,7 +185,6 @@ namespace FcsuAgentWebApp.Member
             }
 
             memberDropdown.SelectedValue = number;
-            TextBox1.Text = "I am here22";
         }
 
         //------------------------------------------------------------------------------------
@@ -216,17 +214,11 @@ namespace FcsuAgentWebApp.Member
                                 Session["fName"] = reader_admin["FNAME"];
                                 Session["lName"] = reader_admin["LNAME"];
                                 Session["custRef"] = reader_admin["cst_num"];
-                                TextBox1.Text = "I am here";
-
                             }
-
-
                         }
                     }
                     myConnection.Close();
-
                 }
-
             }
         }
         //------------------------------------------------------------------------------------

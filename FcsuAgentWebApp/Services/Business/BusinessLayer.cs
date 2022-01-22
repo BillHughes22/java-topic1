@@ -109,6 +109,18 @@ namespace FcsuAgentWebApp.Services.Business
         }
 
         /// <summary>
+        /// Update KeyBank Transaction ID in the db
+        /// </summary>
+        /// <param name="order_id"></param>
+        /// <param name="paypalTransID"></param>
+        /// <returns></returns>
+        public bool UpdateKeyBankTransID(int order_id, string keybankTransID)
+        {
+            DataLayer UpdateKeyBank = new DataLayer();
+            return UpdateKeyBank.UpdateKeyBankTransID(order_id, keybankTransID);
+        }
+
+        /// <summary>
         /// Prepare JSON structure for products being purchased
         /// </summary>
         /// <param name="allItems"></param>
