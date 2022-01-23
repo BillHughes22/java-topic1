@@ -38,6 +38,25 @@
             display: table;
             clear: both;
         }
+        .button 
+        {
+            background-color: #1A3188; /* Blue */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .button:hover 
+        {
+            background-color: #2547c1; /* Three Shades Lighter Blue */
+            color: white;
+        }
     </style>
 
    
@@ -250,11 +269,11 @@
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
 
-
+                    <%-- ---------------------------------------------------------------------------------------------------------- --%>
                     <%-- KeyBank Web UI Integration --%>
                     <div id="orbipay-checkout-iframe-div">
-
-                        <div align="center"><button id="orbipay-checkout-button">Pay Using Your Checking or Savings Account</button></div>
+                        <asp:Label ID="lblTransactionNotSuccessful" runat="server" Text="The Transaction Was Not Successful - Please Try Again." Visible="False" ForeColor="Red"></asp:Label>
+                        <div align="center"><button id="orbipay-checkout-button" class="button">Pay Using Your Checking or Savings Account</button></div>
                         <form id="orbipay-checkout-form" action="Default.aspx.cs" method="post" onsubmit="post_secure_token();">
                             <script id="orbipay-checkout-script"
                                 src="https://sbjsco.billerpayments.com/app/opco/v3/scripts/checkoutofsc.js" <%-- used for sandbox --%>
@@ -262,21 +281,12 @@
                                 data-client_key="2421355621"
                                 data-customer_account_reference="<%=Session["orderID"]%>"
                                 data-amount="<%=Session["cartTotal"]%>"
-                                <%--data-customer_first_name="<%=Session["fName"]%>"
-                                data-customer_last_name="<%=Session["lName"]%>"
-                                data-customer_reference="<%=Session["custRef"]%>"
-                                data-customer_email=""--%>
                                 data-api_event="create_payment">
-
-                                <%--data-payment_reference="<%=Session["orderID"]%>"
-
-                                data-payment_option=""--%>
-                                
-                                
                             </script>
                         </form>
                     </div>
                     <%-- End - KeyBank Web UI Integration --%>
+                    <%-- ---------------------------------------------------------------------------------------------------------- --%>
                 </ContentTemplate>
             </asp:UpdatePanel>
 

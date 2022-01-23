@@ -56,14 +56,14 @@ namespace FcsuAgentWebApp.Services.DataAccess
                         conn.Open();
                         // ExecuteNonQuery used for executing queries that do not return any data. 
                         //cmd.ExecuteNonQuery();
-                        insertResults.newId = (Int32)cmd.ExecuteScalar();
+                        //insertResults.newId = (Int32)cmd.ExecuteScalar();
 
                         // Get the last inserted ID so we can pass it back up.
                         // We always want to return the orderID if this is the second order
-                        //if (System.Web.HttpContext.Current.Session["orderID"] != null)
-                        //    insertResults.newId = (Int32)System.Web.HttpContext.Current.Session["orderID"];
-                        //else
-                        //    insertResults.newId = (Int32)cmd.ExecuteScalar();
+                        if (System.Web.HttpContext.Current.Session["orderID"] != null)
+                            insertResults.newId = (Int32)System.Web.HttpContext.Current.Session["orderID"];
+                        else
+                            insertResults.newId = (Int32)cmd.ExecuteScalar();
 
                     }
                     conn.Close();

@@ -24,9 +24,19 @@ namespace FcsuAgentWebApp.Member.Complete
             }
             //string fullname1 = Request.QueryString["details"];
 
-            NameValueCollection nvc = Request.Form;
             string TransactionID;
-            TransactionID = nvc["JSON"];
+            // Check if the transaction is KeyBank or PayPal
+            if (Session["Transaction"].ToString() == "KeyBank")
+            {
+                // We are in the KeyBank code block
+                TransactionID = Session["Transaction_ID"].ToString();
+            }
+            else
+            {
+                // We are in the PayPal code block
+                NameValueCollection nvc = Request.Form;
+                TransactionID = nvc["JSON"];
+            }
             // Apply the headers to the summary
             Transaction_ID_lbl.Text = TransactionID;
             CurrentDate.Text = DateTime.Now.ToString("F");

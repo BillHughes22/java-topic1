@@ -56,8 +56,8 @@ namespace FcsuAgentWebApp.Member
             var currentUser = (FcsuMembershipUser)new FcsuWebMembershipProvider().GetUser(userName, true);
 
             number = currentUser.MemberNumber;
-            //LabelNumber.Text = number;
-            LabelNumber.Text = "I am there";
+            LabelNumber.Text = number;
+            
 
 
             loadKeyBank();
@@ -77,7 +77,6 @@ namespace FcsuAgentWebApp.Member
             hidePayment();
 
             //LabelNumber.Text = memberDropdown.Text;
-            LabelNumber.Text = "I am there";
             Session["member"] = LabelNumber.Text;
             number = memberDropdown.Text;
             if (!IsPostBack)
@@ -963,16 +962,19 @@ namespace FcsuAgentWebApp.Member
                 BusinessLayer SaveItems = new BusinessLayer();
                 ReturnData dbInsertResults = new ReturnData();
                 dbInsertResults = SaveItems.SaveCheckoutItems(checkoutItems);
-                //if (!dbInsertResults.isSuccessful)
-                //{
-                //    // Show message if member number can not be converted to int
-                //    Response.Write("<script>alert('The information did not get saved correctly.  Please try again...');</script>");
-                //}
-                //else
+                if (!dbInsertResults.isSuccessful)
+                {
+                    // Show message if member number can not be converted to int
+                    Response.Write("<script>alert('The information did not get saved correctly.  Please try again...');</script>");
+                }
+                else
                 {
                     // If the data was saved correctly, set this flag so we can now display the checkout now button.
                     Session["cartData"] = true;
                     Session["orderID"] = dbInsertResults.newId;
+                    //var youAre = Session["orderID"];
+                    //Session["fName"] = youAre;
+                    //Response.Write("<script>alert('This is the session: ' + youAre);</script>");
 
                     Response.Redirect("~/Member/ShoppingCart/Default.aspx");
                 }

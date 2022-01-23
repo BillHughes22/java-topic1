@@ -86,6 +86,8 @@ namespace FcsuAgentWebApp.Member.Payments
             // Only perform this upon page load and not post backs
             if (!IsPostBack)
             {
+                // Every time we enter this section make sure this error message is false
+                lblTransactionNotSuccessful.Visible = false;
                 //-------------------------------------------------------------------------------------------------------------
                 // New section for reading POST response for KeyBank
                 //-------------------------------------------------------------------------------------------------------------
@@ -122,15 +124,18 @@ namespace FcsuAgentWebApp.Member.Payments
 
                     try
                     {
-                        //Checkout.initProperties("E:\\web\\fraterna\\portfcs\\Files\\orbipay_checkout_config.json");
-                        //Checkout.initProperties("~\\Files\\orbipay_checkout_config.json");
+                        // Load in the initial properties that were provided by KeyBank
+                        //Checkout.initProperties(Server.MapPath("~/Files/orbipay_checkout_config.json"));
+                        // This directory will be required to be updated when going into production.......
+                        // The directories will also need to be updated inside this .json file for production.....
+                        Checkout.initProperties("E:\\web\\fraterna\\portfcs\\Files\\orbipay_checkout_config.json");
+                        
                         ServicePointManager.Expect100Continue = true;
                         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                        Checkout.initProperties("C:\\Users\\bill\\source\\repos\\FcsAgentWebApp\\FcsuAgentWebApp\\Files\\orbipay_checkout_config.json");
-
+                        
                         // Customer Identifiers
                         string feeAmount = "0.00";
-                        string liveMode = "false";
+                        string liveMode = "false"; // For Production liveMode must be "true" -- Sandbox liveMode must be "false"
                         //String customFields = "";
                         Dictionary<string, string> customFields = new Dictionary<string, string>();
 
@@ -138,41 +143,51 @@ namespace FcsuAgentWebApp.Member.Payments
                         string signatureKey = "4K79PXBSPP20SMB4";
                         string clientApiKey = "capik_c62af8fe-5aa0-4aa1-96d6-c78aa06639f7";
 
-                        //Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, Session["cartTotal"].ToString())
-                        //    .withToken(keyBankToken, keyBankDigiSign)
-                        //    //.withFee(feeAmount)
-                        //    .forClient(client_key, signatureKey, clientApiKey)
-                        //    //.forClient(client_key, signatureKey)
-                        //    //.withCustomFields(customFields)
-                        //    .confirm();
-
+                        // Communicate with the API to transfer the payment
                         Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, Session["cartTotal"].ToString())
                                  .withToken(keyBankToken, keyBankDigiSign)
                                  .forClient(client_key, signatureKey, clientApiKey)
                                  .confirm("false");
-
-                        //var obj = new paymentStructure
-                        //{
-
-                        //}
-
+                                               
                         // Convert the object to a json string
                         var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(payment);
                         var details = JObject.Parse(jsonString);
-                        // Get the Confirmation Number so we can store it to the db
-                        string TransactionID = details["confirmation_number"].ToString();
-                        
-                        //string bill26 = (details["funding_account"]["account_number"]).ToString();
 
-                        // Update the KeyBank Transaction ID
-                        BusinessLayer UpdateKeyBankTransID = new BusinessLayer();
-                        bool isSuccessful = UpdateKeyBankTransID.UpdateKeyBankTransID(Convert.ToInt32(Session["orderID"]), TransactionID);
+                        // Before we update the database make sure we have a successful Payment object
+                        if (details["payment_status"].ToString() == "scheduled")
+                        {
+                            // For the complete screen we need to know the transaction is KeyBank
+                            Session["Transaction"] = "KeyBank";
+                            // Get the Confirmation Number so we can store it to the db
+                            string transactionID = details["confirmation_number"].ToString();
+                            Session["Transaction_ID"] = transactionID;
+
+                            // Example how to read Json
+                            //string accountNumber = (details["funding_account"]["account_number"]).ToString();
+
+                            // Update the KeyBank Transaction ID
+                            BusinessLayer UpdateKeyBankTransID = new BusinessLayer();
+                            bool isSuccessful = UpdateKeyBankTransID.UpdateKeyBankTransID(Convert.ToInt32(Session["orderID"]), transactionID);
+
+                            // After the db update is complete redirect the user to the complete page
+                            Response.Redirect("~/Member/Complete/Default.aspx");
+                        }
+                        else
+                        {
+                            // Show the label with the transaction failed
+                            lblTransactionNotSuccessful.Visible = true;
+                            //var fileName = Server.MapPath("~/Files/orbipay_checkout_config.json");
+                            //lblTransactionNotSuccessful.Text = jsonString;
+                        }
 
                     }
                     catch (Exception exp)
                     {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "There was an error!");
+                        // Show the label with the transaction failed
+                        lblTransactionNotSuccessful.Visible = true;
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "There was an error!" + exp);
                         //Label4.Text = exp.Message;
+                        
                     }
 
                     string bill = "test";
