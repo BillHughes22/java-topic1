@@ -61,9 +61,14 @@ namespace FcsuAgentWebApp.Services.DataAccess
                         // Get the last inserted ID so we can pass it back up.
                         // We always want to return the orderID if this is the second order
                         if (System.Web.HttpContext.Current.Session["orderID"] != null)
+                        {
                             insertResults.newId = (Int32)System.Web.HttpContext.Current.Session["orderID"];
+                            cmd.ExecuteNonQuery();
+                        }
                         else
+                        {
                             insertResults.newId = (Int32)cmd.ExecuteScalar();
+                        }
 
                     }
                     conn.Close();

@@ -146,7 +146,13 @@ namespace FcsuAgentWebApp.Member.ShoppingCart
 
                         // Now lets refresh the grid with the updated data.
                         gv_cart_DataBind();
+                        // Clear out the order information if all rows are gone
+                        if (gv_cart.Rows.Count < 1)
+                        {
+                            Session["orderID"] = null;
+                        }
                         break;
+
                 }
             }
         }
@@ -167,6 +173,7 @@ namespace FcsuAgentWebApp.Member.ShoppingCart
             var cartContents = GetCartContents.GetAllCheckoutItems(Convert.ToInt32(Session["orderID"]));
             gv_cart.DataSource = cartContents.Item1.ToList();
             gv_cart.DataBind();
+            
             
             // Ok now lets update the total
             lbl_total.Text = string.Format("{0:C}", Convert.ToDecimal(cartContents.Item2.ToString()));

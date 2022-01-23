@@ -147,7 +147,7 @@ namespace FcsuAgentWebApp.Member.Payments
                         Com.Alacriti.Checkout.Model.Payment payment = new Com.Alacriti.Checkout.Api.Payment(keyBankCustRef, Session["cartTotal"].ToString())
                                  .withToken(keyBankToken, keyBankDigiSign)
                                  .forClient(client_key, signatureKey, clientApiKey)
-                                 .confirm("false");
+                                 .confirm("false"); // update .comfirm to "true" for production-  false means sandbox.
                                                
                         // Convert the object to a json string
                         var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(payment);
