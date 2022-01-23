@@ -497,7 +497,6 @@
     <Compile Include="Models\Admin\RoleListViewModel.cs" />
     <Compile Include="Models\Admin\UserEditViewModel.cs" />
     <Compile Include="Models\Admin\UserListViewModel.cs" />
-    <Compile Include="Models\CheckoutKeyBank\CheckoutKeyBank.cs" />
     <Compile Include="Models\CheckoutPayPal\CheckoutPayPal.cs" />
     <Compile Include="Models\DataModels\AgentPolicyModel.cs" />
     <Compile Include="Models\DataModels\FileDirModel.cs" />
