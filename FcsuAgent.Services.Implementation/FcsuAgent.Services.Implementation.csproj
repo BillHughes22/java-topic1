@@ -42,7 +42,7 @@
       <HintPath>..\_ExternalComponents\CODEFramework\CODE.Framework.Core.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="FcsuAgent.BuisnessObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\FcsuAgent.BuisnessObjects\bin\Release\FcsuAgent.BuisnessObjects.dll</HintPath>
+      <HintPath>..\FcsuAgent.BuisnessObjects\bin\Debug\FcsuAgent.BuisnessObjects.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
