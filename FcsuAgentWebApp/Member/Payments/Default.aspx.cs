@@ -133,7 +133,7 @@ namespace FcsuAgentWebApp.Member.Payments
                         ServicePointManager.Expect100Continue = true;
                         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                         
-                        // Customer Identifiers
+                        // Customer Identifiers 
                         string feeAmount = "0.00";
                         string liveMode = "false"; // For Production liveMode must be "true" -- Sandbox liveMode must be "false"
                         //String customFields = "";
